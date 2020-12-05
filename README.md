@@ -1,6 +1,6 @@
 # ZapateriaPAMYS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+Primero clonar el repo, luego correr `npm i` y finalmente `ng serve` para levantar el servidor web.
 
 ## Development server
 
