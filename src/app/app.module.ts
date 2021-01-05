@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { ProductModule } from './product/product.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { ContactModule } from './contact/contact.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ContactModule } from './contact/contact.module';
     ProductModule,
     PageNotFoundModule,
     ContactModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [],
