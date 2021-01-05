@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "Zapateria-PAMYS"
+  "defaultProject": "Zapateria-PAMYS",
+  "cli": {
+    "analytics": "4ba91e39-3310-4133-9079-4c0ec0cbdae0"
+  }
 }
