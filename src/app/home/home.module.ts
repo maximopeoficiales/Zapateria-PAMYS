@@ -7,16 +7,19 @@ import { BannerComponent } from './components/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import {MaterialModule} from './../material/material.module';
-
+import { SwiperModule } from 'swiper/angular';
 @NgModule({
-  declarations: [HomeComponent,
-     BannerComponent],
+  declarations: [
+    BannerComponent,
+    HomeComponent,
+  ],
   imports: [
     CommonModule,
-    FormsModule,
     HomeRoutingModule,
     SharedModule,
-    MaterialModule
-  ]
+    [SwiperModule],
+    FormsModule
+
+  ],
 })
 export class HomeModule { }

@@ -20,8 +20,9 @@ import { MatSortModule } from '@angular/material/sort';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {matSnackBarAnimations, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -49,6 +50,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ,MatProgressBarModule,
     MatSnackBarModule
     ,MatFormFieldModule
+    ,
+    MatGridListModule,
+    
+    
   ],
   exports:[
     MatButtonModule,
@@ -71,7 +76,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule ,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ] 
  })
 export class MaterialModule { }
