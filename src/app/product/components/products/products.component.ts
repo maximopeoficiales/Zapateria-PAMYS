@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/core/services/products.service';
+import { Product } from 'src/app/Product.model';
 
 @Component({
   selector: 'app-products',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  products !:Product [] ;
+
+  constructor(private productservice:ProductsService) 
+  {  }
 
   ngOnInit(): void {
+    // this.products = this.productservice.getAllProducts();
+   this.fecthProducts(); 
   }
+ 
+clickProduct(id :any){
+
+  }
+
+  fecthProducts(){
+    this.products=this.productservice.products;
+    // this.productservice.getAllProducts()
+    //TODO:SUBSCRIBIRNOS PORQUE ES UN OBSERVABLE PARA OBTENER LAS RESPUESTAS
+    // .subscribe(products =>{
+    //   this.products=products;
+    // })
+  }
+  
 
 }

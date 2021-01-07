@@ -1,1 +1,36 @@
-<p>product-detail works!</p>
+<!-- PARA QUE NO ME MUSTRE ERRORES DE UNDIFINED -->
+<br>
+<br>
+<br>
+<div class="detail-card">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <span class="material-icons">
+                    favorite
+                    </span>
+            </div>
+            <mat-card-title>{{ product.title | uppercase}}</mat-card-title>
+            <mat-card-subtitle>{{product.price | currency:'S/.'}}</mat-card-subtitle>
+
+        </mat-card-header>
+        <img mat-card-image [src]="product.image" alt="">
+        <mat-card-content>
+            <p>
+                {{product.description}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="openSnackBar()" aria-label="Show an example snack-bar">LIKE</button>
+            <button mat-button>SHARE</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 const routes: Routes = [
+
   {
     path: '',
     component: LayoutComponent,
+    // redirectTo: '/Home',
+    //TODO:CUANDO LA URL ESTE VACIA O EN SECO
+    // pathMatch: 'full',
     children: [
       {
         path: '',
@@ -13,20 +17,30 @@ const routes: Routes = [
       },
       {
         path: 'Home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        //TODO:CREAR UN MODULO DINAMICAMENTE
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)//devuelva el home module
+        // component: HomeComponent
       },
       {
-        path: 'Product',
+        path: 'Products',
+        // canActivate: [AdminGuard],
+
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+
       },
       {
         path: 'Contact',
-        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+        //TODO:VA VALIDAR DATOS 
+        // canActivate:[AdminGuard],
+        loadChildren:() => import('./contact/contact.module').then(m => m.ContactModule)
       },
-    ]
+
+
+    ],
+
   },
   {
-    path: 'Admin',
+    path:'Admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {

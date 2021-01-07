@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input,Output ,EventEmitter} from '@angular/core';
+import { Product } from 'src/app/Product.model';
 
 @Component({
   selector: 'app-product',
@@ -11,5 +12,15 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  today= new Date();
+@Input () product !:Product;
 
+@Output () productClicked  :EventEmitter <any> = new EventEmitter (); 
+
+addCart(){
+  console.log("agregando al carrtio de compras");
+  //emitiendo los valores cuado se hace click
+  this.productClicked.emit(this.product);
+  console.log('product : '+this.product.id)
+}
 }

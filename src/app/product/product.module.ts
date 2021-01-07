@@ -7,13 +7,23 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MesageComponent } from './components/mesage/mesage.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
-  declarations: [ProductComponent, ProductsComponent, ProductDetailComponent, CartComponent, MesageComponent],
+  declarations: [
+    ProductComponent,
+    ProductsComponent,
+    ProductDetailComponent,
+    MesageComponent,
+    CartComponent
+  ],
   imports: [
     CommonModule,
-    ProductRoutingModule
-  ]
+    ProductRoutingModule,
+    SharedModule,
+    MaterialModule
+  ],
 })
 export class ProductModule { }

@@ -11,6 +11,8 @@ import { ProductModule } from './product/product.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { ContactModule } from './contact/contact.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     ProductModule,
     PageNotFoundModule,
     ContactModule,
-    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule
+
 
   ],
   providers: [],

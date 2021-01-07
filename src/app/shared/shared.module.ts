@@ -10,7 +10,7 @@ import { MaterialModule } from '../material/material.module';
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   exports:[
     FooterComponent,

@@ -6,20 +6,17 @@ import { HomeComponent } from './components/home/home.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-
+import {MaterialModule} from './../material/material.module';
 
 @NgModule({
   declarations: [HomeComponent,
      BannerComponent],
-     exports:[
-       HomeComponent,
-       BannerComponent
-     ],
   imports: [
     CommonModule,
     FormsModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ]
 })
 export class HomeModule { }
