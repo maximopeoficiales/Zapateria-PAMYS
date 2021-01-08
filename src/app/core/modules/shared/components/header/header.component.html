@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+
+        <div class="row between-xs  middle-xs header-row">
+            <nav>
+                <a href="/"><img src="assets/Image/logo/logo.png" alt=""></a>
+                <a mat-raised-button href="/" class="sapcebutton">Home
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                </a>
+                <a mat-raised-button href="/contact" class="sapcebutton">Contacto</a>
+                <a mat-raised-button href="/products" class="sapcebutton">Productos</a>
+                <a mat-raised-button matBadge="4" matBadgeColor="warn" routerLink="/Products/Cart">Carrito<span class="material-icons">shopping_cart</span></a>
+                <button mat-raised-button [matMenuTriggerFor]="menu" color="accent" class="spacebutton">Categorias</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Pibe</button>
+                    <button mat-menu-item>Sandalias</button>
+                    <button mat-menu-item>botas</button>
+                </mat-menu>
+                <a mat-raised-button class="profileIcon"> <span class="material-icons">account_circle</span></a>
+            </nav>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
