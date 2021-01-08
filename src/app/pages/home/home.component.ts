@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Swiper} from 'swiper';
 @Component({
   selector: 'app-home',
@@ -12,8 +12,8 @@ mySwiper ! :Swiper;
 
   ngOnInit(): void {
   }
-
   ngAfterViewInit(){
     this.mySwiper= new Swiper('.swiper-container')
+
   }
 }

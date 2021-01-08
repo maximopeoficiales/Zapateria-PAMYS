@@ -19,9 +19,10 @@ import { MatSortModule } from '@angular/material/sort';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {matSnackBarAnimations, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -33,22 +34,20 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatBadgeModule,
     MatCardModule,
-
     MatInputModule,
     MatSelectModule,
-    MatRadioModule,
-    
+    MatRadioModule,    
     LayoutModule,
     MatSidenavModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule  
   ],
   exports:[
     MatButtonModule,
@@ -56,22 +55,20 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatBadgeModule,
     MatCardModule,
-
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-
     LayoutModule,
     MatSidenavModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule ,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ] 
  })
 export class MaterialModule { }
