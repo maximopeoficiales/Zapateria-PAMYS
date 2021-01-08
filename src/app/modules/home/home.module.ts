@@ -1,11 +1,9 @@
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
-import { RouterModule, Routes } from '@angular/router';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomeComponent
@@ -13,12 +11,12 @@ const routes : Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
-    HttpClientModule,
     RouterModule.forChild(routes)
   ],
-  providers: [HttpService]
 })
 export class HomeModule { }
