@@ -18,6 +18,10 @@
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <input [formControl]="password" type="password" class="form-control" id="password">
+                    <div class="alert alert-danger" role="alert"
+                            *ngIf="password.touched && password.errors?.required">
+                        Debe ingresar su contraseña.
+                    </div>
                 </div>
                 <div class="span-text text-center">
                     <span>Olvidó la contraseña?</span>

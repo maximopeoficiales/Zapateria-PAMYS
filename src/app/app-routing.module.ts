@@ -5,7 +5,6 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    // canLoad: [AdminGuard],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
   {
@@ -15,6 +14,15 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule)
+  },
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./pages/product-detail/product-detail.module').then(m => m.ProductDetailModule)
   }
 ];
 

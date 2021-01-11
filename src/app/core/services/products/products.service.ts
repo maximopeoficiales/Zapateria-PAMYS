@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { from, Observable, of } from 'rxjs';
 import { Product } from 'src/app/core/models/Product';
 import {environment} from 'src/environments/environment';
+import { apiEndPoint } from '../http/constants';
+import { HttpService } from '../http/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  products :any [] =[
+  products: Product[] = [
    
     {
       id:1,
@@ -74,39 +77,38 @@ export class ProductsService {
 
   }
 
-  getAllProducts(){
-    // return this.products;
-  
+  getAllProducts(): Observable<Product[]> {
+    return of(this.products);  
     // return this.http.get<Product[]>('https://platzi-store.herokuapp.com/products/');
   
     // return this.http.get<Product[]>(environment.url_api+'/products/')
-    return this.http.get<Product[]>(`${environment.url_api}/products/`)
+    // return this.http.get<Product[]>(`${environment.url_api}/products/`);
+    // return this.http.get<Product[]>(`${environment.url_api}/products/`);
   }
   
   productList(){
-    return  this.products
+    return  this.products;
   }
   
-  getProduct(id:string){
-    return this.products.find(item => id == item.id);
+  getProduct(id: number): Product {
+    return this.products.find(item => id == item.id)!;
+    // return this.products.find();
     // return this.http.get<Product>(`${environment.url_api}/products/${id}`)
   }
   
-  createProduct(product:Product){
+  createProduct(product: Product){
     return this.http.post(`${environment.url_api}/products/`,product);
   
   }
-  updateProduct(id:String,changes:Partial<Product>){
-    return this.http.put(`${environment.url_api}/products/${id}`,changes)
-  
+  updateProduct(id: number,changes: Partial<Product>){
+    return this.http.put(`${environment.url_api}/products/${id}`,changes);  
   }
   
-  deleteProduct(id:string){
-    return this.http.delete(`${environment.url_api}/products/${id}`)
-     
+  deleteProduct(id: number){
+    return this.http.delete(`${environment.url_api}/products/${id}`);     
   }
   
-  delete(id:number){
-    this.products.splice(id,5)
+  delete(id: number){
+    this.products.splice(id,5);
   }
 }

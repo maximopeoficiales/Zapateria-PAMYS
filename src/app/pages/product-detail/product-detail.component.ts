@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/core/models/Product';
-import { MesageComponent } from '../mesage/mesage.component';
+import { MesageComponent } from '../../core/modules/shared/components/mesage/mesage.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,14 +12,18 @@ import { MesageComponent } from '../mesage/mesage.component';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product!: any;
-  constructor(private route: ActivatedRoute, private productservice: ProductsService, private _snackBar: MatSnackBar) { }
+  product: Product = new Product();
+
+  constructor(private route: ActivatedRoute, 
+              private productservice: ProductsService, 
+              private _snackBar: MatSnackBar) { }
+
   durationInSeconds = 5;
   //TODO:MANERA ADECUADA DE RICIBIR DATOS 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       const id = params.id;
-      this.fetchProduct(id);
+      // this.fetchProduct(id);
       this.product = this.productservice.getProduct(id);
     })
   }
@@ -29,15 +33,13 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  fetchProduct(id: string) {
+  fetchProduct(id: number) {
     // this.productservice.getProduct(id)
     //   .subscribe(product => {
     //     console.log(product)
     //     this.product = product;
     //   })
-    this.product = this.productservice.getProduct(id);
-
-
+    // this.product = this.productservice.getProduct(id);
   }
 
   createProduct() {
@@ -59,21 +61,21 @@ export class ProductDetailComponent implements OnInit {
 
   updateProduct() {
     const updateProduc: Partial<Product> = {
-      id: '30',
+      id: 30,
       title: 'Editado producto',
       image: 'assets/Image/img1.jpeg',
       price: 5000,
       description: 'Producto esditado'
     };
 
-    this.productservice.updateProduct('1', updateProduc)
+    this.productservice.updateProduct(1, updateProduc)
       .subscribe(product => {
         console.log(product)
       })
   }
 
   deleteProduct() {
-    this.productservice.deleteProduct('333')
+    this.productservice.deleteProduct(333)
       .subscribe(rta => {
         console.log(rta)
       })

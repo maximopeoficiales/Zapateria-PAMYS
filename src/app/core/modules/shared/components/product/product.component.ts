@@ -1,4 +1,5 @@
 import { Component, OnInit ,Input,Output ,EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/core/models/Product';
 
 @Component({
@@ -8,19 +9,24 @@ import { Product } from 'src/app/core/models/Product';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  today= new Date();
+  @Input () product: Product = new Product();
+  @Output () productClicked  :EventEmitter <any> = new EventEmitter (); 
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  } 
+
+  addCart(){
+    console.log("agregando al carrtio de compras");
+    //emitiendo los valores cuado se hace click
+    this.productClicked.emit(this.product);
+    console.log('product : '+this.product.id)
   }
-  today= new Date();
-@Input () product !:Product;
 
-@Output () productClicked  :EventEmitter <any> = new EventEmitter (); 
+  loadDetails(id: number) {
+    this.router.navigate([`/product/${id}`]);
+  }
 
-addCart(){
-  console.log("agregando al carrtio de compras");
-  //emitiendo los valores cuado se hace click
-  this.productClicked.emit(this.product);
-  console.log('product : '+this.product.id)
-}
 }
