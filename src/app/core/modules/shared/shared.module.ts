@@ -6,7 +6,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
-
+import {CartComponent} from './components/cart/cart.component';
 // TODO: Put every component on it's own module
 // Bec this module can get way too big
 
@@ -15,7 +15,8 @@ import { MaterialModule } from '../material/material.module';
     FooterComponent,
     HeaderComponent,
     ProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +27,8 @@ import { MaterialModule } from '../material/material.module';
     FooterComponent,
     HeaderComponent,
     ProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    CartComponent
   ]
 })
 export class SharedModule { }

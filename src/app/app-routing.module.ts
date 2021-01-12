@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./pages/product-detail/product-detail.module').then(m => m.ProductDetailModule)
+  },
+  {
+    path:'cart',
+    loadChildren:()=>import('./pages/shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule)
   }
 ];
 

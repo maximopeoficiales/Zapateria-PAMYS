@@ -23,6 +23,8 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatProgressBarModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatGridListModule  
+    MatGridListModule  ,
+    MatStepperModule,
+    MatDividerModule
   ],
   exports:[
     MatButtonModule,
@@ -68,7 +72,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatProgressBarModule,
     MatSnackBarModule ,
     MatFormFieldModule,
-    MatGridListModule
+    MatGridListModule,
+    MatStepperModule,
+    MatDividerModule
   ] 
  })
 export class MaterialModule { }
