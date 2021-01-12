@@ -10,7 +10,8 @@
                 </a>
                 <a mat-raised-button routerLink="/contact" class="sapcebutton">Contacto</a>
                 <a mat-raised-button routerLink="/products" class="sapcebutton">Productos</a>
-                <a mat-raised-button matBadge="4" matBadgeColor="warn" routerLink="/Products/Cart">Carrito<span class="material-icons">shopping_cart</span></a>
+                <a mat-raised-button matBadge="{{ cartItemsCount | async }}" matBadgeColor="warn" 
+                    routerLink="/Products/Cart" (click)="logCart()">Carrito<span class="material-icons">shopping_cart</span></a>
                 <button mat-raised-button [matMenuTriggerFor]="menu" color="accent" class="spacebutton">Categorias</button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item>Pibe</button>
