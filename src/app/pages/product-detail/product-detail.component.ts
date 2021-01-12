@@ -12,7 +12,7 @@ import { MesageComponent } from '../../core/modules/shared/components/mesage/mes
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product = new Product();
+  product!: Product;
 
   constructor(private route: ActivatedRoute, 
               private productservice: ProductsService, 

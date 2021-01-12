@@ -16,46 +16,46 @@ export class ProductsService {
       id:1,
 
       image:'assets/Image/products/img1.jpeg',
-      title:'pibe',
+      title:'Zapatos 1',
       price:500,
       description:'dorado talla 16'
     },
 {
       id:2,
       image:'assets/Image/products/img2.jpeg',
-      title:'pibe',
+      title:'Zapatos 2',
       price:500,
       description:'dorado talla 16'
     },
 {
       id:3,
       image:'assets/Image/products/img3.jpeg',
-      title:'pibe',
+      title:'Zapatos 3',
       price:500,
       description:'dorado talla 16'
     },
 {
       id:4,
       image:'assets/Image/products/img4.jpeg',
-      title:'pibe',
+      title:'Zapatos 4',
       price:500,
       description:'dorado talla 16'
     },{
       id:5,
       image:'assets/Image/products/img5.jpeg',
-      title:'pibe',
+      title:'Zapatos 5',
       price:500,
       description:'dorado talla 16'
     },{
       id:6,
       image:'assets/Image/products/img6.jpeg',
-      title:'pibe',
+      title:'Zapatos 6',
       price:500,
       description:'dorado talla 16'
     },{
       id:7,
       image:'assets/Image/products/img7.jpeg',
-      title:'pibe',
+      title:'Zapatos 7',
       price:500,
       description:'dorado talla 16'
     },{
