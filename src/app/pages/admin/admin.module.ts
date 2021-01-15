@@ -9,36 +9,42 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { MaterialModule } from 'src/app/core/modules/material/material.module';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryListComponent } from './subpages/category/category-list/category-list.component';
 
-const routes: Routes = [ 
+const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: NavComponent,
     children: [
       {
         path: 'create',
-        component: ProductFormComponent
+        component: ProductFormComponent,
       },
       {
         path: 'products',
-        component: ProductListComponent
-      }
-    ]
-  }
+        component: ProductListComponent,
+      },
+      {
+        path: 'categorys',
+        component: CategoryListComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [
-    NavComponent, 
-    ProductFormComponent, 
-    ProductListComponent
+    NavComponent,
+    ProductFormComponent,
+    ProductListComponent,
+    CategoryListComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MaterialModule,
-    LayoutModule
-  ]
+    LayoutModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

@@ -1,7 +1,11 @@
 import { environment } from './../../../../environments/environment';
 import { apiEndPoint } from 'src/app/core/services/http/constants';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -10,32 +14,50 @@ import { catchError } from 'rxjs/operators';
 })
 export class HttpService {
   constructor(private http: HttpClient) {}
+  // private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   // se agrego los demas metodos y se agrego tipado
-  getRequest<T>(api: apiEndPoint, params?: string): Observable<T> {
+  getRequest<T>(
+    api: apiEndPoint,
+    params?: string,
+    headers?: HttpHeaders
+  ): Observable<T> {
     return this.http
       .get<T>(
         params
           ? `${environment.apiURL}${api}${params}`
-          : `${environment.apiURL}${api}`
+          : `${environment.apiURL}${api}`,
+        { headers }
       )
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  postRequest<T>(api: apiEndPoint, body: any): Observable<T> {
+  postRequest<T>(
+    api: apiEndPoint,
+    body: T,
+    headers?: HttpHeaders
+  ): Observable<T> {
     return this.http
-      .post<T>(`${environment.apiURL}${api}`, body)
+      .post<T>(`${environment.apiURL}${api}`, body, { headers })
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  putRequest<T>(api: apiEndPoint, body: any): Observable<T> {
+  putRequest<T>(
+    api: apiEndPoint,
+    body: T,
+    headers?: HttpHeaders
+  ): Observable<T> {
     return this.http
-      .put<T>(`${environment.apiURL}${api}`, body)
+      .put<T>(`${environment.apiURL}${api}`, body, { headers })
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  deleteRequest<T>(api: apiEndPoint, params: string): Observable<T> {
+  deleteRequest<T>(
+    api: apiEndPoint,
+    params: string,
+    headers?: HttpHeaders
+  ): Observable<T> {
     return this.http
-      .delete<T>(`${environment.apiURL}${api}${params}`)
+      .delete<T>(`${environment.apiURL}${api}${params}`, { headers })
       .pipe(catchError((err) => this.handleError(err)));
   }
   // TODO: Add the remaining http methods
