@@ -10,7 +10,9 @@ import { MaterialModule } from 'src/app/core/modules/material/material.module';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryListComponent } from './subpages/category/category-list/category-list.component';
-
+import { CategoryDetailComponent } from './subpages/category/category-detail/category-detail.component';
+import { SpinnerComponent } from '../../core/modules/shared/components/spinner/spinner.component';
+import { SharedModule } from 'src/app/core/modules/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
@@ -28,6 +30,10 @@ const routes: Routes = [
         path: 'categorys',
         component: CategoryListComponent,
       },
+      {
+        path: 'categorys/:{id}',
+        component: CategoryDetailComponent,
+      },
     ],
   },
 ];
@@ -38,6 +44,7 @@ const routes: Routes = [
     ProductFormComponent,
     ProductListComponent,
     CategoryListComponent,
+    CategoryDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +52,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MaterialModule,
     LayoutModule,
+    SharedModule,
   ],
 })
 export class AdminModule {}

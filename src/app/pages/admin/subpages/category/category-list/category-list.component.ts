@@ -13,27 +13,29 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   constructor(private service: CategoryService) {}
   listCategorys: Category[] = [];
   dataSource: any = null;
-  displayedColumns: string[] = ['ID', 'Name', 'Description', 'Active'];
+  displayedColumns: string[] = [
+    'ID',
+    'Name',
+    'Description',
+    'Actions',
+  ];
+
+  ocultado = 'd-none';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  loadCategoryList(): void {
+    setTimeout(() => {
+      this.service.findALl().subscribe((catogorys) => {
+        this.listCategorys = catogorys;
+        console.log(this.listCategorys);
+        this.dataSource = new MatTableDataSource<Category>(this.listCategorys);
+        this.dataSource.paginator = this.paginator;
+        this.ocultado = '';
+      });
+    }, 2000);
+  }
+  ngAfterViewInit(): void {
     this.loadCategoryList();
   }
-  loadCategoryList(): void {
-    this.service.findALl().subscribe((catogorys) => {
-      this.listCategorys = catogorys;
-      console.log(this.listCategorys);
-      this.dataSource = new MatTableDataSource<Category>(this.listCategorys);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-  ngAfterViewInit(): void {}
-}
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
 }

@@ -4,6 +4,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 
@@ -15,18 +16,16 @@ import { MaterialModule } from '../material/material.module';
     FooterComponent,
     HeaderComponent,
     ProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    SpinnerComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule
-  ],
-  exports:[
+  imports: [CommonModule, RouterModule, MaterialModule],
+  exports: [
     FooterComponent,
     HeaderComponent,
     ProductComponent,
-    ProductsComponent
-  ]
+    ProductsComponent,
+    SpinnerComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
