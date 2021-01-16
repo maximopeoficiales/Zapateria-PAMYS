@@ -13,7 +13,7 @@ export class CategoryService implements ICrudRepository<Category, number> {
   //aqui obtendria el token
   header = new HttpHeaders({
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWlzIiwiaWF0IjoxNjEwNzM4NTc3LCJleHAiOjE2MTA3NzQ1Nzd9.IC0OEa9pgs3iVctmxH6r_otsTH-3CDaeXJad8sJWuVU',
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWlzIiwiaWF0IjoxNjEwNzU0MTk5LCJleHAiOjE2MTA3OTAxOTl9.jST8FdzTAyqLS8-8lnGnXkg0-bVeS1G4YjoccMh0mq0',
   });
   constructor(private http: HttpService) {}
 
@@ -27,7 +27,7 @@ export class CategoryService implements ICrudRepository<Category, number> {
   findById(id: number): Observable<Category> {
     return this.http.getRequest<Category>(
       apiEndPoint.category,
-      `/${id}`,
+      `${id}`,
       this.header
     );
   }
@@ -48,7 +48,7 @@ export class CategoryService implements ICrudRepository<Category, number> {
   deleteByID(id: number): Observable<Category> {
     return this.http.deleteRequest<Category>(
       apiEndPoint.category,
-      `/${id}`,
+      `${id}`,
       this.header
     );
   }

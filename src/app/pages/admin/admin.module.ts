@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -13,6 +13,9 @@ import { CategoryListComponent } from './subpages/category/category-list/categor
 import { CategoryDetailComponent } from './subpages/category/category-detail/category-detail.component';
 import { SpinnerComponent } from '../../core/modules/shared/components/spinner/spinner.component';
 import { SharedModule } from 'src/app/core/modules/shared/shared.module';
+import { CirculoIconCardComponent } from './components/circulo-icon-card/circulo-icon-card.component';
+import { HeaderCustomComponent } from './components/header-custom/header-custom.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -31,7 +34,11 @@ const routes: Routes = [
         component: CategoryListComponent,
       },
       {
-        path: 'categorys/:{id}',
+        path: 'categorys/form',
+        component: CategoryDetailComponent,
+      },
+      {
+        path: 'categorys/form/:id',
         component: CategoryDetailComponent,
       },
     ],
@@ -45,6 +52,8 @@ const routes: Routes = [
     ProductListComponent,
     CategoryListComponent,
     CategoryDetailComponent,
+    CirculoIconCardComponent,
+    HeaderCustomComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +62,7 @@ const routes: Routes = [
     MaterialModule,
     LayoutModule,
     SharedModule,
+    FormsModule,
   ],
 })
 export class AdminModule {}

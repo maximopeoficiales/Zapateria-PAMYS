@@ -1,8 +1,32 @@
-<h2 class="h2 my-4 text-center">Lista de Categorias</h2>
+<app-header-custom title="Categorys" subtitle="subtitutlo de prueba">
+  <i class="fas fa-shoe-prints"></i>
+</app-header-custom>
+
 <div class="row justify-content-center mx-2">
   <div class="col-md-10 my-4">
+    <div class="{{ ocultado }}">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="listCategorys.length == 0"
+      >
+        <strong class="capitalize text-center"
+          >there are no categories to show</strong
+        >
+      </div>
+    </div>
+
     <app-spinner *ngIf="listCategorys.length == 0"></app-spinner>
     <div class="{{ ocultado }}">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/categorys/form']"
+        class="my-2 text-decoration-none text-white"
+      >
+        Create Category
+      </a>
+
       <div style="overflow-x: auto">
         <table mat-table [dataSource]="dataSource" class="text-center">
           <!-- Position Column -->
@@ -53,10 +77,20 @@
             </th>
             <td mat-cell *matCellDef="let element">
               <div class="d-flex justify-content-center">
-                <button mat-mini-fab color="primary" class="mx-1">
+                <a
+                  mat-mini-fab
+                  color="primary"
+                  class="mx-1"
+                  [routerLink]="['/admin/categorys/form', element.idCategory]"
+                >
                   <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" class="mx-1">
+                </a>
+                <button
+                  mat-mini-fab
+                  color="warn"
+                  class="mx-1"
+                  (click)="delete(element)"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
