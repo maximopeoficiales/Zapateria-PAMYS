@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row justify-content-center my-4 mx-2">
+    <div class="col-md-8 my-5">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/categorys']"
+        class="my-2 text-decoration-none text-white"
+      >
+        <i class="fas fa-arrow-left mr-2"></i>Back
+      </a>
+      <form #categoryForm="ngForm">
+        <mat-card style="position: relative">
+          <!-- circulo para card -->
+          <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+            <i class="fas fa-shoe-prints fa-rotate-270"></i>
+          </app-circulo-icon-card>
+
+          <mat-card-content>
+            <div class="form-group">
+              <label for="">Name:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Name</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="category.name"
+                  #name="ngModel"
+                  name="name"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="badge badge-danger my-1"
+                *ngIf="name.invalid && (name.dirty || name.touched)"
+              >
+                <div class="" *ngIf="name.errors?.required">
+                  Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Description:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Description</mat-label>
+                <textarea
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="category.description"
+                  #description="ngModel"
+                  name="description"
+                  required
+                  minlength="1"
+                ></textarea>
+              </mat-form-field>
+              <div
+                class="badge badge-danger my-1"
+                *ngIf="
+                  description.invalid &&
+                  (description.dirty || description.touched)
+                "
+              >
+                <div class="" *ngIf="description.errors?.required">
+                  Description is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Elija un opcion:</label>
+              <mat-radio-group
+                aria-label="Select an option"
+                class="d-block"
+                [(ngModel)]="category.active"
+                #active="ngModel"
+                name="active"
+              >
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-radio-button [value]="1">Activated</mat-radio-button>
+                  <mat-radio-button [value]="0">Disabled</mat-radio-button>
+                </div>
+              </mat-radio-group>
+              <div
+                class="badge badge-danger my-1"
+                *ngIf="active.invalid && (active.dirty || active.touched)"
+              >
+                <div class="" *ngIf="active.errors?.required">
+                  Active is required
+                </div>
+              </div>
+            </div>
+
+            <button
+              mat-flat-button
+              color="accent"
+              class="w-100 text-white h6"
+              style="background-color: #47b475"
+              *ngIf="category.idCategory == 0; else elseButton"
+              (click)="create()"
+              [disabled]="!categoryForm.form.valid"
+            >
+              <i class="fas fa-save mr-2"></i>Save
+            </button>
+            <ng-template #elseButton>
+              <button
+                mat-flat-button
+                color="primary"
+                class="w-100 text-white h6"
+                (click)="update()"
+                [disabled]="!categoryForm.form.valid"
+              >
+                <i class="fas fa-save mr-2"></i>Update
+              </button>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

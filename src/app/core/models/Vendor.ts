@@ -1,5 +1,7 @@
 export class Vendor {
-  company?: string;
-  description?: string;
-  idVendor?: number;
+  constructor(
+    public idVendor: number = 0,
+    public descripction?: string,
+    public company?: string
+  ) {}
 }
