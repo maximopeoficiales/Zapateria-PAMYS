@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/core/models/Product';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 
@@ -13,12 +14,13 @@ export class CartComponent implements OnInit {
 
   products!: Array<{ product: Product, amount: number }>;
   total!: number;
-  dataSource: any;
+  dataSource!:MatTableDataSource<{ product: Product, amount: number }> ;
   ngOnInit(): void {
 
     this.fetchProduct()
 
     this.total = this.cartservice.getTotal()
+    this.dataSource = new MatTableDataSource<{product:Product, amount:number}> (this.products);
   }
   Total(){
 
@@ -29,10 +31,14 @@ export class CartComponent implements OnInit {
     this.products = this.cartservice.getCart()
   }
 
-  delete() {
-    for (let index = 0; index < this.products.length; index++) {
-    this.products.splice(index, 1)
-    }
+  updateTable(){
+    this.dataSource = new MatTableDataSource<{product:Product, amount:number}> (this.products);
+
+  }
+
+  delete(product:Product) {
+    this.cartservice.removeProduct(product);
+    this.updateTable()
   }
 
   increase(index: number) {
