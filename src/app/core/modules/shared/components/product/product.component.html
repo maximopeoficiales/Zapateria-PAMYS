@@ -12,7 +12,10 @@
             </strong>
         </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="product.image" class="crop-image">
+    <div class="crop-image">
+
+        <img mat-card-image [src]="product.image">
+    </div>
     <mat-card-content>
         <p>
             {{product.description}}

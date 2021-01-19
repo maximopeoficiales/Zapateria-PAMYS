@@ -15,9 +15,9 @@ export class CartComponent implements OnInit {
   total!: number;
   dataSource: any;
   ngOnInit(): void {
+
     this.fetchProduct()
-    // console.log(this.products)
-    // console.log(this.cartservice.getTotal())
+
     this.total = this.cartservice.getTotal()
   }
   Total(){
