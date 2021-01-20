@@ -6,55 +6,60 @@ import { CartService } from 'src/app/core/services/cart/cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.sass']
+  styleUrls: ['./cart.component.sass'],
 })
 export class CartComponent implements OnInit {
+  constructor(private cartservice: CartService) {}
 
-  constructor(private cartservice: CartService) { }
-
-  products!: Array<{ product: Product, amount: number }>;
+  products!: Array<{ product: Product; amount: number }>;
   total!: number;
-  dataSource!:MatTableDataSource<{ product: Product, amount: number }> ;
+  dataSource!: MatTableDataSource<{ product: Product; amount: number }>;
+
   ngOnInit(): void {
-
-    this.fetchProduct()
-
-    this.total = this.cartservice.getTotal()
-    this.dataSource = new MatTableDataSource<{product:Product, amount:number}> (this.products);
-  }
-  Total(){
-
-    this.total = this.cartservice.getTotal()
+    this.fetchProducts();
+    this.total = this.cartservice.getTotal();
+    this.dataSource = new MatTableDataSource<{
+      product: Product;
+      amount: number;
+    }>(this.products);
   }
 
-  fetchProduct() {
-    this.products = this.cartservice.getCart()
+  getTotal() {
+    this.total = this.cartservice.getTotal();
   }
 
-  updateTable(){
-    this.dataSource = new MatTableDataSource<{product:Product, amount:number}> (this.products);
-
+  fetchProducts() {
+    this.products = this.cartservice.getCart();
   }
 
-  delete(product:Product) {
+  updateTable() {
+    this.dataSource = new MatTableDataSource<{
+      product: Product;
+      amount: number;
+    }>(this.products);
+    this.getTotal();
+  }
+
+  delete(product: Product) {
     this.cartservice.removeProduct(product);
-    this.updateTable()
+    this.updateTable();
   }
 
-  increase(index: number) {
-      this.products[index].amount++
-    console.log(this.products)
-    return this.Total() 
-  }
-  decrease( index:number) {
-    if(this.products[index].amount != 0){
-      this.products[index].amount--
-      
-    }
-    return  this.Total()
-
+  increase(product: Product) {
+    this.cartservice.addItem(product);
+    this.updateTable();
   }
 
+  decrease(product: Product) {
+    this.cartservice.decreaseItem(product);
+    this.updateTable();
+  }
 
-  displayedColumns: string[] = ['Title', 'Price', 'Amount', 'Actions', 'Remove'];
+  displayedColumns: string[] = [
+    'Title',
+    'Price',
+    'Amount',
+    'Actions',
+    'Remove',
+  ];
 }
