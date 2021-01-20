@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
     // console.log('product : '+this.product.id)
     // Agregando el producto al carrito, usando el cartService
     this.cartService.addItem(product);
+    console.log('soy el boton de agregar '+product.id)
   }
 
   loadDetails(id: number) {

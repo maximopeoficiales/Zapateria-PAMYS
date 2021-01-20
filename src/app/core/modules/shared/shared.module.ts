@@ -7,7 +7,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
-
+import {CartComponent} from './components/cart/cart.component';
 // TODO: Put every component on it's own module
 // Bec this module can get way too big
 
@@ -18,6 +18,7 @@ import { MaterialModule } from '../material/material.module';
     ProductComponent,
     ProductsComponent,
     SpinnerComponent,
+    CartComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
@@ -26,6 +27,7 @@ import { MaterialModule } from '../material/material.module';
     ProductComponent,
     ProductsComponent,
     SpinnerComponent,
-  ],
+    CartComponent
+  ]
 })
 export class SharedModule {}
