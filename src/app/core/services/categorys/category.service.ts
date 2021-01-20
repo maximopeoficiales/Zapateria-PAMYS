@@ -13,7 +13,7 @@ export class CategoryService implements ICrudRepository<Category, number> {
   //aqui obtendria el token
   header = new HttpHeaders({
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWlzIiwiaWF0IjoxNjEwNzU0MTk5LCJleHAiOjE2MTA3OTAxOTl9.jST8FdzTAyqLS8-8lnGnXkg0-bVeS1G4YjoccMh0mq0',
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxMTA4NDE0NCwiZXhwIjoxNjExMTIwMTQ0fQ.FfXgmMH1EaJuPYU6EaqwhXayKqv8RmHgi3QNEoW1Y48',
   });
   constructor(private http: HttpService) {}
 

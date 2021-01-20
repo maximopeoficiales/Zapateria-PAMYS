@@ -12,10 +12,12 @@ import swal from 'sweetalert2';
 })
 export class CategoryListComponent implements OnInit, AfterViewInit {
   constructor(private service: CategoryService) {}
+  // Placeholder data, para mostrar el boton de agregar categorias
   listCategorys: Category[] = [];
   dataSource: any = null;
   displayedColumns: string[] = ['ID', 'Name', 'Description', 'Actions'];
   ocultado = 'd-none';
+  showSpinner = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
@@ -29,8 +31,9 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
         this.listCategorys = categorys;
         this.chargingTableList();
         this.ocultado = categorys.length == 0 ? 'd-none' : '';
+        this.showSpinner = false;        
       });
-    }, 2000);
+    }, 300);
   }
   chargingTableList(): void {
     this.dataSource = new MatTableDataSource<Category>(this.listCategorys);

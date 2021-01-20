@@ -11,13 +11,12 @@
         *ngIf="listCategorys.length == 0"
       >
         <strong class="capitalize text-center"
-          >there are no categories to show</strong
+          >There are no categories to show</strong
         >
       </div>
-    </div>
-
-    <app-spinner *ngIf="listCategorys.length == 0"></app-spinner>
-    <div class="{{ ocultado }}">
+    </div>     
+    <app-spinner [show]="showSpinner"></app-spinner>
+    <div *ngIf="!showSpinner && listCategorys.length == 0">
       <a
         mat-flat-button
         color="primary"
@@ -26,6 +25,8 @@
       >
         Create Category
       </a>
+    </div>
+    <div class="{{ ocultado }}">
 
       <div style="overflow-x: auto">
         <table mat-table [dataSource]="dataSource" class="text-center">

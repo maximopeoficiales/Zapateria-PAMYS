@@ -15,35 +15,8 @@ import { SpinnerComponent } from '../../core/modules/shared/components/spinner/s
 import { SharedModule } from 'src/app/core/modules/shared/shared.module';
 import { CirculoIconCardComponent } from './components/circulo-icon-card/circulo-icon-card.component';
 import { HeaderCustomComponent } from './components/header-custom/header-custom.component';
+import { AdminRoutesModule } from './admin-routes.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: NavComponent,
-    children: [
-      {
-        path: 'create',
-        component: ProductFormComponent,
-      },
-      {
-        path: 'products',
-        component: ProductListComponent,
-      },
-      {
-        path: 'categorys',
-        component: CategoryListComponent,
-      },
-      {
-        path: 'categorys/form',
-        component: CategoryDetailComponent,
-      },
-      {
-        path: 'categorys/form/:id',
-        component: CategoryDetailComponent,
-      },
-    ],
-  },
-];
 
 @NgModule({
   declarations: [
@@ -57,7 +30,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    AdminRoutesModule,
     ReactiveFormsModule,
     MaterialModule,
     LayoutModule,

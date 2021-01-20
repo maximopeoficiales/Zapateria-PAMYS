@@ -60,7 +60,6 @@ export class HttpService {
       .delete<T>(`${environment.apiURL}${api}${params}`, { headers })
       .pipe(catchError((err) => this.handleError(err)));
   }
-  // TODO: Add the remaining http methods
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
