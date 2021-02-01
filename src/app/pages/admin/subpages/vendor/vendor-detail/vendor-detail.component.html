@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="mx-2 my-4 row justify-content-center">
+    <div class="my-5 col-md-8">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/vendors']"
+        class="my-2 text-white text-decoration-none"
+      >
+        <i class="mr-2 fas fa-arrow-left"></i>Back
+      </a>
+      <form #vendorForm="ngForm">
+        <mat-card style="position: relative">
+          <!-- circulo para card -->
+          <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+            <i class="fas fa-shoe-prints fa-rotate-270"></i>
+          </app-circulo-icon-card>
+
+          <mat-card-content>
+            <div class="form-group">
+              <label for="">Company:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Company</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="vendor.company"
+                  #company="ngModel"
+                  name="company"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="company.invalid && (company.dirty || company.touched)"
+              >
+                <div class="" *ngIf="company.errors?.required">
+                  Company is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Description:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Description</mat-label>
+                <textarea
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="vendor.description"
+                  #description="ngModel"
+                  name="description"
+                  required
+                  minlength="1"
+                ></textarea>
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="
+                  description.invalid &&
+                  (description.dirty || description.touched)
+                "
+              >
+                <div class="" *ngIf="description.errors?.required">
+                  Description is required
+                </div>
+              </div>
+            </div>
+
+
+            <button
+              mat-flat-button
+              color="accent"
+              class="text-white w-100 h6"
+              style="background-color: #47b475"
+              *ngIf="vendor.idVendor == null; else elseButton"
+              (click)="create()"
+              [disabled]="!vendorForm.form.valid"
+            >
+              <i class="mr-2 fas fa-save"></i>Save
+            </button>
+            <ng-template #elseButton>
+              <button
+                mat-flat-button
+                color="primary"
+                class="text-white w-100 h6"
+                (click)="update()"
+                [disabled]="!vendorForm.form.valid"
+              >
+                <i class="mr-2 fas fa-save"></i>Update
+              </button>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

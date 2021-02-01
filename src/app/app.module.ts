@@ -3,11 +3,7 @@ import { forwardRef, NgModule, Provider } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from './core/modules/shared/shared.module';
-import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './core/modules/material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiModule } from './core/api/api.module';
 import { ApiInterceptor } from './core/api-interceptor/ApiInterceptor';
