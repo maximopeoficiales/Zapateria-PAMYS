@@ -18,11 +18,15 @@ export class ApiInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Apply the headers
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.tokenJWT}`,
-      },
-    });
+    if (this.tokenJWT) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.tokenJWT}`,
+        },
+      });
+    } else {
+      req = req.clone({});
+    }
 
     // Also handle errors globally
     return next.handle(req).pipe(
