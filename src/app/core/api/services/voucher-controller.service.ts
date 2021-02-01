@@ -7,21 +7,21 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Product } from '../models/product';
+import { Voucher } from '../models/voucher';
 
 /**
- * Product Controller
+ * Voucher Controller
  */
 @Injectable({
   providedIn: 'root',
 })
-class ProductControllerService extends __BaseService {
-  static readonly saveUsingPOST7Path = '/api/product';
-  static readonly updateUsingPUT7Path = '/api/product';
-  static readonly getAllUsingGET7Path = '/api/product/all';
-  static readonly getByNameUsingGETPath = '/api/product/search/{name}';
-  static readonly getByIdUsingGET7Path = '/api/product/{id}';
-  static readonly deleteUsingDELETE6Path = '/api/product/{id}';
+class VoucherControllerService extends __BaseService {
+  static readonly saveUsingPOST11Path = '/api/voucher';
+  static readonly updateUsingPUT10Path = '/api/voucher';
+  static readonly getAllUsingGET11Path = '/api/voucher/all';
+  static readonly getByIdClientUsingGETPath = '/api/voucher/{id_client}';
+  static readonly getByIdUsingGET10Path = '/api/voucher/{id}';
+  static readonly deleteUsingDELETE9Path = '/api/voucher/{id}';
 
   constructor(
     config: __Configuration,
@@ -31,18 +31,18 @@ class ProductControllerService extends __BaseService {
   }
 
   /**
-   * Save a Product
-   * @param product product
+   * Save a Voucher
+   * @param voucher voucher
    * @return OK
    */
-  saveUsingPOST7Response(product: Product): __Observable<__StrictHttpResponse<Product>> {
+  saveUsingPOST11Response(voucher: Voucher): __Observable<__StrictHttpResponse<Voucher>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = product;
+    __body = voucher;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/product`,
+      this.rootUrl + `/api/voucher`,
       __body,
       {
         headers: __headers,
@@ -53,34 +53,34 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<Voucher>;
       })
     );
   }
   /**
-   * Save a Product
-   * @param product product
+   * Save a Voucher
+   * @param voucher voucher
    * @return OK
    */
-  saveUsingPOST7(product: Product): __Observable<Product> {
-    return this.saveUsingPOST7Response(product).pipe(
-      __map(_r => _r.body as Product)
+  saveUsingPOST11(voucher: Voucher): __Observable<Voucher> {
+    return this.saveUsingPOST11Response(voucher).pipe(
+      __map(_r => _r.body as Voucher)
     );
   }
 
   /**
-   * Update a Product
-   * @param product product
+   * Update a Voucher
+   * @param voucher voucher
    * @return OK
    */
-  updateUsingPUT7Response(product: Product): __Observable<__StrictHttpResponse<Product>> {
+  updateUsingPUT10Response(voucher: Voucher): __Observable<__StrictHttpResponse<Voucher>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = product;
+    __body = voucher;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/product`,
+      this.rootUrl + `/api/voucher`,
       __body,
       {
         headers: __headers,
@@ -91,32 +91,32 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<Voucher>;
       })
     );
   }
   /**
-   * Update a Product
-   * @param product product
+   * Update a Voucher
+   * @param voucher voucher
    * @return OK
    */
-  updateUsingPUT7(product: Product): __Observable<Product> {
-    return this.updateUsingPUT7Response(product).pipe(
-      __map(_r => _r.body as Product)
+  updateUsingPUT10(voucher: Voucher): __Observable<Voucher> {
+    return this.updateUsingPUT10Response(voucher).pipe(
+      __map(_r => _r.body as Voucher)
     );
   }
 
   /**
-   * Get all supermarket products
+   * Get all supermarket voucher
    * @return OK
    */
-  getAllUsingGET7Response(): __Observable<__StrictHttpResponse<Array<Product>>> {
+  getAllUsingGET11Response(): __Observable<__StrictHttpResponse<Array<Voucher>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/product/all`,
+      this.rootUrl + `/api/voucher/all`,
       __body,
       {
         headers: __headers,
@@ -127,71 +127,33 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Product>>;
+        return _r as __StrictHttpResponse<Array<Voucher>>;
       })
     );
   }
   /**
-   * Get all supermarket products
+   * Get all supermarket voucher
    * @return OK
    */
-  getAllUsingGET7(): __Observable<Array<Product>> {
-    return this.getAllUsingGET7Response().pipe(
-      __map(_r => _r.body as Array<Product>)
+  getAllUsingGET11(): __Observable<Array<Voucher>> {
+    return this.getAllUsingGET11Response().pipe(
+      __map(_r => _r.body as Array<Voucher>)
     );
   }
 
   /**
-   * Search a product with your name Company
-   * @param name Product Name
+   * Search a voucher with a idClient
+   * @param id The id of the voucher
    * @return OK
    */
-  getByNameUsingGETResponse(name: string): __Observable<__StrictHttpResponse<Array<Product>>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/api/product/search/${encodeURIComponent(name)}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Product>>;
-      })
-    );
-  }
-  /**
-   * Search a product with your name Company
-   * @param name Product Name
-   * @return OK
-   */
-  getByNameUsingGET(name: string): __Observable<Array<Product>> {
-    return this.getByNameUsingGETResponse(name).pipe(
-      __map(_r => _r.body as Array<Product>)
-    );
-  }
-
-  /**
-   * Search a product with a ID
-   * @param id The id of the product
-   * @return OK
-   */
-  getByIdUsingGET7Response(id: number): __Observable<__StrictHttpResponse<Product>> {
+  getByIdClientUsingGETResponse(id: number): __Observable<__StrictHttpResponse<Array<Voucher>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/product/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/voucher/${encodeURIComponent(id_client)}`,
       __body,
       {
         headers: __headers,
@@ -202,34 +164,72 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<Array<Voucher>>;
       })
     );
   }
   /**
-   * Search a product with a ID
-   * @param id The id of the product
+   * Search a voucher with a idClient
+   * @param id The id of the voucher
    * @return OK
    */
-  getByIdUsingGET7(id: number): __Observable<Product> {
-    return this.getByIdUsingGET7Response(id).pipe(
-      __map(_r => _r.body as Product)
+  getByIdClientUsingGET(id: number): __Observable<Array<Voucher>> {
+    return this.getByIdClientUsingGETResponse(id).pipe(
+      __map(_r => _r.body as Array<Voucher>)
     );
   }
 
   /**
-   * Delete a Product by ID
-   * @param id The id of the product
+   * Search a voucher with a ID
+   * @param id The id of the voucher
    * @return OK
    */
-  deleteUsingDELETE6Response(id: number): __Observable<__StrictHttpResponse<{}>> {
+  getByIdUsingGET10Response(id: number): __Observable<__StrictHttpResponse<Voucher>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/voucher/${encodeURIComponent(id)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Voucher>;
+      })
+    );
+  }
+  /**
+   * Search a voucher with a ID
+   * @param id The id of the voucher
+   * @return OK
+   */
+  getByIdUsingGET10(id: number): __Observable<Voucher> {
+    return this.getByIdUsingGET10Response(id).pipe(
+      __map(_r => _r.body as Voucher)
+    );
+  }
+
+  /**
+   * Delete a Voucher by ID
+   * @param id The id of the voucher
+   * @return OK
+   */
+  deleteUsingDELETE9Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/product/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/voucher/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -245,18 +245,18 @@ class ProductControllerService extends __BaseService {
     );
   }
   /**
-   * Delete a Product by ID
-   * @param id The id of the product
+   * Delete a Voucher by ID
+   * @param id The id of the voucher
    * @return OK
    */
-  deleteUsingDELETE6(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE6Response(id).pipe(
+  deleteUsingDELETE9(id: number): __Observable<{}> {
+    return this.deleteUsingDELETE9Response(id).pipe(
       __map(_r => _r.body as {})
     );
   }
 }
 
-module ProductControllerService {
+module VoucherControllerService {
 }
 
-export { ProductControllerService }
+export { VoucherControllerService }

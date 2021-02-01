@@ -7,20 +7,20 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Client } from '../models/client';
+import { ProductImages } from '../models/product-images';
 
 /**
- * Client Controller
+ * Product Images Controller
  */
 @Injectable({
   providedIn: 'root',
 })
-class ClientControllerService extends __BaseService {
-  static readonly saveUsingPOST1Path = '/api/client';
-  static readonly updateUsingPUT1Path = '/api/client';
-  static readonly getAllUsingGET1Path = '/api/client/all';
-  static readonly getByIdUsingGET1Path = '/api/client/{id}';
-  static readonly deleteUsingDELETE1Path = '/api/client/{id}';
+class ProductImagesControllerService extends __BaseService {
+  static readonly saveUsingPOST8Path = '/api/product_images';
+  static readonly updateUsingPUT8Path = '/api/product_images';
+  static readonly getAllUsingGET8Path = '/api/product_images/all';
+  static readonly getByIdUsingGET8Path = '/api/product_images/{id}';
+  static readonly deleteUsingDELETE7Path = '/api/product_images/{id}';
 
   constructor(
     config: __Configuration,
@@ -30,18 +30,18 @@ class ClientControllerService extends __BaseService {
   }
 
   /**
-   * Save a Client
-   * @param client client
+   * Save a Product Image
+   * @param productImages productImages
    * @return OK
    */
-  saveUsingPOST1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveUsingPOST8Response(productImages: ProductImages): __Observable<__StrictHttpResponse<ProductImages>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = productImages;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/product_images`,
       __body,
       {
         headers: __headers,
@@ -52,34 +52,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<ProductImages>;
       })
     );
   }
   /**
-   * Save a Client
-   * @param client client
+   * Save a Product Image
+   * @param productImages productImages
    * @return OK
    */
-  saveUsingPOST1(client: Client): __Observable<Client> {
-    return this.saveUsingPOST1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  saveUsingPOST8(productImages: ProductImages): __Observable<ProductImages> {
+    return this.saveUsingPOST8Response(productImages).pipe(
+      __map(_r => _r.body as ProductImages)
     );
   }
 
   /**
-   * Update a Client
-   * @param client client
+   * Update a Product Image
+   * @param productImages productImages
    * @return OK
    */
-  updateUsingPUT1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  updateUsingPUT8Response(productImages: ProductImages): __Observable<__StrictHttpResponse<ProductImages>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = productImages;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/product_images`,
       __body,
       {
         headers: __headers,
@@ -90,32 +90,32 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<ProductImages>;
       })
     );
   }
   /**
-   * Update a Client
-   * @param client client
+   * Update a Product Image
+   * @param productImages productImages
    * @return OK
    */
-  updateUsingPUT1(client: Client): __Observable<Client> {
-    return this.updateUsingPUT1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  updateUsingPUT8(productImages: ProductImages): __Observable<ProductImages> {
+    return this.updateUsingPUT8Response(productImages).pipe(
+      __map(_r => _r.body as ProductImages)
     );
   }
 
   /**
-   * Get all clients
+   * Get all images products
    * @return OK
    */
-  getAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<Client>>> {
+  getAllUsingGET8Response(): __Observable<__StrictHttpResponse<Array<ProductImages>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/all`,
+      this.rootUrl + `/api/product_images/all`,
       __body,
       {
         headers: __headers,
@@ -126,33 +126,33 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Client>>;
+        return _r as __StrictHttpResponse<Array<ProductImages>>;
       })
     );
   }
   /**
-   * Get all clients
+   * Get all images products
    * @return OK
    */
-  getAllUsingGET1(): __Observable<Array<Client>> {
-    return this.getAllUsingGET1Response().pipe(
-      __map(_r => _r.body as Array<Client>)
+  getAllUsingGET8(): __Observable<Array<ProductImages>> {
+    return this.getAllUsingGET8Response().pipe(
+      __map(_r => _r.body as Array<ProductImages>)
     );
   }
 
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a product image with a ID
+   * @param id The id of the product
    * @return OK
    */
-  getByIdUsingGET1Response(id: number): __Observable<__StrictHttpResponse<Client>> {
+  getByIdUsingGET8Response(id: number): __Observable<__StrictHttpResponse<ProductImages>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/product_images/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -163,34 +163,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<ProductImages>;
       })
     );
   }
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a product image with a ID
+   * @param id The id of the product
    * @return OK
    */
-  getByIdUsingGET1(id: number): __Observable<Client> {
-    return this.getByIdUsingGET1Response(id).pipe(
-      __map(_r => _r.body as Client)
+  getByIdUsingGET8(id: number): __Observable<ProductImages> {
+    return this.getByIdUsingGET8Response(id).pipe(
+      __map(_r => _r.body as ProductImages)
     );
   }
 
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a Product by ID
+   * @param id The id of the product image
    * @return OK
    */
-  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<{}>> {
+  deleteUsingDELETE7Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/product_images/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -206,18 +206,18 @@ class ClientControllerService extends __BaseService {
     );
   }
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a Product by ID
+   * @param id The id of the product image
    * @return OK
    */
-  deleteUsingDELETE1(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE1Response(id).pipe(
+  deleteUsingDELETE7(id: number): __Observable<{}> {
+    return this.deleteUsingDELETE7Response(id).pipe(
       __map(_r => _r.body as {})
     );
   }
 }
 
-module ClientControllerService {
+module ProductImagesControllerService {
 }
 
-export { ClientControllerService }
+export { ProductImagesControllerService }

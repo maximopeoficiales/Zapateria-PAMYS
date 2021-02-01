@@ -7,20 +7,20 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Client } from '../models/client';
+import { DocumentType } from '../models/document-type';
 
 /**
- * Client Controller
+ * Document Type Controller
  */
 @Injectable({
   providedIn: 'root',
 })
-class ClientControllerService extends __BaseService {
-  static readonly saveUsingPOST1Path = '/api/client';
-  static readonly updateUsingPUT1Path = '/api/client';
-  static readonly getAllUsingGET1Path = '/api/client/all';
-  static readonly getByIdUsingGET1Path = '/api/client/{id}';
-  static readonly deleteUsingDELETE1Path = '/api/client/{id}';
+class DocumentTypeControllerService extends __BaseService {
+  static readonly saveUsingPOST2Path = '/api/document_type';
+  static readonly updateUsingPUT2Path = '/api/document_type';
+  static readonly getAllUsingGET2Path = '/api/document_type/all';
+  static readonly getByIdUsingGET2Path = '/api/document_type/{id}';
+  static readonly deleteUsingDELETE2Path = '/api/document_type/{id}';
 
   constructor(
     config: __Configuration,
@@ -30,18 +30,18 @@ class ClientControllerService extends __BaseService {
   }
 
   /**
-   * Save a Client
-   * @param client client
+   * Save a DocumentType
+   * @param DocumentType DocumentType
    * @return OK
    */
-  saveUsingPOST1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveUsingPOST2Response(DocumentType: DocumentType): __Observable<__StrictHttpResponse<DocumentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = DocumentType;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/document_type`,
       __body,
       {
         headers: __headers,
@@ -52,34 +52,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<DocumentType>;
       })
     );
   }
   /**
-   * Save a Client
-   * @param client client
+   * Save a DocumentType
+   * @param DocumentType DocumentType
    * @return OK
    */
-  saveUsingPOST1(client: Client): __Observable<Client> {
-    return this.saveUsingPOST1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  saveUsingPOST2(DocumentType: DocumentType): __Observable<DocumentType> {
+    return this.saveUsingPOST2Response(DocumentType).pipe(
+      __map(_r => _r.body as DocumentType)
     );
   }
 
   /**
-   * Update a Client
-   * @param client client
+   * Update a DocumentType
+   * @param DocumentType DocumentType
    * @return OK
    */
-  updateUsingPUT1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  updateUsingPUT2Response(DocumentType: DocumentType): __Observable<__StrictHttpResponse<DocumentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = DocumentType;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/document_type`,
       __body,
       {
         headers: __headers,
@@ -90,32 +90,32 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<DocumentType>;
       })
     );
   }
   /**
-   * Update a Client
-   * @param client client
+   * Update a DocumentType
+   * @param DocumentType DocumentType
    * @return OK
    */
-  updateUsingPUT1(client: Client): __Observable<Client> {
-    return this.updateUsingPUT1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  updateUsingPUT2(DocumentType: DocumentType): __Observable<DocumentType> {
+    return this.updateUsingPUT2Response(DocumentType).pipe(
+      __map(_r => _r.body as DocumentType)
     );
   }
 
   /**
-   * Get all clients
+   * Get all supermarket DocumentType
    * @return OK
    */
-  getAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<Client>>> {
+  getAllUsingGET2Response(): __Observable<__StrictHttpResponse<Array<DocumentType>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/all`,
+      this.rootUrl + `/api/document_type/all`,
       __body,
       {
         headers: __headers,
@@ -126,33 +126,33 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Client>>;
+        return _r as __StrictHttpResponse<Array<DocumentType>>;
       })
     );
   }
   /**
-   * Get all clients
+   * Get all supermarket DocumentType
    * @return OK
    */
-  getAllUsingGET1(): __Observable<Array<Client>> {
-    return this.getAllUsingGET1Response().pipe(
-      __map(_r => _r.body as Array<Client>)
+  getAllUsingGET2(): __Observable<Array<DocumentType>> {
+    return this.getAllUsingGET2Response().pipe(
+      __map(_r => _r.body as Array<DocumentType>)
     );
   }
 
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a DocumentType with a ID
+   * @param id The id of the DocumentType
    * @return OK
    */
-  getByIdUsingGET1Response(id: number): __Observable<__StrictHttpResponse<Client>> {
+  getByIdUsingGET2Response(id: number): __Observable<__StrictHttpResponse<DocumentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/document_type/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -163,34 +163,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<DocumentType>;
       })
     );
   }
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a DocumentType with a ID
+   * @param id The id of the DocumentType
    * @return OK
    */
-  getByIdUsingGET1(id: number): __Observable<Client> {
-    return this.getByIdUsingGET1Response(id).pipe(
-      __map(_r => _r.body as Client)
+  getByIdUsingGET2(id: number): __Observable<DocumentType> {
+    return this.getByIdUsingGET2Response(id).pipe(
+      __map(_r => _r.body as DocumentType)
     );
   }
 
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a DocumentType by ID
+   * @param id The id of the DocumentType
    * @return OK
    */
-  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<{}>> {
+  deleteUsingDELETE2Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/document_type/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -206,18 +206,18 @@ class ClientControllerService extends __BaseService {
     );
   }
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a DocumentType by ID
+   * @param id The id of the DocumentType
    * @return OK
    */
-  deleteUsingDELETE1(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE1Response(id).pipe(
+  deleteUsingDELETE2(id: number): __Observable<{}> {
+    return this.deleteUsingDELETE2Response(id).pipe(
       __map(_r => _r.body as {})
     );
   }
 }
 
-module ClientControllerService {
+module DocumentTypeControllerService {
 }
 
-export { ClientControllerService }
+export { DocumentTypeControllerService }

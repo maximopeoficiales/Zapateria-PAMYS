@@ -7,20 +7,20 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Client } from '../models/client';
+import { PaymentType } from '../models/payment-type';
 
 /**
- * Client Controller
+ * Payment Type Controller
  */
 @Injectable({
   providedIn: 'root',
 })
-class ClientControllerService extends __BaseService {
-  static readonly saveUsingPOST1Path = '/api/client';
-  static readonly updateUsingPUT1Path = '/api/client';
-  static readonly getAllUsingGET1Path = '/api/client/all';
-  static readonly getByIdUsingGET1Path = '/api/client/{id}';
-  static readonly deleteUsingDELETE1Path = '/api/client/{id}';
+class PaymentTypeControllerService extends __BaseService {
+  static readonly saveUsingPOST6Path = '/api/payment_type';
+  static readonly updateUsingPUT6Path = '/api/payment_type';
+  static readonly getAllUsingGET6Path = '/api/payment_type/all';
+  static readonly getByIdUsingGET6Path = '/api/payment_type/{id}';
+  static readonly deleteUsingDELETE5Path = '/api/payment_type/{id}';
 
   constructor(
     config: __Configuration,
@@ -30,18 +30,18 @@ class ClientControllerService extends __BaseService {
   }
 
   /**
-   * Save a Client
-   * @param client client
+   * Save a PaymentType
+   * @param paymenttype paymenttype
    * @return OK
    */
-  saveUsingPOST1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveUsingPOST6Response(paymenttype: PaymentType): __Observable<__StrictHttpResponse<PaymentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = paymenttype;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/payment_type`,
       __body,
       {
         headers: __headers,
@@ -52,34 +52,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<PaymentType>;
       })
     );
   }
   /**
-   * Save a Client
-   * @param client client
+   * Save a PaymentType
+   * @param paymenttype paymenttype
    * @return OK
    */
-  saveUsingPOST1(client: Client): __Observable<Client> {
-    return this.saveUsingPOST1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  saveUsingPOST6(paymenttype: PaymentType): __Observable<PaymentType> {
+    return this.saveUsingPOST6Response(paymenttype).pipe(
+      __map(_r => _r.body as PaymentType)
     );
   }
 
   /**
-   * Update a Client
-   * @param client client
+   * Update a PaymentType
+   * @param paymenttype paymenttype
    * @return OK
    */
-  updateUsingPUT1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  updateUsingPUT6Response(paymenttype: PaymentType): __Observable<__StrictHttpResponse<PaymentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = paymenttype;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/payment_type`,
       __body,
       {
         headers: __headers,
@@ -90,32 +90,32 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<PaymentType>;
       })
     );
   }
   /**
-   * Update a Client
-   * @param client client
+   * Update a PaymentType
+   * @param paymenttype paymenttype
    * @return OK
    */
-  updateUsingPUT1(client: Client): __Observable<Client> {
-    return this.updateUsingPUT1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  updateUsingPUT6(paymenttype: PaymentType): __Observable<PaymentType> {
+    return this.updateUsingPUT6Response(paymenttype).pipe(
+      __map(_r => _r.body as PaymentType)
     );
   }
 
   /**
-   * Get all clients
+   * Get all supermarket paymenttype
    * @return OK
    */
-  getAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<Client>>> {
+  getAllUsingGET6Response(): __Observable<__StrictHttpResponse<Array<PaymentType>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/all`,
+      this.rootUrl + `/api/payment_type/all`,
       __body,
       {
         headers: __headers,
@@ -126,33 +126,33 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Client>>;
+        return _r as __StrictHttpResponse<Array<PaymentType>>;
       })
     );
   }
   /**
-   * Get all clients
+   * Get all supermarket paymenttype
    * @return OK
    */
-  getAllUsingGET1(): __Observable<Array<Client>> {
-    return this.getAllUsingGET1Response().pipe(
-      __map(_r => _r.body as Array<Client>)
+  getAllUsingGET6(): __Observable<Array<PaymentType>> {
+    return this.getAllUsingGET6Response().pipe(
+      __map(_r => _r.body as Array<PaymentType>)
     );
   }
 
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a paymenttype with a ID
+   * @param id The id of the paymenttype
    * @return OK
    */
-  getByIdUsingGET1Response(id: number): __Observable<__StrictHttpResponse<Client>> {
+  getByIdUsingGET6Response(id: number): __Observable<__StrictHttpResponse<PaymentType>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/payment_type/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -163,34 +163,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<PaymentType>;
       })
     );
   }
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a paymenttype with a ID
+   * @param id The id of the paymenttype
    * @return OK
    */
-  getByIdUsingGET1(id: number): __Observable<Client> {
-    return this.getByIdUsingGET1Response(id).pipe(
-      __map(_r => _r.body as Client)
+  getByIdUsingGET6(id: number): __Observable<PaymentType> {
+    return this.getByIdUsingGET6Response(id).pipe(
+      __map(_r => _r.body as PaymentType)
     );
   }
 
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a PaymentType by ID
+   * @param id The id of the paymenttype
    * @return OK
    */
-  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<{}>> {
+  deleteUsingDELETE5Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/payment_type/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -206,18 +206,18 @@ class ClientControllerService extends __BaseService {
     );
   }
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a PaymentType by ID
+   * @param id The id of the paymenttype
    * @return OK
    */
-  deleteUsingDELETE1(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE1Response(id).pipe(
+  deleteUsingDELETE5(id: number): __Observable<{}> {
+    return this.deleteUsingDELETE5Response(id).pipe(
       __map(_r => _r.body as {})
     );
   }
 }
 
-module ClientControllerService {
+module PaymentTypeControllerService {
 }
 
-export { ClientControllerService }
+export { PaymentTypeControllerService }

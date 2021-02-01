@@ -17,8 +17,8 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 class PublicControllerService extends __BaseService {
-  static readonly saveUsingPOST3Path = '/api/public/client';
-  static readonly getAllUsingGET3Path = '/api/public/product';
+  static readonly saveUsingPOST9Path = '/api/public/client';
+  static readonly getAllUsingGET9Path = '/api/public/product';
 
   constructor(
     config: __Configuration,
@@ -32,7 +32,7 @@ class PublicControllerService extends __BaseService {
    * @param client client
    * @return OK
    */
-  saveUsingPOST3Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveUsingPOST9Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -59,8 +59,8 @@ class PublicControllerService extends __BaseService {
    * @param client client
    * @return OK
    */
-  saveUsingPOST3(client: Client): __Observable<Client> {
-    return this.saveUsingPOST3Response(client).pipe(
+  saveUsingPOST9(client: Client): __Observable<Client> {
+    return this.saveUsingPOST9Response(client).pipe(
       __map(_r => _r.body as Client)
     );
   }
@@ -69,7 +69,7 @@ class PublicControllerService extends __BaseService {
    * Get all products
    * @return OK
    */
-  getAllUsingGET3Response(): __Observable<__StrictHttpResponse<Array<Product>>> {
+  getAllUsingGET9Response(): __Observable<__StrictHttpResponse<Array<Product>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -94,8 +94,8 @@ class PublicControllerService extends __BaseService {
    * Get all products
    * @return OK
    */
-  getAllUsingGET3(): __Observable<Array<Product>> {
-    return this.getAllUsingGET3Response().pipe(
+  getAllUsingGET9(): __Observable<Array<Product>> {
+    return this.getAllUsingGET9Response().pipe(
       __map(_r => _r.body as Array<Product>)
     );
   }

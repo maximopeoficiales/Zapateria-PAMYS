@@ -7,20 +7,20 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Client } from '../models/client';
+import { OrderStatus } from '../models/order-status';
 
 /**
- * Client Controller
+ * Order Status Controller
  */
 @Injectable({
   providedIn: 'root',
 })
-class ClientControllerService extends __BaseService {
-  static readonly saveUsingPOST1Path = '/api/client';
-  static readonly updateUsingPUT1Path = '/api/client';
-  static readonly getAllUsingGET1Path = '/api/client/all';
-  static readonly getByIdUsingGET1Path = '/api/client/{id}';
-  static readonly deleteUsingDELETE1Path = '/api/client/{id}';
+class OrderStatusControllerService extends __BaseService {
+  static readonly saveUsingPOST4Path = '/api/order_status';
+  static readonly updateUsingPUT4Path = '/api/order_status';
+  static readonly getAllUsingGET4Path = '/api/order_status/all';
+  static readonly getByIdUsingGET4Path = '/api/order_status/{id}';
+  static readonly deleteUsingDELETE4Path = '/api/order_status/{id}';
 
   constructor(
     config: __Configuration,
@@ -30,18 +30,18 @@ class ClientControllerService extends __BaseService {
   }
 
   /**
-   * Save a Client
-   * @param client client
+   * Save a OrderStatus
+   * @param orderStatus orderStatus
    * @return OK
    */
-  saveUsingPOST1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveUsingPOST4Response(orderStatus: OrderStatus): __Observable<__StrictHttpResponse<OrderStatus>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = orderStatus;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/order_status`,
       __body,
       {
         headers: __headers,
@@ -52,34 +52,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<OrderStatus>;
       })
     );
   }
   /**
-   * Save a Client
-   * @param client client
+   * Save a OrderStatus
+   * @param orderStatus orderStatus
    * @return OK
    */
-  saveUsingPOST1(client: Client): __Observable<Client> {
-    return this.saveUsingPOST1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  saveUsingPOST4(orderStatus: OrderStatus): __Observable<OrderStatus> {
+    return this.saveUsingPOST4Response(orderStatus).pipe(
+      __map(_r => _r.body as OrderStatus)
     );
   }
 
   /**
-   * Update a Client
-   * @param client client
+   * Update a Order
+   * @param orderStatus orderStatus
    * @return OK
    */
-  updateUsingPUT1Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  updateUsingPUT4Response(orderStatus: OrderStatus): __Observable<__StrictHttpResponse<OrderStatus>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = client;
+    __body = orderStatus;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/client`,
+      this.rootUrl + `/api/order_status`,
       __body,
       {
         headers: __headers,
@@ -90,32 +90,32 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<OrderStatus>;
       })
     );
   }
   /**
-   * Update a Client
-   * @param client client
+   * Update a Order
+   * @param orderStatus orderStatus
    * @return OK
    */
-  updateUsingPUT1(client: Client): __Observable<Client> {
-    return this.updateUsingPUT1Response(client).pipe(
-      __map(_r => _r.body as Client)
+  updateUsingPUT4(orderStatus: OrderStatus): __Observable<OrderStatus> {
+    return this.updateUsingPUT4Response(orderStatus).pipe(
+      __map(_r => _r.body as OrderStatus)
     );
   }
 
   /**
-   * Get all clients
+   * Get all supermarket OrderStatus
    * @return OK
    */
-  getAllUsingGET1Response(): __Observable<__StrictHttpResponse<Array<Client>>> {
+  getAllUsingGET4Response(): __Observable<__StrictHttpResponse<Array<OrderStatus>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/all`,
+      this.rootUrl + `/api/order_status/all`,
       __body,
       {
         headers: __headers,
@@ -126,33 +126,33 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Client>>;
+        return _r as __StrictHttpResponse<Array<OrderStatus>>;
       })
     );
   }
   /**
-   * Get all clients
+   * Get all supermarket OrderStatus
    * @return OK
    */
-  getAllUsingGET1(): __Observable<Array<Client>> {
-    return this.getAllUsingGET1Response().pipe(
-      __map(_r => _r.body as Array<Client>)
+  getAllUsingGET4(): __Observable<Array<OrderStatus>> {
+    return this.getAllUsingGET4Response().pipe(
+      __map(_r => _r.body as Array<OrderStatus>)
     );
   }
 
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a OrderStatus with a ID
+   * @param id The id of the OrderStatus
    * @return OK
    */
-  getByIdUsingGET1Response(id: number): __Observable<__StrictHttpResponse<Client>> {
+  getByIdUsingGET4Response(id: number): __Observable<__StrictHttpResponse<OrderStatus>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/order_status/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -163,34 +163,34 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Client>;
+        return _r as __StrictHttpResponse<OrderStatus>;
       })
     );
   }
   /**
-   * Search a client with a ID
-   * @param id The id of the client
+   * Search a OrderStatus with a ID
+   * @param id The id of the OrderStatus
    * @return OK
    */
-  getByIdUsingGET1(id: number): __Observable<Client> {
-    return this.getByIdUsingGET1Response(id).pipe(
-      __map(_r => _r.body as Client)
+  getByIdUsingGET4(id: number): __Observable<OrderStatus> {
+    return this.getByIdUsingGET4Response(id).pipe(
+      __map(_r => _r.body as OrderStatus)
     );
   }
 
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a OrderStatus by ID
+   * @param id The id of the OrderStatus
    * @return OK
    */
-  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<{}>> {
+  deleteUsingDELETE4Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/client/${encodeURIComponent(id)}`,
+      this.rootUrl + `/api/order_status/${encodeURIComponent(id)}`,
       __body,
       {
         headers: __headers,
@@ -206,18 +206,18 @@ class ClientControllerService extends __BaseService {
     );
   }
   /**
-   * Delete a Client by ID
-   * @param id The id of the client
+   * Delete a OrderStatus by ID
+   * @param id The id of the OrderStatus
    * @return OK
    */
-  deleteUsingDELETE1(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE1Response(id).pipe(
+  deleteUsingDELETE4(id: number): __Observable<{}> {
+    return this.deleteUsingDELETE4Response(id).pipe(
       __map(_r => _r.body as {})
     );
   }
 }
 
-module ClientControllerService {
+module OrderStatusControllerService {
 }
 
-export { ClientControllerService }
+export { OrderStatusControllerService }
