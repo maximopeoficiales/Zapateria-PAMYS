@@ -95,7 +95,7 @@
               color="accent"
               class="text-white w-100 h6"
               style="background-color: #47b475"
-              *ngIf="category.idCategory == 0; else elseButton"
+              *ngIf="category.idCategory == null; else elseButton"
               (click)="create()"
               [disabled]="!categoryForm.form.valid"
             >
