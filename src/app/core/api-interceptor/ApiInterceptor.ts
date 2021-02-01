@@ -8,24 +8,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/internal/operators/tap';
 import { LoginService } from '../services/auth/login/login.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  constructor(private jwtOperations: LoginService) {}
-  tokenJWT = this.jwtOperations.getJWT();
+  constructor(private jwtOperations: LoginService, private router: Router) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const tokenJWT = this.jwtOperations.getJWT();
     // Apply the headers
-    if (this.tokenJWT) {
+    if (tokenJWT) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.tokenJWT}`,
+          Authorization: `Bearer ${tokenJWT}`,
         },
       });
     } else {
       req = req.clone({});
+      // this.router.navigate(['/login']);
     }
 
     // Also handle errors globally

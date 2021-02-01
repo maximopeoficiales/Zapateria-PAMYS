@@ -15,6 +15,8 @@ import { HeaderCustomComponent } from './components/header-custom/header-custom.
 import { AdminRoutesModule } from './admin-routes.module';
 import { VendorListComponent } from './subpages/vendor/vendor-list/vendor-list.component';
 import { VendorDetailComponent } from './subpages/vendor/vendor-detail/vendor-detail.component';
+import { ClientListComponent } from './subpages/client/client-list/client-list.component';
+import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { VendorDetailComponent } from './subpages/vendor/vendor-detail/vendor-de
     HeaderCustomComponent,
     VendorListComponent,
     VendorDetailComponent,
+    ClientListComponent,
+    ClientDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { VendorListComponent } from './subpages/vendor/vendor-list/vendor-list.component';
 import { VendorDetailComponent } from './subpages/vendor/vendor-detail/vendor-detail.component';
+import { ClientListComponent } from './subpages/client/client-list/client-list.component';
+import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,18 @@ const routes: Routes = [
       {
         path: 'vendors/form/:id',
         component: VendorDetailComponent,
+      },
+      {
+        path: 'clients',
+        component: ClientListComponent,
+      },
+      {
+        path: 'clients/form',
+        component: ClientDetailComponent,
+      },
+      {
+        path: 'clients/form/:id',
+        component: ClientDetailComponent,
       },
     ],
   },

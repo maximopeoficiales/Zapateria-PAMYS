@@ -17,4 +17,8 @@ export class LoginService {
   getJWT(): string | null {
     return localStorage.getItem('jwt');
   }
+
+  removeJWT(): void {
+    return localStorage.removeItem('jwt');
+  }
 }

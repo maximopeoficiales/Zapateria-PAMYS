@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit {
             TypeMessageSwal.SUCCESS
           );
           console.log(res.body);
+          setTimeout(() => {
+            this.router.navigate(['/admin/vendors']);
+          }, 1500);
           // alert(`Usuario logueado con token: ${jwt}`);
         },
         (err) => {
