@@ -6855,7 +6855,7 @@
     "postcss" "^6.0.9"
     "postcss-value-parser" "^3.3.0"
 
-"postcss-import@12.0.1":
+"postcss-import@^12.0.1", "postcss-import@12.0.1":
   "integrity" "sha512-3Gti33dmCjyKBgimqGxL3vcV8w9+bsHwO5UrBawp796+jdardbcFl4RP5w/76BwNL7aGzpKstIfF9I+kdE8pTw=="
   "resolved" "https://registry.npmjs.org/postcss-import/-/postcss-import-12.0.1.tgz"
   "version" "12.0.1"

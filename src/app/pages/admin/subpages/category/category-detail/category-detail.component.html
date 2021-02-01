@@ -31,7 +31,7 @@
                 />
               </mat-form-field>
               <div
-                class="my-1 badge badge-danger"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="name.invalid && (name.dirty || name.touched)"
               >
                 <div class="" *ngIf="name.errors?.required">
@@ -54,7 +54,7 @@
                 ></textarea>
               </mat-form-field>
               <div
-                class="my-1 badge badge-danger"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="
                   description.invalid &&
                   (description.dirty || description.touched)
@@ -81,7 +81,7 @@
                 </div>
               </mat-radio-group>
               <div
-                class="my-1 badge badge-danger"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="active.invalid && (active.dirty || active.touched)"
               >
                 <div class="" *ngIf="active.errors?.required">
