@@ -146,7 +146,7 @@ class VoucherControllerService extends __BaseService {
    * @param id The id of the voucher
    * @return OK
    */
-  getByIdClientUsingGETResponse(id: number): __Observable<__StrictHttpResponse<Array<Voucher>>> {
+  getByIdClientUsingGETResponse(id_client: number): __Observable<__StrictHttpResponse<Array<Voucher>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;

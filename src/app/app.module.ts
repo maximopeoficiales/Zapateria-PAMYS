@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule, Provider } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +8,18 @@ import { SharedModule } from './core/modules/shared/shared.module';
 import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/modules/material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiModule } from './core/api/api.module';
+import { ApiInterceptor } from './core/api-interceptor/ApiInterceptor';
 
+
+// configuracion de headers global para la api
+export const API_INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useExisting: forwardRef(() => ApiInterceptor),
+  multi: true
+};
+// import apimodule globalmente y le paso la url de nuestro backend
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ApiModule.forRoot({rootUrl:"http://localhost:8090"})
     // SharedModule,
     // CoreModule,
     // ProductModule,
@@ -24,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     // ContactModule,
     // MaterialModule,
   ],
-  providers: [],
+  providers: [ApiInterceptor,
+    API_INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

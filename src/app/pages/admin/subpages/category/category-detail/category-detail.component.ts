@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Category } from 'src/app/core/models/Category';
-import { CategoryService } from '../../../../../core/services/categorys/category.service';
 import swal from 'sweetalert2';
+import { CategoryControllerService } from 'src/app/core/api/services';
+import { CategoryClass } from '../../../../../core/models/Category';
 
 @Component({
   selector: 'app-category-detail',
@@ -10,10 +10,10 @@ import swal from 'sweetalert2';
   styleUrls: ['./category-detail.component.sass'],
 })
 export class CategoryDetailComponent implements OnInit {
-  category: Category = new Category();
+  category: CategoryClass = new CategoryClass();
   titulo = 'Create Category';
   constructor(
-    private service: CategoryService,
+    private service: CategoryControllerService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -23,18 +23,18 @@ export class CategoryDetailComponent implements OnInit {
   }
   create(): void {
     //  crea el cliente, luego le redirije
-    this.service.save(this.category).subscribe((category) => {
+    this.service.saveUsingPOST(this.category).subscribe((res) => {
       this.router.navigate(['/admin/categorys']);
       swal.fire(
         'Nueva Categoria Creada',
-        `Categoria ${category.name} ha sido registrada`,
+        `Categoria ${res.name} ha sido registrada`,
         'success'
       );
     });
   }
   update(): void {
     //  crea el cliente, luego le redirije
-    this.service.update(this.category).subscribe((category) => {
+    this.service.updateUsingPUT(this.category).subscribe((category) => {
       this.router.navigate(['/admin/categorys']);
       swal.fire(
         'Categoria Actualizada',
@@ -45,11 +45,12 @@ export class CategoryDetailComponent implements OnInit {
   }
   cargarCategory(): void {
     this.activatedRoute.params.subscribe((params) => {
-      let id = params.id;
+      const id = params.id;
       if (id) {
         this.titulo = 'Edit Category';
-        this.service.findById(id).subscribe((category) => {
+        this.service.getByIdUsingGET(id).subscribe((category) => {
           this.category = category;
+          console.log(category);
         });
       }
     });

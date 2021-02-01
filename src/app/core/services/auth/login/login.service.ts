@@ -1,25 +1,20 @@
-import { Observable } from 'rxjs';
-import { HttpService } from '../../http/http.service';
 import { Injectable } from '@angular/core';
-import { apiEndPoint } from 'src/app/core/services/http/constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  constructor() {}
 
-  constructor(private http: HttpService) { }
-
-  login(username: string, password: string): Promise<any> {
-      return this.http.postRequest(apiEndPoint.login, {username, password}).toPromise();
+  saveJWT(jwt: any): void {
+    if (this.getJWT()) {
+      localStorage.removeItem('jwt');
+      localStorage.setItem('jwt', jwt);
+    }
+    localStorage.setItem('jwt', jwt);
   }
 
-  saveJWT(jwt: string) {
-    if (localStorage.getItem("jwt")) {
-      localStorage.removeItem("jwt");
-      localStorage.setItem("jwt", jwt);
-    }
-    localStorage.setItem("jwt", jwt);
-    
+  getJWT(): string | null {
+    return localStorage.getItem('jwt');
   }
 }

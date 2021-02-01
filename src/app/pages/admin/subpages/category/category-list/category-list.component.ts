@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { CategoryService } from '../../../../../core/services/categorys/category.service';
-import { Category } from '../../../../../core/models/Category';
 import swal from 'sweetalert2';
+import { CategoryControllerService } from 'src/app/core/api/services';
+import { Category } from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-category-list',
@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./category-list.component.sass'],
 })
 export class CategoryListComponent implements OnInit, AfterViewInit {
-  constructor(private service: CategoryService) {}
+  constructor(private service: CategoryControllerService) {}
   // Placeholder data, para mostrar el boton de agregar categorias
   listCategorys: Category[] = [];
   dataSource: any = null;
@@ -27,11 +27,11 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   //methods
   loadCategoryList(): void {
     setTimeout(() => {
-      this.service.findALl().subscribe((categorys: Category[]) => {
+      this.service.getAllUsingGET().subscribe((categorys) => {
         this.listCategorys = categorys;
         this.chargingTableList();
         this.ocultado = categorys.length == 0 ? 'd-none' : '';
-        this.showSpinner = false;        
+        this.showSpinner = false;
       });
     }, 300);
   }
@@ -53,17 +53,19 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.service.deleteByID(category.idCategory).subscribe((e) => {
-            this.listCategorys = this.listCategorys.filter(
-              (cat) => cat.idCategory !== category.idCategory
-            );
-            swal.fire(
-              'Borrado!',
-              `La categoria ${category.name} ha sido borrado`,
-              'success'
-            );
-            this.chargingTableList();
-          });
+          this.service
+            .deleteUsingDELETE(category.idCategory || 0)
+            .subscribe((e) => {
+              this.listCategorys = this.listCategorys.filter(
+                (cat) => cat.idCategory !== category.idCategory
+              );
+              swal.fire(
+                'Borrado!',
+                `La categoria ${category.name} ha sido borrado`,
+                'success'
+              );
+              this.chargingTableList();
+            });
         }
       });
   }
