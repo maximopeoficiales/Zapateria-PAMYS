@@ -49,6 +49,7 @@ export class ClientDetailComponent implements OnInit {
       if (id) {
         this.titulo = 'Edit client';
         this.service.getByIdUsingGET1(id).subscribe((client) => {
+          client.password="";
           this.client = client;
           console.log(client);
         });

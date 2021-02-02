@@ -44,6 +44,7 @@ export class CategoryDetailComponent implements OnInit {
     });
   }
   cargarCategory(): void {
+    // obtengo ejm .../:id <- el id
     this.activatedRoute.params.subscribe((params) => {
       const id = params.id;
       if (id) {

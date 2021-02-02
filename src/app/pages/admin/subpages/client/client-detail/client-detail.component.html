@@ -43,6 +43,34 @@
             </div>
 
             <div class="form-group">
+              <label for="">Email:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Email</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.email"
+                  #email="ngModel"
+                  name="email"
+                  required
+                  minlength="1"
+                  type="text"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+              >
+                <div class="" *ngIf="email.errors?.required">
+                  Email is required
+                </div>
+                <div class="" *ngIf="email.errors?.email">
+                  Email no tiene formato
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="">Name:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Insert Name</mat-label>

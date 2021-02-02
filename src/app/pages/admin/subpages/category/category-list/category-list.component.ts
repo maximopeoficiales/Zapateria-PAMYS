@@ -30,7 +30,9 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
       this.service.getAllUsingGET().subscribe((categorys) => {
         this.listCategorys = categorys;
         this.chargingTableList();
+        // con esto muestro la tabla
         this.ocultado = categorys.length == 0 ? 'd-none' : '';
+        // oculto el spinner
         this.showSpinner = false;
       });
     }, 300);
