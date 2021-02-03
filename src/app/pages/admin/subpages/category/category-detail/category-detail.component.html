@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row justify-content-center my-4 mx-2">
-    <div class="col-md-8 my-5">
+  <div class="mx-2 my-4 row justify-content-center">
+    <div class="my-5 col-md-8">
       <a
         mat-flat-button
         color="primary"
         [routerLink]="['/admin/categorys']"
-        class="my-2 text-decoration-none text-white"
+        class="my-2 text-white text-decoration-none"
       >
-        <i class="fas fa-arrow-left mr-2"></i>Back
+        <i class="mr-2 fas fa-arrow-left"></i>Back
       </a>
       <form #categoryForm="ngForm">
         <mat-card style="position: relative">
@@ -31,7 +31,7 @@
                 />
               </mat-form-field>
               <div
-                class="badge badge-danger my-1"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="name.invalid && (name.dirty || name.touched)"
               >
                 <div class="" *ngIf="name.errors?.required">
@@ -54,7 +54,7 @@
                 ></textarea>
               </mat-form-field>
               <div
-                class="badge badge-danger my-1"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="
                   description.invalid &&
                   (description.dirty || description.touched)
@@ -76,12 +76,12 @@
                 name="active"
               >
                 <div class="d-flex justify-content-around align-items-center">
-                  <mat-radio-button [value]="1">Activated</mat-radio-button>
-                  <mat-radio-button [value]="0">Disabled</mat-radio-button>
+                  <mat-radio-button [value]="true">Activated</mat-radio-button>
+                  <mat-radio-button [value]="false">Disabled</mat-radio-button>
                 </div>
               </mat-radio-group>
               <div
-                class="badge badge-danger my-1"
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="active.invalid && (active.dirty || active.touched)"
               >
                 <div class="" *ngIf="active.errors?.required">
@@ -93,23 +93,23 @@
             <button
               mat-flat-button
               color="accent"
-              class="w-100 text-white h6"
+              class="text-white w-100 h6"
               style="background-color: #47b475"
-              *ngIf="category.idCategory == 0; else elseButton"
+              *ngIf="category.idCategory == null; else elseButton"
               (click)="create()"
               [disabled]="!categoryForm.form.valid"
             >
-              <i class="fas fa-save mr-2"></i>Save
+              <i class="mr-2 fas fa-save"></i>Save
             </button>
             <ng-template #elseButton>
               <button
                 mat-flat-button
                 color="primary"
-                class="w-100 text-white h6"
+                class="text-white w-100 h6"
                 (click)="update()"
                 [disabled]="!categoryForm.form.valid"
               >
-                <i class="fas fa-save mr-2"></i>Update
+                <i class="mr-2 fas fa-save"></i>Update
               </button>
             </ng-template>
           </mat-card-content>

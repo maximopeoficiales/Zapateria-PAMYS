@@ -1,7 +1,14 @@
 export { AuthControllerService } from './services/auth-controller.service';
 export { CategoryControllerService } from './services/category-controller.service';
 export { ClientControllerService } from './services/client-controller.service';
+export { DocumentTypeControllerService } from './services/document-type-controller.service';
 export { BasicErrorControllerService } from './services/basic-error-controller.service';
+export { OrderControllerService } from './services/order-controller.service';
+export { OrdersDetailsControllerService } from './services/orders-details-controller.service';
+export { OrderStatusControllerService } from './services/order-status-controller.service';
+export { PaymentTypeControllerService } from './services/payment-type-controller.service';
 export { ProductControllerService } from './services/product-controller.service';
+export { ProductImagesControllerService } from './services/product-images-controller.service';
 export { PublicControllerService } from './services/public-controller.service';
 export { VendorControllerService } from './services/vendor-controller.service';
+export { VoucherControllerService } from './services/voucher-controller.service';

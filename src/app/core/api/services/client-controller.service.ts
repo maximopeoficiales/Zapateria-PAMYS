@@ -8,7 +8,6 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { Client } from '../models/client';
-import { ResponseEntity } from '../models/response-entity';
 
 /**
  * Client Controller
@@ -184,7 +183,7 @@ class ClientControllerService extends __BaseService {
    * @param id The id of the client
    * @return OK
    */
-  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<ResponseEntity>> {
+  deleteUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<{}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -202,7 +201,7 @@ class ClientControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<ResponseEntity>;
+        return _r as __StrictHttpResponse<{}>;
       })
     );
   }
@@ -211,9 +210,9 @@ class ClientControllerService extends __BaseService {
    * @param id The id of the client
    * @return OK
    */
-  deleteUsingDELETE1(id: number): __Observable<ResponseEntity> {
+  deleteUsingDELETE1(id: number): __Observable<{}> {
     return this.deleteUsingDELETE1Response(id).pipe(
-      __map(_r => _r.body as ResponseEntity)
+      __map(_r => _r.body as {})
     );
   }
 }

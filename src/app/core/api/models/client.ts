@@ -1,6 +1,7 @@
 /* tslint:disable */
+import { Role } from './role';
 export interface Client {
-  active?: number;
+  active?: boolean;
   address?: string;
   email?: string;
   firstName?: string;
@@ -9,5 +10,7 @@ export interface Client {
   lastName?: string;
   password?: string;
   phone?: string;
+  role?: Role;
   username?: string;
+  zip_code?: number;
 }

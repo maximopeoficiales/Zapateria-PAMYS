@@ -1,6 +1,6 @@
 /* tslint:disable */
 export interface Category {
-  active?: number;
+  active?: boolean;
   description?: string;
   idCategory?: number;
   name?: string;

@@ -1,7 +1,9 @@
-export class Vendor {
+import { Vendor } from '../api/models/vendor';
+
+export class VendorClass implements Vendor {
   constructor(
-    public idVendor: number = 0,
-    public descripction?: string,
+    public idVendor?: number,
+    public description?: string,
     public company?: string
   ) {}
 }

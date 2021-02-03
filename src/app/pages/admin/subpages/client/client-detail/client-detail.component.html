@@ -1,0 +1,244 @@
+<div class="container">
+  <div class="mx-2 my-4 row justify-content-center">
+    <div class="my-5 col-md-8">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/clients']"
+        class="my-2 text-white text-decoration-none"
+      >
+        <i class="mr-2 fas fa-arrow-left"></i>Back
+      </a>
+      <form #clientForm="ngForm">
+        <mat-card style="position: relative">
+          <!-- circulo para card -->
+          <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </app-circulo-icon-card>
+
+          <mat-card-content>
+            <div class="form-group">
+              <label for="">Username:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Username</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.username"
+                  #username="ngModel"
+                  name="username"
+                  required
+                  minlength="1"
+                  type="text"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="username.invalid && (username.dirty || username.touched)"
+              >
+                <div class="" *ngIf="username.errors?.required">
+                  Username is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Email:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Email</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.email"
+                  #email="ngModel"
+                  name="email"
+                  required
+                  minlength="1"
+                  type="text"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+              >
+                <div class="" *ngIf="email.errors?.required">
+                  Email is required
+                </div>
+                <div class="" *ngIf="email.errors?.email">
+                  Email no tiene formato
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Name:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Name</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="client.firstName"
+                  #firstName="ngModel"
+                  name="firstName"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="
+                  firstName.invalid && (firstName.dirty || firstName.touched)
+                "
+              >
+                <div class="" *ngIf="firstName.errors?.required">
+                  FirstName is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">LastName:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert LastName</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.lastName"
+                  #lastName="ngModel"
+                  name="lastName"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+              >
+                <div class="" *ngIf="lastName.errors?.required">
+                  LastName is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Address:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Address</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.address"
+                  #address="ngModel"
+                  name="address"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="address.invalid && (address.dirty || address.touched)"
+              >
+                <div class="" *ngIf="address.errors?.required">
+                  Address is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Phone:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Phone</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.phone"
+                  #phone="ngModel"
+                  name="address"
+                  required
+                  minlength="1"
+                  type="number"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+              >
+                <div class="" *ngIf="phone.errors?.required">
+                  Phone is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Elija un opcion:</label>
+              <mat-radio-group
+                aria-label="Select an option"
+                class="d-block"
+                [(ngModel)]="client.active"
+                #active="ngModel"
+                name="active"
+              >
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-radio-button [value]="true">Activated</mat-radio-button>
+                  <mat-radio-button [value]="false">Disabled</mat-radio-button>
+                </div>
+              </mat-radio-group>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="active.invalid && (active.dirty || active.touched)"
+              >
+                <div class="" *ngIf="active.errors?.required">
+                  Active is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Password:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert Password</mat-label>
+                <input
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="client.password"
+                  #password="ngModel"
+                  name="password"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="password.invalid && (password.dirty || password.touched)"
+              >
+                <div class="" *ngIf="password.errors?.required">
+                  password is required
+                </div>
+              </div>
+            </div>
+
+            <button
+              mat-flat-button
+              color="accent"
+              class="text-white w-100 h6"
+              style="background-color: #47b475"
+              *ngIf="client.idClient == null; else elseButton"
+              (click)="create()"
+              [disabled]="!clientForm.form.valid"
+            >
+              <i class="mr-2 fas fa-save"></i>Save
+            </button>
+            <ng-template #elseButton>
+              <button
+                mat-flat-button
+                color="primary"
+                class="text-white w-100 h6"
+                (click)="update()"
+                [disabled]="!clientForm.form.valid"
+              >
+                <i class="mr-2 fas fa-save"></i>Update
+              </button>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
