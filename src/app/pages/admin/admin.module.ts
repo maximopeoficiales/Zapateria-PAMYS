@@ -21,8 +21,8 @@ import { PaymentListComponent } from './subpages/payment-type/payment-list/payme
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
 import {OrderListComponent} from './subpages/order-satus/order-list/order-list.component';
 import {OrderDetailComponent} from './subpages/order-satus/order-detail/order-detail.component';
-
-
+import {DocumentListComponent} from './subpages/document-type/document-list/document-list.component';
+import {DocumentDetailComponent} from './subpages/document-type/document-detail/document-detail.component';
 @NgModule({
   declarations: [
     NavComponent,
@@ -39,7 +39,10 @@ import {OrderDetailComponent} from './subpages/order-satus/order-detail/order-de
     PaymentListComponent,
     PaymentDetailComponent,
     OrderListComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    DocumentListComponent,
+    DocumentDetailComponent
+    
   ],
   imports: [
     CommonModule,

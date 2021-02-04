@@ -1,1 +1,71 @@
-<p>document-detail works!</p>
+<div class="container">
+  <div class="mx-2 my-4 row justify-content-center">
+    <div class="my-5 col-md-8">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/document-type']"
+        class="my-2 text-white text-decoration-none"
+      >
+        <i class="mr-2 fas fa-arrow-left"></i>Back
+      </a>
+      <form #documentTypeForm="ngForm">
+        <mat-card style="position: relative">
+          <!-- circulo para card -->
+          <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+            <i class="fas fa-shoe-prints fa-rotate-270"></i>
+          </app-circulo-icon-card>
+
+          <mat-card-content>
+            <div class="form-group">
+              <label for="">DocumentType:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert DocType</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="documentType.doctype"
+                  #doctype="ngModel"
+                  name="doctype"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="doctype.invalid && (doctype.dirty || doctype.touched)"
+              >
+                <div class="" *ngIf="doctype.errors?.required">
+                  documentType is required
+                </div>
+              </div>
+            </div>
+
+            <button
+              mat-flat-button
+              color="accent"
+              class="text-white w-100 h6"
+              style="background-color: #47b475"
+              *ngIf="documentType.idDcoumentType == null; else elseButton"
+              (click)="create()"
+              [disabled]="!documentTypeForm.form.valid"
+            >
+              <i class="mr-2 fas fa-save"></i>Save
+            </button>
+            <ng-template #elseButton>
+              <button
+                mat-flat-button
+                color="primary"
+                class="text-white w-100 h6"
+                (click)="update()"
+                [disabled]="!documentTypeForm.form.valid"
+              >
+                <i class="mr-2 fas fa-save"></i>Update
+              </button>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+
