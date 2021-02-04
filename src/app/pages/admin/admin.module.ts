@@ -19,6 +19,9 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
+import {OrderListComponent} from './subpages/order-satus/order-list/order-list.component';
+import {OrderDetailComponent} from './subpages/order-satus/order-detail/order-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/p
     ClientListComponent,
     ClientDetailComponent,
     PaymentListComponent,
-    PaymentDetailComponent
+    PaymentDetailComponent,
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,
@@ -45,5 +50,6 @@ import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/p
     SharedModule,
     FormsModule,
   ],
+  
 })
 export class AdminModule {}

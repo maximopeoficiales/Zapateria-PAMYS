@@ -1,0 +1,75 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import {  OrderStatus } from 'src/app/core/api/models';
+import { OrderStatusControllerService } from 'src/app/core/api/services';
+import swal from 'sweetalert2';
+@Component({
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.sass']
+})
+export class OrderListComponent implements OnInit {
+
+   constructor(private service: OrderStatusControllerService) {}
+
+  listOrderStatus: OrderStatus[] = [];
+  dataSource: any = null;
+  displayedColumns: string[] = ['idOrderStatus', 'status', 'Actions'];
+  ocultado = 'd-none';
+  showSpinner = true;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.loadVendorList();
+  }
+  //methods
+  loadVendorList(): void {
+    setTimeout(() => {
+      this.service.getAllUsingGET4().subscribe((orderStatus) => {
+        this.listOrderStatus = orderStatus;
+        this.chargingTableList();
+        this.ocultado = orderStatus.length == 0 ? 'd-none' : '';
+        this.showSpinner = false;
+      });
+    }, 300);
+  }
+  chargingTableList(): void {
+    this.dataSource = new MatTableDataSource<OrderStatus>(this.listOrderStatus);
+    this.dataSource.paginator = this.paginator;
+
+
+  }
+
+  delete(orderStatus: OrderStatus): void {
+    swal
+      .fire({
+        title: '¿Esta seguro de borrarlo?',
+        text: 'Este borrado es irrevertible!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, quiero borrarlo!',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.service
+            .deleteUsingDELETE4(orderStatus.idOrderStatus|| 0)
+            .subscribe((e) => {
+              this.listOrderStatus = this.listOrderStatus.filter(
+                (cat) => cat.idOrderStatus !== orderStatus.idOrderStatus
+              );
+              swal.fire(
+                'Borrado!',
+                `El order ${orderStatus.status} ha sido borrado`,
+                'success'
+              );
+              this.chargingTableList();
+            });
+        }
+      });
+  }
+}
+
