@@ -7,6 +7,7 @@
     "build": "ng build",
     "build-api": "npx ng-swagger-gen",
     "build-css": "npx tailwindcss-cli@latest build  ./src/styles.css -o src/assets/css/tailwind.css",
+    "build-css-full": "npx tailwindcss-cli@latest build -o src/assets/css/tailwind.css",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -36,6 +37,7 @@
     "@angular-devkit/build-angular": "^0.1100.6",
     "@angular/cli": "~11.0.2",
     "@angular/compiler-cli": "~11.0.1",
+    "@splidejs/splide": "^2.4.21",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "autoprefixer": "^10.2.4",

@@ -1208,6 +1208,11 @@
     "semver" "7.3.2"
     "semver-intersect" "1.4.0"
 
+"@splidejs/splide@^2.4.21":
+  "integrity" "sha512-LdIwSnmNsGybCCnA3QG2dOeRv/rQl46jf7FflXxMGX0ADYWyL6UJHWJbMZvHBi5I67uRJY1ga/W+CvJ39nH26A=="
+  "resolved" "https://registry.npmjs.org/@splidejs/splide/-/splide-2.4.21.tgz"
+  "version" "2.4.21"
+
 "@types/glob@^7.1.1":
   "integrity" "sha512-SEYeGAIQIQX8NN6LDKprLjbrd5dARM5EXsd8GI/A5l0apYI1fGMWgPHSe4ZKL4eozlAyI+doUE9XbYS4xCkQ1w=="
   "resolved" "https://registry.npmjs.org/@types/glob/-/glob-7.1.3.tgz"

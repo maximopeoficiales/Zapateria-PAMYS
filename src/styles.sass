@@ -1,38 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
-.product-grid
-  display: grid
-  grid-template-columns: repeat(1, 1fr)
-  grid-gap: 50px 20px
-
-@media (min-width:576px)
-  .product-grid
-    display: grid
-    grid-template-columns: repeat(4, 1fr)
-    grid-gap: 50px 20px
-
-    .container
-      max-width: 1110px
-      padding-right: 16px
-      padding-left: 16px
-
-.container
-  width: 100%
-  padding-right: 0px
-  padding-left: 0px
-  margin-right: auto
-  margin-left: auto
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap")
 html,
 body
   height: 100%
-  color: #E1E1DC
-
-body
   margin: 0
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: "Montserrat", sans-serif
+
+  /* You can add global styles to this file, and also import other style files */
+
+// body
+//   margin: 0
+  // font-family: Roboto, "Helvetica Neue", sans-serif
 
 @media (max-width: 470px)
   .d-none-sm-max
     display: none
 .mat-form-field
   display: block !important
+
+  // home page
+/* utilidades */
+.color-principal
+  color: #7ab849
+
+.text-xss
+  font-size: 0.7rem
+  line-height: 0.8rem
+
+.p-1-sm
+  padding: 0.2rem
+
+.mb-60px
+  margin-bottom: 60px
+
+  &-hidden-sm
+    margin-bottom: 60px
+
+@media (min-width: 576px)
+  .mb-60px-hidden-sm
+    margin-bottom: 60px
+
+.badge-descuento
+  padding: 2px 10px
+  font-size: 0.68rem
+  line-height: 1rem
+
+.navbar-buttom
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: 60px
+
+.splide__pagination
+  padding-top: 1rem
+  bottom: 0.1rem
+
+  &__page.is-active
+    background: #777777
+
+/* flechas de slider */
+.splide__arrow
+  color: red
+  background-color: transparent
+
+/* fin de flechas con slider */
+.bg-principal
+  color: #55b849
+  border-color: #55b849
+
+  &-block
+    color: white
+    background-color: #55b849
+
+.hover-color-principal-outline:hover
+  color: white
+  background-color: #55b849
+
+.fondo-color-principal
+  background-color: #e8f6f2
+
+.color-resultado
+  color: #49b89b
