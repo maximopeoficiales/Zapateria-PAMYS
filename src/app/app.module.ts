@@ -9,6 +9,7 @@ import { ApiModule } from './core/api/api.module';
 import { ApiInterceptor } from './core/api-interceptor/ApiInterceptor';
 
 
+
 // configuracion de headers global para la api
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,

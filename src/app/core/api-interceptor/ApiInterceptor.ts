@@ -19,27 +19,31 @@ export class ApiInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const tokenJWT = this.jwtOperations.getJWT();
-    // Apply the headers
+    // Si existe el token lo aplico a las peticiones
     if (tokenJWT) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${tokenJWT}`,
         },
       });
-    } else {
-      req = req.clone({});
-      // this.router.navigate(['/login']);
     }
+    // req = req.clone({});
+    // this.router.navigate(['/login']);
 
-    // Also handle errors globally
+    // configuracion global de los errores
     return next.handle(req).pipe(
       tap(
         (x) => x,
         (err) => {
-          // Handle this err
+          // cuando ocurre un 403 borro el token y redirijo al login
           console.error(
-            `Error performing request, status code = ${err.status}`
+            `Su sesion a expirado vuelva a loguearse ${err.status}`
           );
+
+          if (err.status === 403) {
+            this.jwtOperations.removeJWT();
+            this.router.navigate(['/login']);
+          }
         }
       )
     );

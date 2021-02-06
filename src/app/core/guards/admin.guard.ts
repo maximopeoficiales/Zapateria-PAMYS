@@ -8,12 +8,16 @@ import {
 import { Observable } from 'rxjs';
 import { LoginService } from '../services/auth/login/login.service';
 import { Router } from '@angular/router';
+import { ClientControllerService } from 'src/app/core/api/services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

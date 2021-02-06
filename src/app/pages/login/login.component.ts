@@ -48,8 +48,7 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(
         (res) => {
-          const jwt = res.body.jwt;
-          this.loginService.saveJWT(jwt);
+          this.loginService.saveJWT(res.body.jwt || '', res.body.user || {});
           this.swal.showMessage(
             'Login Satisfactorio',
             `Usuario: ${res.body.user?.firstName}`,
@@ -58,8 +57,7 @@ export class LoginComponent implements OnInit {
           console.log(res.body);
           setTimeout(() => {
             this.router.navigate(['/admin/vendors']);
-          }, 1500);
-          // alert(`Usuario logueado con token: ${jwt}`);
+          }, 1000);
         },
         (err) => {
           this.swal.showMessage(
