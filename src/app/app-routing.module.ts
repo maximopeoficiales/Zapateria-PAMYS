@@ -1,40 +1,53 @@
 import { AdminGuard } from './core/guards/admin.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { LoginGuard } from './core/guards/login.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: '',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    canActivate: [LoginGuard],
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule)
+    loadChildren: () =>
+      import('./pages/signup/signup.module').then((m) => m.SignupModule),
   },
   {
     path: 'admin',
     canActivate: [AdminGuard],
-    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () =>
+      import('./pages/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'product',
-    loadChildren: () => import('./pages/product-detail/product-detail.module').then(m => m.ProductDetailModule)
+    loadChildren: () =>
+      import('./pages/product-detail/product-detail.module').then(
+        (m) => m.ProductDetailModule
+      ),
   },
   {
-    path:'cart',
-    loadChildren:()=>import('./pages/shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule)
-  }
+    path: 'cart',
+    loadChildren: () =>
+      import('./pages/shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
+  },
 ];
 
 @NgModule({
   //escoja dinamicamente una estrategia de precarga
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

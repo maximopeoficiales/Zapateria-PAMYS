@@ -8,13 +8,12 @@ import {
 import { Observable } from 'rxjs';
 import { LoginService } from '../services/auth/login/login.service';
 import { Router } from '@angular/router';
-import { ClientControllerService } from 'src/app/core/api/services';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuard implements CanActivate {
-  constructor(private loginService: LoginService, private router: Router) {}
+export class LoginGuard implements CanActivate {
+  constructor(private router: Router, private loginService: LoginService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -23,13 +22,10 @@ export class AdminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (
-      this.loginService.getJWT() ||
-      this.loginService.getUser()?.idRol === 2
-    ) {
+    if (!this.loginService.getJWT()) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/home']);
       return false;
     }
   }

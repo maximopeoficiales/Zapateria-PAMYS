@@ -20,11 +20,15 @@ export class LoginService {
     localStorage.setItem(this.nameCLient, JSON.stringify(user));
   }
 
-  getJWT(): string {
-    return localStorage.getItem(this.nameJWT) || '';
+  getJWT(): string | null {
+    return localStorage.getItem(this.nameJWT);
   }
-  getUser(): Client {
+  getUser(): Client | null {
     return JSON.parse(localStorage.getItem(this.nameCLient) || '');
+  }
+
+  isLogged(): boolean {
+    return this.getJWT() || this.getUser() ? true : false;
   }
 
   removeJWT(): void {
