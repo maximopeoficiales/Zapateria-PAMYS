@@ -1,5 +1,469 @@
-<app-header></app-header>
-<div class="container">
-    <app-products></app-products>
-</div>
-<app-footer></app-footer>
+<app-home-page>
+  <!-- slider -->
+  <div class="hidden mt-0 splide splide-slide md:block">
+    <div class="splide__track">
+      <ul class="h-96 splide__list">
+        <li class="text-center splide__slide">
+          <img
+            src="https://d13xymm0hzzbsd.cloudfront.net/1/20210201/16122262352658.png"
+            alt=""
+            srcset=""
+          />
+        </li>
+        <li class="text-center splide__slide">
+          <img
+            src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834605978.png"
+            alt=""
+            srcset=""
+          />
+        </li>
+        <li class="text-center splide__slide">
+          <img
+            src="https://d13xymm0hzzbsd.cloudfront.net/1/20210122/16113715978948.png"
+            alt=""
+            srcset=""
+          />
+        </li>
+      </ul>
+    </div>
+    <div class="bg-transparent splide__progress">
+      <div class="splide__progress__bar"></div>
+    </div>
+  </div>
+  <img
+    src="https://d13xymm0hzzbsd.cloudfront.net/1/20210122/16113715684437.png"
+    alt=""
+    class="object-cover h-auto max-w-full md:hidden"
+  />
+  <!-- fin de slider -->
+  <!-- card - info -->
+  <section class="p-2 mx-auto mt-3 max-w-7xl">
+    <div class="mx-auto max-w-7xl splide splide1">
+      <div class="flex md:justify-center splide__track">
+        <ul class="flex items-center justify-center h-32 splide__list">
+          <li class="splide__slide">
+            <home-mini-card-info
+              [title]="'Recoje en tienda'"
+              [content]="'Lorem ipsum dolor sit amet consectetur adipisicing'"
+            >
+              <i class="text-xl fas fa-store"></i>
+            </home-mini-card-info>
+          </li>
+          <li class="splide__slide">
+            <home-mini-card-info
+              [title]="'Recoje en tienda'"
+              [content]="'Lorem ipsum dolor sit amet consectetur adipisicing'"
+            >
+              <i class="text-xl fas fa-store"></i>
+            </home-mini-card-info>
+          </li>
+          <li class="splide__slide">
+            <home-mini-card-info
+              [title]="'Recoje en tienda'"
+              [content]="'Lorem ipsum dolor sit amet consectetur adipisicing'"
+            >
+              <i class="text-xl fas fa-store"></i>
+            </home-mini-card-info>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- fin de card info -->
+  <!-- slider de products -->
+  <section>
+    <!-- titulo -->
+    <div class="p-2 mx-auto max-w-7xl">
+      <home-title
+        [title]="'Zapatitos de moda'"
+        [subtitle]="'Lo mejor para niños'"
+      >
+      </home-title>
+    </div>
+    <!-- fin de titulo -->
+    <ng-container
+      *ngIf="
+        productsDeMuestra.length != 0;
+        then thenTemplate;
+        else elseTemplate
+      "
+    ></ng-container>
+    <ng-template #thenTemplate>
+      <app-slider-products
+        [productos]="productsDeMuestra"
+      ></app-slider-products>
+    </ng-template>
+    <ng-template #elseTemplate>
+      <app-spinner [show]="true"></app-spinner>
+    </ng-template>
+  </section>
+  <!-- fin de products -->
+  <!-- info mercial -->
+  <!-- infomercial -->
+  <section
+    class="grid grid-cols-2 gap-2 p-1 mx-auto mt-3 max-w-7xl md:grid-cols-4"
+  >
+    <div class="col-span-2 p-2 w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834382721.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210201/16121870464187.gif"
+        alt=""
+      />
+    </div>
+    <!-- segundo linea -->
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834390857.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834391473.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834386367.gif"
+        alt=""
+      />
+    </div>
+    <!-- 3 linea -->
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210201/16121944903530.png"
+        alt=""
+      />
+    </div>
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834393231.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834389590.gif"
+        alt=""
+      />
+    </div>
+    <!-- 4linea -->
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834384797.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-1 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834390226.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834387211.gif"
+        alt=""
+      />
+    </div>
+    <!-- 5 linea -->
+
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834388764.gif"
+        alt=""
+      />
+    </div>
+    <div class="col-span-2 p-2 rounded-full w-100">
+      <img
+        class="rounded"
+        src="https://d13xymm0hzzbsd.cloudfront.net/1/20210130/16119834388102.gif"
+        alt=""
+      />
+    </div>
+  </section>
+  <!-- informercil -->
+
+  <!-- ropa , calzado joyeria -->
+  <section>
+    <!-- component seccion -->
+    <div class="p-2 mx-auto max-w-7xl">
+      <home-title
+        [title]="'Calzado para niñas'"
+        [subtitle]="'Descubre lo ultimo'"
+      >
+      </home-title>
+    </div>
+    <ng-container
+      *ngIf="
+        productsDeMuestra.length != 0;
+        then thenTemplatetwo;
+        else elseTemplatetwo
+      "
+    ></ng-container>
+    <ng-template #thenTemplatetwo>
+      <app-slider-products
+        [productos]="productsDeMuestra"
+      ></app-slider-products>
+    </ng-template>
+    <ng-template #elseTemplatetwo>
+      <app-spinner [show]="true"></app-spinner>
+    </ng-template>
+    <div class="text-center">
+      <button
+        class="px-20 py-3 my-3 text-sm font-semibold uppercase transition duration-500 ease-out transform border shadow-md rounded-3xl hover-color-principal-outline bg-principal"
+      >
+        Ver más
+      </button>
+    </div>
+  </section>
+  <!-- fin de ropa calzado joyeria -->
+
+  <!-- GIFT CARD -->
+  <div class="mt-16 sm:mt-20">
+    <div class="w-full bg-gray-50">
+      <section class="p-8 mx-auto max-w-7xl">
+        <article
+          class="flex flex-col justify-center w-full h-full bg-white md:flex-row"
+        >
+          <div class="lg:w-1/2">
+            <img
+              src="https://d13xymm0hzzbsd.cloudfront.net/1/20201116/16055391098026.png"
+              alt=""
+              class="object-cover w-full h-100 md:h-full md:rounded-l-3xl"
+            />
+          </div>
+          <div class="lg:w-1/2">
+            <div class="w-full h-100 md:h-full rounded-b-3xl">
+              <div class="p-6 sm:p-12 fondo-color-principal">
+                <h4 class="text-2xl font-semibold text-center color-resultado">
+                  ¡Regala un eGift Card de Pamys!
+                </h4>
+              </div>
+              <div class="p-3 md:p-14">
+                <div class="flex items-center justify-center my-4">
+                  <span class="flex-1 mx-2 text-xs text-justify sm:text-sm"
+                    >Compra una giftcard y regálale a esa persona la oportunidad
+                    de escoger lo que más le guste. ¡Un regalo que les va a
+                    encantar!</span
+                  >
+                  <div
+                    class="p-6 mx-2 text-3xl rounded-full md:text-4xl md:p-8 fondo-color-principal"
+                  >
+                    <i
+                      class="fa fa-gift color-resultado"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                </div>
+                <div class="block text-center">
+                  <button
+                    class="w-full px-20 py-3 my-3 text-sm font-semibold uppercase transition duration-500 ease-out transform border shadow-md rounded-3xl bg-principal-block"
+                  >
+                    Conoce Mas
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+  <!-- ver todas las marcas -->
+  <section class="p-2 mx-auto mt-4 max-w-7xl">
+    <div class="text-center">
+      <home-title
+        [title]="'Principales marcas'"
+        [subtitle]="'Tenemos las marcas mas reconocidas'"
+      >
+      </home-title>
+    </div>
+    <div class="mx-auto my-2 max-w-7xl splide splide4">
+      <div class="flex items-center justify-center splide__track">
+        <ul class="flex items-center justify-center h-32 splide__list">
+          <li class="splide__slide">
+            <article class="p-2 mx-2">
+              <img
+                class="w-28 h-28 md:h-32 md:w-32"
+                src="https://d13xymm0hzzbsd.cloudfront.net/1/20200701/15936388377870.svg"
+                alt=""
+              />
+            </article>
+          </li>
+          <li class="splide__slide">
+            <article class="p-2 mx-2">
+              <img
+                class="w-28 h-28 md:h-32 md:w-32"
+                src="https://d13xymm0hzzbsd.cloudfront.net/1/20200701/15936388377870.svg"
+                alt=""
+              />
+            </article>
+          </li>
+          <li class="splide__slide">
+            <article class="p-2 mx-2">
+              <img
+                class="w-28 h-28 md:h-32 md:w-32"
+                src="https://d13xymm0hzzbsd.cloudfront.net/1/20200701/15936388377870.svg"
+                alt=""
+              />
+            </article>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center">
+      <button
+        class="px-20 py-3 my-5 text-sm font-semibold uppercase transition duration-500 ease-out transform border shadow-md rounded-3xl hover-color-principal-outline bg-principal"
+      >
+        Ver todas las Marcas
+      </button>
+    </div>
+  </section>
+
+  <!-- card-info antes del footer -->
+  <section class="grid gap-4 p-2 mx-auto mt-3 max-w-7xl md:grid-cols-3">
+    <!-- component card about -->
+    <div
+      class="grid items-center grid-cols-1 p-2 mx-2 mt-4 bg-white rounded-md shadow-lg justify-items-center"
+    >
+      <div class="p-1 mt-1 mb-2">
+        <div
+          class="flex items-center justify-center w-16 h-16 rounded-full"
+          style="background-color: #eff8ee"
+        >
+          <div><i class="fa fa-recycle fa-2x" style="color: #49b881"></i></div>
+        </div>
+      </div>
+      <h5 class="text-xl font-bold text-gray-800 ease-linear">
+        ¿Conoces Resikla?
+      </h5>
+      <p class="mt-2 text-sm text-center" style="font-size: 0.8rem">
+        Resikla es una iniciativa que busca cuidar el medio ambiente y ayudar a
+        los que más necesitan.
+      </p>
+      <div class="p-2 mt-2 mb-1">
+        <a class="p-1 text-sm font-semibold color-principal" href=""
+          >Conoce mas</a
+        >
+      </div>
+    </div>
+    <div
+      class="grid items-center grid-cols-1 p-2 mx-2 mt-4 bg-white rounded-md shadow-lg justify-items-center"
+    >
+      <div class="p-1 mt-1">
+        <div
+          class="flex items-center justify-center w-16 h-16 rounded-full"
+          style="background-color: #fff3e7"
+        >
+          <div><i class="text-xl text-red-400 fas fa-store"></i></div>
+        </div>
+      </div>
+      <h5 class="text-xl font-bold text-gray-800 ease-linear">Ubicanos</h5>
+      <p class="mt-2 text-xs text-center" style="font-size: 0.8rem">
+        ¿Quieres recoger una compra, ver un producto o probártelo? Platanitos
+        está cerca de ti. ¡Te esperamos!
+      </p>
+      <div class="p-2 mt-2 mb-1">
+        <a class="p-1 text-sm font-semibold color-principal" href=""
+          >Ver la tiendas & eLockers</a
+        >
+      </div>
+    </div>
+    <div
+      class="grid items-center grid-cols-1 p-2 mx-2 mt-4 bg-white rounded-md shadow-lg justify-items-center"
+    >
+      <div class="p-1 mt-1">
+        <div
+          class="flex items-center justify-center w-16 h-16 rounded-full"
+          style="background-color: #f1f8ff"
+        >
+          <div>
+            <i class="text-blue-700 fa fa-question-circle fa-2x"></i>
+          </div>
+        </div>
+      </div>
+      <h5 class="text-xl font-bold text-gray-800 ease-linear">
+        ¿Con dudas sobre Platanitos?
+      </h5>
+      <p class="mt-2 text-xs text-center" style="font-size: 0.8rem">
+        Despeja todas tus dudas sobre los productos o el servicio en el centro
+        de ayuda.
+      </p>
+      <div class="p-2 mt-2 mb-1">
+        <a class="p-1 text-sm font-semibold color-principal" href=""
+          >Centro de ayuda</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- boletin promocional -->
+  <div
+    class="grid items-center justify-center w-full p-6 my-10 overflow-hidden md:h-56 bg-principal-block md:grid-cols-2"
+  >
+    <div class="flex flex-col items-center justify-center my-4">
+      <div
+        class="flex items-center justify-center w-16 h-16 p-4 mx-2 rounded-full"
+        style="background-color: #eff8ee"
+      >
+        <i
+          class="text-2xl fa fa-envelope color-principal"
+          aria-hidden="true"
+        ></i>
+      </div>
+      <div class="text-center">
+        <h6 class="text-2xl font-bold">¡Boletín promocional!</h6>
+        <p class="text-xs font-semibold">
+          Sé el primero en recibir todas las ofertas y promociones :)
+        </p>
+      </div>
+    </div>
+    <div class="w-auto">
+      <div class="flex items-center px-2 bg-white rounded-full sm:p-1 md:p-2">
+        <input
+          type="text"
+          class="flex-1 h-10 p-3 text-sm text-black border-none rounded-full outline-none"
+          placeholder="Tu correo Electronico"
+        />
+
+        <div class="">
+          <button
+            class="px-3 py-2 text-xs text-black rounded-full md:py-4 md:px-5"
+            style="background-color: #e4e4e4"
+          >
+            Suscribete
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-center mt-10 md:justify-start">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" />
+          <span class="ml-2 text-xs md:text-base"
+            >He leído y acepto los
+            <a class="underline" href="#">Terminos y Condiciones</a>y la
+            <a class="underline" href="#">Politica de privacidad</a></span
+          >
+        </label>
+      </div>
+    </div>
+  </div>
+</app-home-page>

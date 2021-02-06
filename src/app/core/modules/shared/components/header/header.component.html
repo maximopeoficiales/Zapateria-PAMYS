@@ -1,8 +1,8 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
 
     <mat-toolbar-row>
 
-        <div class="row between-xs  middle-xs header-row">
+        <div class="row between-xs middle-xs header-row">
             <nav>
                 <a routerLink="/"><img src="assets/Image/logo/logo.png" alt=""></a>
                 <a mat-raised-button routerLink="/" class="sapcebutton">Home
@@ -10,7 +10,7 @@
                 </a>
                 <a mat-raised-button routerLink="/contact" class="sapcebutton">Contacto</a>
                 <a mat-raised-button routerLink="/" class="sapcebutton">Productos</a>
-                <a mat-raised-button matBadge="{{ cartItemsCount | async }}" matBadgeColor="warn" 
+                <a mat-raised-button matBadge="{{ cartItemsCount | async }}" matBadgeColor="warn"
                     routerLink="/cart" (click)="logCart()">Carrito<span class="material-icons">shopping_cart</span></a>
                 <button mat-raised-button [matMenuTriggerFor]="menu" color="accent" class="spacebutton">Categorias</button>
                 <mat-menu #menu="matMenu">
@@ -22,4 +22,38 @@
             </nav>
         </div>
     </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<nav class="fixed top-0 z-50 w-full p-2 fondo-principal">
+  <div class="items-center grid-cols-5 gap-4 mx-auto md:grid max-w-7xl">
+    <div class="w-full p-1">
+      <img src="assets/Image/logo/logo.png" class="h-10 mx-auto" />
+    </div>
+    <div class="hidden w-full col-span-3 md:block">
+      <div class="flex items-center p-2 pl-4 bg-white rounded-full">
+        <i class="mr-1 text-gray-300 fas fa-search"></i>
+        <input
+          type="text"
+          class="flex-1 h-10 p-1 pl-2 text-sm text-black border-none outline-none"
+          placeholder="Busca por ej zapatillas negras para hombre"
+          maxlength="70"
+        />
+      </div>
+    </div>
+
+    <div class="hidden w-full grid-cols-3 gap-2 p-2 mx-auto text-white md:grid">
+      <a class="p-1 text-center" href="#">
+        <i class="text-2xl far fa-heart"></i>
+        <p class="m-0 mt-1 text-xs">Favoritos</p>
+      </a>
+      <a class="p-1 text-center" href="#">
+        <i class="text-2xl fas fa-shopping-cart"></i>
+        <p class="m-0 mt-1 text-xs">Carrito</p>
+      </a>
+      <a class="p-1 text-center" href="#">
+        <i class="text-2xl far fa-user"></i>
+        <p class="m-0 mt-1 text-xs">{{ nameUser }}</p>
+      </a>
+    </div>
+  </div>
+</nav>

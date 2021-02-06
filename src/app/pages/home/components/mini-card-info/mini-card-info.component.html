@@ -1,0 +1,16 @@
+<article
+  class="flex items-center h-24 p-2 mx-2 rounded-lg w-80"
+  style="background-color: #fff99b"
+>
+  <div
+    class="flex items-center justify-center w-12 h-12 p-2 mx-2 bg-gray-100 rounded-full"
+  >
+    <ng-content></ng-content>
+  </div>
+  <div class="flex-1 mx-2">
+    <b class="text-sm font-semibold text-semibold">{{ title }}</b>
+    <p class="text-xs text-justify">
+      {{ content }}
+    </p>
+  </div>
+</article>

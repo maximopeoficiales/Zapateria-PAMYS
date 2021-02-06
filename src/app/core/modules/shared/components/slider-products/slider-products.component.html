@@ -1,0 +1,37 @@
+<div class="" *ngIf="productos.length != 0">
+  <div class="p-2 mx-auto max-w-7xl splide {{ id }}">
+    <div class="flex p-2 mb-3 sm:justify-center splide__track">
+      <ul class="h-64 splide__list">
+        <li class="text-center splide__slide" *ngFor="let product of productos">
+          <a href="#" class="flex flex-col p-4">
+            <img
+              class="object-cover w-40 h-40"
+              [src]="product.thumbnailUrl"
+              alt=""
+            />
+            <div class="m-0 text-left">
+              <span class="text-white bg-blue-600 rounded-sm badge-descuento"
+                >-{{
+                  ((product.price || 0) - (product.salePrice || 0)) /
+                    (product.price || 0) | percent: "2.0-0"
+                }}
+              </span>
+              <div class="">
+                <span class="mt-1 text-xs"
+                  ><b>{{ product?.vendor?.company | slice: 0:10 }} </b
+                  >{{ product.name }}</span
+                >
+                <div class="flex items-center justify-between mt-2">
+                  <div class="font-bold">S/ {{ product.salePrice }}</div>
+                  <div class="text-xs text-gray-500 line-through">
+                    S/ {{ product.price }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

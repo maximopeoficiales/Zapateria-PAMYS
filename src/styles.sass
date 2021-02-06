@@ -1,38 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
-.product-grid
-  display: grid
-  grid-template-columns: repeat(1, 1fr)
-  grid-gap: 50px 20px
+// colores
+$color-base: #f39237
 
-@media (min-width:576px)
-  .product-grid
-    display: grid
-    grid-template-columns: repeat(4, 1fr)
-    grid-gap: 50px 20px
-
-    .container
-      max-width: 1110px
-      padding-right: 16px
-      padding-left: 16px
-
-.container
-  width: 100%
-  padding-right: 0px
-  padding-left: 0px
-  margin-right: auto
-  margin-left: auto
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap")
 html,
 body
   height: 100%
-  color: #E1E1DC
-
-body
   margin: 0
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: "Montserrat", sans-serif
 
+  // barra de scroll
+body::-webkit-scrollbar
+  /** Tamaño del scroll en vertical **/
+  width: 8px
+/** Tamaño del scroll en horizontal **/
+  height: 8px
+  /** Ocultar scroll  **/
+  display: none
+  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+body::-webkit-scrollbar-thumb
+  background: $color-base
+  border-radius: 4px
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+body::-webkit-scrollbar-thumb:hover
+  background: $color-base
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2)
+
+/* Cambiamos el fondo cuando esté en active */
+body::-webkit-scrollbar-thumb:active
+  background-color: $color-base
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+body::-webkit-scrollbar-track
+  background: #e1e1e1
+  border-radius: 4px
+
+/* Cambiamos el fondo cuando esté en active o hover */
+body::-webkit-scrollbar-track:hover,
+body::-webkit-scrollbar-track:active
+  background: #d4d4d4
+
+.fondo-principal
+  background-color: $color-base
 @media (max-width: 470px)
   .d-none-sm-max
     display: none
 .mat-form-field
   display: block !important
+
+  // home page
+/* utilidades */
+.color-principal
+  color: $color-base
+
+.text-xss
+  font-size: 0.7rem
+  line-height: 0.8rem
+
+.p-1-sm
+  padding: 0.2rem
+
+.mb-60px
+  margin-bottom: 60px
+
+  &-hidden-sm
+    margin-bottom: 60px
+
+@media (min-width: 576px)
+  .mb-60px-hidden-sm
+    margin-bottom: 60px
+
+.badge-descuento
+  padding: 2px 10px
+  font-size: 0.68rem
+  line-height: 1rem
+
+.navbar-buttom
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: 60px
+
+.splide__pagination
+  padding-top: 1rem
+  bottom: 0.1rem
+
+  &__page.is-active
+    background: #777777
+
+/* flechas de slider */
+.splide__arrow
+  color: red
+  background-color: transparent
+
+/* fin de flechas con slider */
+.bg-principal
+  color: $color-base
+  border-color: $color-base
+
+  &-block
+    color: white
+    background-color: $color-base
+
+.hover-color-principal-outline:hover
+  color: white
+  background-color: $color-base
+
+.fondo-color-principal
+  background-color: #f6f0e8
+
+.color-resultado
+  color: #b89549

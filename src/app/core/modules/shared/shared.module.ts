@@ -8,6 +8,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import {CartComponent} from './components/cart/cart.component';
+import { FooterResponsiveComponent } from './components/footer-responsive/footer-responsive.component';
+import { InfoReutilizableFooterComponent } from './components/info-reutilizable-footer/info-reutilizable-footer.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { SliderProductsComponent } from './components/slider-products/slider-products.component';
 // TODO: Put every component on it's own module
 // Bec this module can get way too big
 
@@ -18,7 +22,11 @@ import {CartComponent} from './components/cart/cart.component';
     ProductComponent,
     ProductsComponent,
     SpinnerComponent,
-    CartComponent
+    CartComponent,
+    FooterResponsiveComponent,
+    InfoReutilizableFooterComponent,
+    HomePageComponent,
+    SliderProductsComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
@@ -27,7 +35,11 @@ import {CartComponent} from './components/cart/cart.component';
     ProductComponent,
     ProductsComponent,
     SpinnerComponent,
-    CartComponent
+    CartComponent,
+    FooterResponsiveComponent,
+    InfoReutilizableFooterComponent,
+    HomePageComponent,
+    SliderProductsComponent
   ]
 })
 export class SharedModule {}
