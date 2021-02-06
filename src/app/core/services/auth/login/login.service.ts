@@ -28,7 +28,7 @@ export class LoginService {
   }
 
   isLogged(): boolean {
-    return this.getJWT() || this.getUser() ? true : false;
+    return this.getJWT() ? true : false;
   }
 
   removeJWT(): void {

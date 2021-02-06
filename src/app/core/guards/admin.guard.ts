@@ -23,11 +23,15 @@ export class AdminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (
-      this.loginService.getJWT() ||
-      this.loginService.getUser()?.idRol === 2
-    ) {
-      return true;
+    // rol 2 admin rol 1 client
+    if (this.loginService.isLogged()) {
+      if (this.loginService.getUser()?.idRol === 2) {
+        return true;
+      } else if (this.loginService.getUser()?.idRol === 1) {
+        this.router.navigate(['/home']);
+        return false;
+      }
+      return false;
     } else {
       this.router.navigate(['/login']);
       return false;
