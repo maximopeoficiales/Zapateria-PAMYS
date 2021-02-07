@@ -25,6 +25,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -50,7 +51,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatFormFieldModule,
     MatGridListModule,
     MatStepperModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -73,7 +75,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatFormFieldModule,
     MatGridListModule,
     MatStepperModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule
   ] 
  })
 export class MaterialModule { }

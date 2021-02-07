@@ -13,6 +13,8 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
+import { OrderListComponent } from './subpages/order/order-list/order-list.component';
+import { OrderDetailComponent } from './subpages/order/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -76,6 +78,23 @@ const routes: Routes = [
         path: 'payment-types/form/:id',
         component: PaymentDetailComponent,
       },
+      {
+        path: 'orders',
+        component: OrderListComponent
+      },
+      {
+        path: 'orders/form',
+        component: OrderDetailComponent
+      },
+      {
+        path: 'orders/form/:id',
+        component: OrderDetailComponent
+      },
+      {
+        path: '',
+        redirectTo: 'categorys',
+        pathMatch: 'full'
+      }
     ],
   },
 ];

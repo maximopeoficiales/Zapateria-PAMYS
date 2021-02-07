@@ -19,6 +19,8 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
+import { OrderDetailComponent } from './subpages/order/order-detail/order-detail.component';
+import { OrderListComponent } from './subpages/order/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,15 @@ import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/p
     ClientListComponent,
     ClientDetailComponent,
     PaymentListComponent,
-    PaymentDetailComponent
+    PaymentDetailComponent,
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,
     AdminRoutesModule,
-    ReactiveFormsModule,
     MaterialModule,
+    ReactiveFormsModule,
     LayoutModule,
     SharedModule,
     FormsModule,
