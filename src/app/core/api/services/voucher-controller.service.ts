@@ -16,9 +16,9 @@ import { Voucher } from '../models/voucher';
   providedIn: 'root',
 })
 class VoucherControllerService extends __BaseService {
-  static readonly saveUsingPOST11Path = '/api/voucher';
+  static readonly saveUsingPOST10Path = '/api/voucher';
   static readonly updateUsingPUT10Path = '/api/voucher';
-  static readonly getAllUsingGET11Path = '/api/voucher/all';
+  static readonly getAllUsingGET10Path = '/api/voucher/all';
   static readonly getByIdClientUsingGETPath = '/api/voucher/{id_client}';
   static readonly getByIdUsingGET10Path = '/api/voucher/{id}';
   static readonly deleteUsingDELETE9Path = '/api/voucher/{id}';
@@ -35,7 +35,7 @@ class VoucherControllerService extends __BaseService {
    * @param voucher voucher
    * @return OK
    */
-  saveUsingPOST11Response(voucher: Voucher): __Observable<__StrictHttpResponse<Voucher>> {
+  saveUsingPOST10Response(voucher: Voucher): __Observable<__StrictHttpResponse<Voucher>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -62,8 +62,8 @@ class VoucherControllerService extends __BaseService {
    * @param voucher voucher
    * @return OK
    */
-  saveUsingPOST11(voucher: Voucher): __Observable<Voucher> {
-    return this.saveUsingPOST11Response(voucher).pipe(
+  saveUsingPOST10(voucher: Voucher): __Observable<Voucher> {
+    return this.saveUsingPOST10Response(voucher).pipe(
       __map(_r => _r.body as Voucher)
     );
   }
@@ -110,7 +110,7 @@ class VoucherControllerService extends __BaseService {
    * Get all supermarket voucher
    * @return OK
    */
-  getAllUsingGET11Response(): __Observable<__StrictHttpResponse<Array<Voucher>>> {
+  getAllUsingGET10Response(): __Observable<__StrictHttpResponse<Array<Voucher>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -135,25 +135,25 @@ class VoucherControllerService extends __BaseService {
    * Get all supermarket voucher
    * @return OK
    */
-  getAllUsingGET11(): __Observable<Array<Voucher>> {
-    return this.getAllUsingGET11Response().pipe(
+  getAllUsingGET10(): __Observable<Array<Voucher>> {
+    return this.getAllUsingGET10Response().pipe(
       __map(_r => _r.body as Array<Voucher>)
     );
   }
 
   /**
    * Search a voucher with a idClient
-   * @param id The id of the voucher
+   * @param id_client The id of the voucher
    * @return OK
    */
-  getByIdClientUsingGETResponse(id_client: number): __Observable<__StrictHttpResponse<Array<Voucher>>> {
+  getByIdClientUsingGETResponse(idClient: number): __Observable<__StrictHttpResponse<Array<Voucher>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/voucher/${encodeURIComponent(id_client)}`,
+      this.rootUrl + `/api/voucher/${encodeURIComponent(idClient)}`,
       __body,
       {
         headers: __headers,
@@ -170,11 +170,11 @@ class VoucherControllerService extends __BaseService {
   }
   /**
    * Search a voucher with a idClient
-   * @param id The id of the voucher
+   * @param id_client The id of the voucher
    * @return OK
    */
-  getByIdClientUsingGET(id: number): __Observable<Array<Voucher>> {
-    return this.getByIdClientUsingGETResponse(id).pipe(
+  getByIdClientUsingGET(idClient: number): __Observable<Array<Voucher>> {
+    return this.getByIdClientUsingGETResponse(idClient).pipe(
       __map(_r => _r.body as Array<Voucher>)
     );
   }

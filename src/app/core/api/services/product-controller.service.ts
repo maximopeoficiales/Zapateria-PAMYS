@@ -20,6 +20,7 @@ class ProductControllerService extends __BaseService {
   static readonly updateUsingPUT7Path = '/api/product';
   static readonly getAllUsingGET7Path = '/api/product/all';
   static readonly getByNameUsingGETPath = '/api/product/search/{name}';
+  static readonly getBySlugUsingGETPath = '/api/product/slug/{slug}';
   static readonly getByIdUsingGET7Path = '/api/product/{id}';
   static readonly deleteUsingDELETE6Path = '/api/product/{id}';
 
@@ -176,6 +177,44 @@ class ProductControllerService extends __BaseService {
   getByNameUsingGET(name: string): __Observable<Array<Product>> {
     return this.getByNameUsingGETResponse(name).pipe(
       __map(_r => _r.body as Array<Product>)
+    );
+  }
+
+  /**
+   * Search a product with a slug
+   * @param slug The slug of the product
+   * @return OK
+   */
+  getBySlugUsingGETResponse(slug: string): __Observable<__StrictHttpResponse<Product>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/product/slug/${encodeURIComponent(slug)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Product>;
+      })
+    );
+  }
+  /**
+   * Search a product with a slug
+   * @param slug The slug of the product
+   * @return OK
+   */
+  getBySlugUsingGET(slug: string): __Observable<Product> {
+    return this.getBySlugUsingGETResponse(slug).pipe(
+      __map(_r => _r.body as Product)
     );
   }
 
