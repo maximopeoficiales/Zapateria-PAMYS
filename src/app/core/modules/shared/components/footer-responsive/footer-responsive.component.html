@@ -5,7 +5,7 @@
   >
     <a class="p-1 text-center" href="#">
       <i class="text-xl fa fa-home"></i>
-      <p class="m-0 text-xs">Inicio</p> </a
+      <p class="m-0 text-xs" routerLink="/home">Inicio</p> </a
     ><a class="p-1 text-center" href="#">
       <i class="text-xl fas fa-search"></i>
       <p class="m-0 text-xs">Buscar</p> </a
@@ -14,10 +14,10 @@
       <p class="m-0 text-xs">Favoritos</p> </a
     ><a class="p-1 text-center" href="#">
       <i class="text-xl fa fa-shopping-cart"></i>
-      <p class="m-0 text-xs">Carrito</p> </a
+      <p class="m-0 text-xs" routerLink="/cart-shop">Carrito</p> </a
     ><a class="p-1 text-center" href="#">
-      <i class="text-xl far fa-user"></i>
-      <p class="m-0 text-xs">Cuenta</p>
+      <i class="text-xl far fa-user" routerLink="/my-account"></i>
+      <p class="m-0 text-xs">{{ nameUser }}</p>
     </a>
   </div>
 </footer>

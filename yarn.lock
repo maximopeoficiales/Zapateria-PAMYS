@@ -227,7 +227,7 @@
   "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   "version" "9.0.0"
 
-"@angular/core@>=6.0.0", "@angular/core@~11.0.1":
+"@angular/core@~11.0.1":
   "integrity" "sha512-bxo5euE7+Q2ThowkVRwwvKyF5vQEyo9V14JM3GW8k2THbk7LfNctyNkTeuvkTBWfLF17Nd7b5+BdNttNKNlCuQ=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-11.0.3.tgz"
   "version" "11.0.3"
@@ -1787,7 +1787,7 @@
   "resolved" "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   "version" "2.1.2"
 
-"autoprefixer@^10.0.2", "autoprefixer@^10.2.4":
+"autoprefixer@^10.2.4":
   "integrity" "sha512-DCCdUQiMD+P/as8m3XkeTUkUKuuRqLGcwD0nll7wevhqoJfMRpJlkFd1+MQh1pvupjiQuip42lc/VFvfUTMSKw=="
   "resolved" "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.2.4.tgz"
   "version" "10.2.4"
@@ -5308,8 +5308,6 @@
   dependencies:
     "graceful-fs" "^4.1.6"
     "universalify" "^2.0.0"
-  optionalDependencies:
-    "graceful-fs" "^4.1.6"
 
 "jsonparse@^1.2.0":
   "integrity" "sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA="
@@ -7231,7 +7229,7 @@
     "source-map" "^0.6.1"
     "supports-color" "^6.1.0"
 
-"postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.13", "postcss@^8.1.6", "postcss@^8.2.1", "postcss@^8.2.4":
+"postcss@^8.1.6", "postcss@^8.2.1", "postcss@^8.2.4":
   "integrity" "sha512-kRFftRoExRVXZlwUuay9iC824qmXPcQQVzAjbCCgjpXnkdMCJYBu2gTwAaFBzv8ewND6O8xFb3aELmEkh9zTzg=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.2.4.tgz"
   "version" "8.2.4"
@@ -7844,7 +7842,7 @@
   dependencies:
     "aproba" "^1.1.1"
 
-"rxjs@^6.5.3", "rxjs@^6.6.0", "rxjs@>=6.0.0", "rxjs@~6.6.0", "rxjs@6.6.3":
+"rxjs@^6.5.3", "rxjs@^6.6.0", "rxjs@~6.6.0", "rxjs@6.6.3":
   "integrity" "sha512-trsQc+xYYXZ3urjOiJOuCOa5N3jAZ3eiSpQB5hIT8zGlL2QfnHLJ2r7GMkBGuIausdJN1OneaI6gQlsqNHHmZQ=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-6.6.3.tgz"
   "version" "6.6.3"

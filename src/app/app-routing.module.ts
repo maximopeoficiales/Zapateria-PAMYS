@@ -2,6 +2,7 @@ import { AdminGuard } from './core/guards/admin.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginGuard } from './core/guards/login.guard';
+import { MyAccountGuard } from './core/guards/my-account.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,14 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'my-account',
+    canActivate: [MyAccountGuard],
+    loadChildren: () =>
+      import('./pages/my-account/my-account.module').then(
+        (m) => m.MyAccountModule
+      ),
   },
   {
     path: 'signup',
