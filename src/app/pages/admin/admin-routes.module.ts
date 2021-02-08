@@ -13,8 +13,10 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
-import { OrderListComponent } from './subpages/order/order-list/order-list.component';
-import { OrderDetailComponent } from './subpages/order/order-detail/order-detail.component';
+import { OrderDetailComponent } from './subpages/order-satus/order-detail/order-detail.component';
+import { OrderListComponent } from './subpages/order-satus/order-list/order-list.component';
+import { DocumentListComponent } from './subpages/document-type/document-list/document-list.component';
+import { DocumentDetailComponent } from './subpages/document-type/document-detail/document-detail.component';
 
 const routes: Routes = [
   {
@@ -79,22 +81,30 @@ const routes: Routes = [
         component: PaymentDetailComponent,
       },
       {
-        path: 'orders',
-        component: OrderListComponent
+        path: 'order-status',
+        component: OrderListComponent,
       },
       {
-        path: 'orders/form',
-        component: OrderDetailComponent
+        path: 'order-status/form',
+        component: OrderDetailComponent,
       },
       {
-        path: 'orders/form/:id',
-        component: OrderDetailComponent
+        path: 'order-status/form/:id',
+        component: OrderDetailComponent,
       },
       {
-        path: '',
-        redirectTo: 'categorys',
-        pathMatch: 'full'
-      }
+        path: 'document-type',
+        component: DocumentListComponent,
+      },
+      {
+        path: 'document-type/form',
+        component: DocumentDetailComponent,
+      },
+      {
+        path: 'document-type/form/:id',
+        component: DocumentDetailComponent,
+      },
+
     ],
   },
 ];
@@ -103,4 +113,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutesModule {}
+export class AdminRoutesModule { }
