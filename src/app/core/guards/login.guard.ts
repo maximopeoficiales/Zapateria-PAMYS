@@ -22,11 +22,11 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (!this.loginService.getJWT()) {
-      return true;
-    } else {
-      this.router.navigate(['/home']);
+    if (this.loginService.isLogged()) {
+      this.loginService.logout();
       return false;
+    } else {
+      return true;
     }
   }
 }

@@ -31,7 +31,7 @@ export class LoginService {
     return this.getJWT() ? true : false;
   }
 
-  removeJWT(): void {
+  logout(): void {
     localStorage.removeItem(this.nameJWT);
     localStorage.removeItem(this.nameCLient);
   }

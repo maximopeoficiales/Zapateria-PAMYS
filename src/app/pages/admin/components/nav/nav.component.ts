@@ -33,7 +33,7 @@ export class NavComponent {
   }
 
   loguout(): void {
-    this.loginService.removeJWT();
+    this.loginService.logout();
     this.router.navigate(['/login']);
   }
 }

@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
           this.swal.showMessage(
             'Login Satisfactorio',
             `Usuario: ${res.body.user?.firstName}`,
-            TypeMessageSwal.SUCCESS
+            TypeMessageSwal.SUCCESS,
+            1000,
+            false
           );
           console.log(res.body);
           setTimeout(() => {
@@ -68,7 +70,9 @@ export class LoginComponent implements OnInit {
           this.swal.showMessage(
             'Error de Authenticacion',
             `Credenciales Incorrectas`,
-            TypeMessageSwal.ERROR
+            TypeMessageSwal.ERROR,
+            1000,
+            false
           );
           console.log(err);
         }

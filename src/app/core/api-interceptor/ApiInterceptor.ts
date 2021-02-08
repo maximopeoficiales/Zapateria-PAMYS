@@ -41,7 +41,7 @@ export class ApiInterceptor implements HttpInterceptor {
           );
 
           if (err.status === 403) {
-            this.jwtOperations.removeJWT();
+            this.jwtOperations.logout();
             this.router.navigate(['/login']);
           }
         }
