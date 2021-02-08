@@ -10,6 +10,7 @@ export interface Client {
   lastName?: string;
   password?: string;
   phone?: string;
+  profilePictureUrl?: string;
   role?: Role;
   username?: string;
   zip_code?: number;

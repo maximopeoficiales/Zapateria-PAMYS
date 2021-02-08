@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { MiniCardInfoComponent } from './components/mini-card-info/mini-card-info.component';
-import { HomeTitleComponent } from './components/home-title/home-title.component';
 
 const routes: Routes = [
   {
@@ -14,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeComponent, MiniCardInfoComponent, HomeTitleComponent],
+  declarations: [HomeComponent, MiniCardInfoComponent],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
 export class HomeModule {}

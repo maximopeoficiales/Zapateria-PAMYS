@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }).mount();
   }
   cargarProducts(): void {
-    this.service.getAllUsingGET9().subscribe((products) => {
+    this.service.getAllProductsUsingGET().subscribe((products) => {
       console.log(products);
 
       this.productsDeMuestra = products;

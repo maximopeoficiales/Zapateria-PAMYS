@@ -17,8 +17,9 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 class PublicControllerService extends __BaseService {
-  static readonly saveUsingPOST9Path = '/api/public/client';
-  static readonly getAllUsingGET9Path = '/api/public/product';
+  static readonly saveClientUsingPOSTPath = '/api/public/client';
+  static readonly getAllProductsUsingGETPath = '/api/public/product';
+  static readonly getProductBySlugUsingGETPath = '/api/public/product/slug/{slug}';
 
   constructor(
     config: __Configuration,
@@ -32,7 +33,7 @@ class PublicControllerService extends __BaseService {
    * @param client client
    * @return OK
    */
-  saveUsingPOST9Response(client: Client): __Observable<__StrictHttpResponse<Client>> {
+  saveClientUsingPOSTResponse(client: Client): __Observable<__StrictHttpResponse<Client>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -59,8 +60,8 @@ class PublicControllerService extends __BaseService {
    * @param client client
    * @return OK
    */
-  saveUsingPOST9(client: Client): __Observable<Client> {
-    return this.saveUsingPOST9Response(client).pipe(
+  saveClientUsingPOST(client: Client): __Observable<Client> {
+    return this.saveClientUsingPOSTResponse(client).pipe(
       __map(_r => _r.body as Client)
     );
   }
@@ -69,7 +70,7 @@ class PublicControllerService extends __BaseService {
    * Get all products
    * @return OK
    */
-  getAllUsingGET9Response(): __Observable<__StrictHttpResponse<Array<Product>>> {
+  getAllProductsUsingGETResponse(): __Observable<__StrictHttpResponse<Array<Product>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -94,9 +95,47 @@ class PublicControllerService extends __BaseService {
    * Get all products
    * @return OK
    */
-  getAllUsingGET9(): __Observable<Array<Product>> {
-    return this.getAllUsingGET9Response().pipe(
+  getAllProductsUsingGET(): __Observable<Array<Product>> {
+    return this.getAllProductsUsingGETResponse().pipe(
       __map(_r => _r.body as Array<Product>)
+    );
+  }
+
+  /**
+   * Search a product with a slug
+   * @param slug The slug of the product
+   * @return OK
+   */
+  getProductBySlugUsingGETResponse(slug: string): __Observable<__StrictHttpResponse<Product>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/product/slug/${encodeURIComponent(slug)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Product>;
+      })
+    );
+  }
+  /**
+   * Search a product with a slug
+   * @param slug The slug of the product
+   * @return OK
+   */
+  getProductBySlugUsingGET(slug: string): __Observable<Product> {
+    return this.getProductBySlugUsingGETResponse(slug).pipe(
+      __map(_r => _r.body as Product)
     );
   }
 }

@@ -16,9 +16,9 @@ import { Vendor } from '../models/vendor';
   providedIn: 'root',
 })
 class VendorControllerService extends __BaseService {
-  static readonly saveUsingPOST10Path = '/api/vendor';
+  static readonly saveUsingPOST9Path = '/api/vendor';
   static readonly updateUsingPUT9Path = '/api/vendor';
-  static readonly getAllUsingGET10Path = '/api/vendor/all';
+  static readonly getAllUsingGET9Path = '/api/vendor/all';
   static readonly getByCompanyUsingGETPath = '/api/vendor/search/{company}';
   static readonly getByIdUsingGET9Path = '/api/vendor/{id}';
   static readonly deleteUsingDELETE8Path = '/api/vendor/{id}';
@@ -35,7 +35,7 @@ class VendorControllerService extends __BaseService {
    * @param vendor vendor
    * @return OK
    */
-  saveUsingPOST10Response(vendor: Vendor): __Observable<__StrictHttpResponse<Vendor>> {
+  saveUsingPOST9Response(vendor: Vendor): __Observable<__StrictHttpResponse<Vendor>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -62,8 +62,8 @@ class VendorControllerService extends __BaseService {
    * @param vendor vendor
    * @return OK
    */
-  saveUsingPOST10(vendor: Vendor): __Observable<Vendor> {
-    return this.saveUsingPOST10Response(vendor).pipe(
+  saveUsingPOST9(vendor: Vendor): __Observable<Vendor> {
+    return this.saveUsingPOST9Response(vendor).pipe(
       __map(_r => _r.body as Vendor)
     );
   }
@@ -110,7 +110,7 @@ class VendorControllerService extends __BaseService {
    * Get all supermarket vendor
    * @return OK
    */
-  getAllUsingGET10Response(): __Observable<__StrictHttpResponse<Array<Vendor>>> {
+  getAllUsingGET9Response(): __Observable<__StrictHttpResponse<Array<Vendor>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -135,8 +135,8 @@ class VendorControllerService extends __BaseService {
    * Get all supermarket vendor
    * @return OK
    */
-  getAllUsingGET10(): __Observable<Array<Vendor>> {
-    return this.getAllUsingGET10Response().pipe(
+  getAllUsingGET9(): __Observable<Array<Vendor>> {
+    return this.getAllUsingGET9Response().pipe(
       __map(_r => _r.body as Array<Vendor>)
     );
   }

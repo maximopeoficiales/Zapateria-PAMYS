@@ -23,7 +23,7 @@ export class VendorDetailComponent implements OnInit {
   }
   create(): void {
     //  crea el cliente, luego le redirije
-    this.service.saveUsingPOST10(this.vendor).subscribe((res) => {
+    this.service.saveUsingPOST9(this.vendor).subscribe((res) => {
       this.router.navigate(['/admin/vendors']);
       swal.fire(
         'Nueva Vendor Creada',

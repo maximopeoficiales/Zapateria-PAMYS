@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/core/modules/material/material.module';
 import { SharedModule } from 'src/app/core/modules/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path: ':id',
-    component: ProductDetailComponent
-  }
-]
+    path: ':slug',
+    component: ProductDetailComponent,
+  },
+];
 
 @NgModule({
   declarations: [ProductDetailComponent],
@@ -18,7 +19,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule,
+  ],
 })
-export class ProductDetailModule { }
+export class ProductDetailModule {}

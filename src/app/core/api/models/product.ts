@@ -13,6 +13,8 @@ export interface Product {
   price?: number;
   productsImages?: Array<ProductImages>;
   salePrice?: number;
+  sku?: number;
+  slug?: string;
   stock?: number;
   thumbnailUrl?: string;
   vendor?: Vendor;

@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div class="container">
     <div class="detail-card">
         <mat-card class="example-card">
@@ -10,7 +10,6 @@
                 </div>
                 <mat-card-title>{{ product.title | uppercase }}</mat-card-title>
                 <mat-card-subtitle>{{ product.price | currency:'S/.' }}</mat-card-subtitle>
-                <!-- <mat-card-subtitle>{{ 'S/.' + product.price}}</mat-card-subtitle> -->
             </mat-card-header>
             <img mat-card-image [src]="product.image" alt="">
             <mat-card-content>
@@ -23,6 +22,148 @@
                 <button mat-button>SHARE</button>
             </mat-card-actions>
         </mat-card>
-    </div>    
+    </div>
 </div>
-<app-footer class="footer"></app-footer>
+<app-footer class="footer"></app-footer> -->
+<app-home-page>
+  <section class="p-2 mx-auto my-4 max-w-7xl">
+    <div class="flex flex-col p-2 md:flex-row">
+      <article class="p-4 md:w-8/12 lg:w-9/12">
+        <div class="flex justify-center">
+          <img [src]="product.thumbnailUrl" alt="" class="h-80" />
+        </div>
+        <div class="p-4 mt-3">
+          <div
+            class="flex items-center justify-center"
+            *ngIf="product.productsImages"
+          >
+            <img
+              src="{{ imgProductStatic }}"
+              (click)="cambiarImagen(imgProductStatic)"
+              class="h-20 p-1 mx-2 transition-all duration-500 ease-out transform border-b-4 cursor-pointer hover:border-yellow-500"
+              alt=""
+            />
+            <img
+              [src]="imagen.url"
+              (click)="cambiarImagen(imagen.url)"
+              class="h-20 p-1 mx-2 transition-all duration-500 ease-out transform border-b-4 cursor-pointer hover:border-yellow-500"
+              alt=""
+              *ngFor="let imagen of product.productsImages"
+            />
+          </div>
+        </div>
+      </article>
+      <div class="p-4 my-1 md:w-4/12 lg:w-3/12">
+        <div class="p-2 border border-gray-100 shadow-lg bg-gray-50 rounded-xl">
+          <h6 class="p-2">
+            <b class="underline">{{ product?.vendor?.company }}</b>
+            <span class="font-medium uppercase"> {{ product.name }}</span>
+          </h6>
+          <div class="flex items-center justify-between">
+            <p class="p-2 font-light text-gray-500 line-through">
+              {{ product.price | currency: "S/." }}
+            </p>
+            <p class="p-2 font-light text-gray-500">SKU: {{ product.sku }}</p>
+          </div>
+
+          <p class="my-1 text-3xl font-semibold text-center">
+            <span>{{
+              product.salePrice! * quantityProduct | currency: "S/."
+            }}</span>
+          </p>
+
+          <div class="p-2">
+            <label for="" class="text-sm">Cantidad:</label>
+            <div class="relative flex flex-wrap items-stretch w-full mb-4">
+              <div class="flex -mr-px cursor-pointer" (click)="decrementar()">
+                <span
+                  class="flex items-center px-3 text-lg font-bold leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-principal-block"
+                  >-</span
+                >
+              </div>
+              <input
+                [ngModel]="quantityProduct"
+                (ngModelChange)="verifyQuantity()"
+                type="number"
+                min="1"
+                class="relative flex-1 flex-grow flex-shrink w-px h-10 px-3 leading-normal text-center border outline-none border-grey-light"
+              />
+              <div class="flex -mr-px cursor-pointer" (click)="aumentar()">
+                <span
+                  class="flex items-center px-3 text-lg font-bold leading-normal whitespace-no-wrap border border-l-0 rounded rounded-l-none bg-principal-block"
+                  >+</span
+                >
+              </div>
+            </div>
+            <label for="" class="text-sm">Talla:</label>
+            <select
+              class="w-full px-3 py-2 text-gray-700 bg-white border rounded outline-none"
+            >
+              <option class="py-1">16</option>
+              <option class="py-1">17</option>
+              <option class="py-1">20</option>
+              <option class="py-1">21</option>
+              <option class="py-1">22</option>
+            </select>
+
+            <button
+              class="w-full px-6 py-2 my-4 text-sm font-medium uppercase shadow-md rounded-3xl bg-principal-block"
+            >
+              Agregar al Carrito
+            </button>
+            <p
+              class="text-sm font-medium text-center cursor-pointer color-principal"
+            >
+              <i class="mr-2 fas fa-store"></i> Ver Stock disponible
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- descripcion -->
+  <section class="p-2 mx-auto my-4 max-w-7xl">
+    <home-title
+      [title]="'Información'"
+      [subtitle]="'Detalles del producto'"
+    ></home-title>
+    <div class="p-2 text-gray-400 tex-">
+      <p class="">
+        <b class="font-semibold">MPN: </b><span>BV3963-100 </span>
+        <b class="font-semibold">Envío: </b><span>Envíos a nivel nacional</span>
+      </p>
+      <p>
+        <b class="font-semibold">Material: </b><span>Cuero </span>
+        <b class="font-semibold">Color: </b><span>Blanco</span>
+      </p>
+      <p class="my-3 text-justify">
+        {{ product.description }}
+      </p>
+    </div>
+  </section>
+  <!-- productos similares -->
+  <section class="p-2 mx-auto my-4 max-w-7xl">
+    <home-title
+      [title]="'Productos similares'"
+      [subtitle]="'¿Ya viste estos productos?'"
+    ></home-title>
+    <ng-container
+      *ngIf="
+        productsRelacionados.length != 0;
+        then thenTemplate;
+        else elseTemplate
+      "
+    ></ng-container>
+    <ng-template #thenTemplate>
+      <app-slider-products
+        [productos]="productsRelacionados"
+      ></app-slider-products>
+    </ng-template>
+    <ng-template #elseTemplate>
+      <app-spinner [show]="true"></app-spinner>
+    </ng-template>
+  </section>
+
+  <app-info-reutilizable-footer></app-info-reutilizable-footer>
+  <!-- description -->
+</app-home-page>

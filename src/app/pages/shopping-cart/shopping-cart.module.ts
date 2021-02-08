@@ -8,19 +8,16 @@ import { SharedModule } from 'src/app/core/modules/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component:ShoppingCartComponent 
-  }
-]
+    component: ShoppingCartComponent,
+  },
+];
 @NgModule({
-  declarations: [
-    ShoppingCartComponent
- 
-   ],
+  declarations: [ShoppingCartComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class ShoppingCartModule { }
+export class ShoppingCartModule {}
