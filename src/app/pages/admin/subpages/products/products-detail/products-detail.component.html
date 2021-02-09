@@ -1,0 +1,294 @@
+<div class="container">
+    <div class="mx-2 my-4 row justify-content-center">
+      <div class="my-5 col-md-8">
+        <a
+          mat-flat-button
+          color="primary"
+          [routerLink]="['/admin/products-new']"
+          class="my-2 text-white text-decoration-none"
+        >
+          <i class="mr-2 fas fa-arrow-left"></i>Back
+        </a>
+        <form #productsForm="ngForm">
+          <mat-card style="position: relative">
+
+            <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+              <i class="fas fa-shoe-prints fa-rotate-270"></i>
+            </app-circulo-icon-card>
+
+              <div class="form-group">
+                <label for="">ID:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Insert ID</mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.idProduct"
+                    #id="ngModel"
+                    name="id"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    id.invalid &&
+                    (id.dirty || id.touched)
+                  "
+                >
+                  <div class="" *ngIf="id.errors?.required">
+                    id is required
+                  </div>
+                </div>
+              </div>
+  
+
+            <mat-card-content>
+              <div class="form-group">
+                <label for="">Date Create:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Insert Date</mat-label>
+                  <input
+                    matInput
+                    [(ngModel)]="products.dateCreated "
+                    #dateCreated="ngModel"
+                    name="dateCreated"
+                    required
+                    minlength="1"
+                  />
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="dateCreated.invalid && (dateCreated.dirty || dateCreated.touched)"
+                >
+                  <div class="" *ngIf="dateCreated.errors?.required">
+                    Date is required
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="">Description:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Insert Description</mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.description"
+                    #description="ngModel"
+                    name="description"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    description.invalid &&
+                    (description.dirty || description.touched)
+                  "
+                >
+                  <div class="" *ngIf="description.errors?.required">
+                    Description is required
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="">IDCategory:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">IDCategory ID</mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.idCategory"
+                    #idCategory="ngModel"
+                    name="idCategory"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    idCategory.invalid &&
+                    (idCategory.dirty || idCategory.touched)
+                  "
+                >
+                  <div class="" *ngIf="idCategory.errors?.required">
+                    idCategory is required
+                  </div>
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="">IdVendor:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">IdVendor </mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.idVendor"
+                    #idVendor="ngModel"
+                    name="idVendor"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    idVendor.invalid &&
+                    (idVendor.dirty || idVendor.touched)
+                  "
+                >
+                  <div class="" *ngIf="idVendor.errors?.required">
+                    idVendor is required
+                  </div>
+                </div>
+              </div>
+ 
+ 
+               <div class="form-group">
+                <label for="">Name:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Name </mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.name"
+                    #name="ngModel"
+                    name="name"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    name.invalid &&
+                    (name.dirty || name.touched)
+                  "
+                >
+                  <div class="" *ngIf="name.errors?.required">
+                    Name is required
+                  </div>
+                </div>
+              </div>
+ 
+               <div class="form-group">
+                <label for="">Price:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Price </mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.price"
+                    #price="ngModel"
+                    name="price"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    price.invalid &&
+                    (price.dirty || price.touched)
+                  "
+                >
+                  <div class="" *ngIf="price.errors?.required">
+                    Price is required
+                  </div>
+                </div>
+              </div>
+ 
+
+               <div class="form-group">
+                <label for="">Sale_Price:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Sale_Price </mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.salePrice"
+                    #sale_price="ngModel"
+                    name="sale_price"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    sale_price.invalid &&
+                    (sale_price.dirty || sale_price.touched)
+                  "
+                >
+                  <div class="" *ngIf="sale_price.errors?.required">
+                    sale_price is required
+                  </div>
+                </div>
+              </div>
+
+
+               <div class="form-group">
+                <label for="">Stock:</label>
+                <mat-form-field appearance="fill">
+                  <mat-label class="block">Stock</mat-label>
+                  <textarea
+                    matInput
+                    maxlength="150"
+                    [(ngModel)]="products.stock"
+                    #stock="ngModel"
+                    name="stock"
+                    required
+                    minlength="1"
+                  ></textarea>
+                </mat-form-field>
+                <div
+                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                  *ngIf="
+                    stock.invalid &&
+                    (stock.dirty || stock.touched)
+                  "
+                >
+                  <div class="" *ngIf="stock.errors?.required">
+                    stock is required
+                  </div>
+                </div>
+              </div>
+  
+              <button
+                mat-flat-button
+                color="accent"
+                class="text-white w-100 h6"
+                style="background-color: #47b475"
+                *ngIf="products.idProduct == null; else elseButton"
+                (click)="create()"
+                [disabled]="!productsForm.form.valid"
+              >
+                <i class="mr-2 fas fa-save"></i>Save
+              </button>
+              <ng-template #elseButton>
+                <button
+                  mat-flat-button
+                  color="primary"
+                  class="text-white w-100 h6"
+                  (click)="update()"
+                  [disabled]="!productsForm.form.valid"
+                >
+                  <i class="mr-2 fas fa-save"></i>UpdateCreated
+                </button>
+              </ng-template>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -18,11 +18,13 @@ import { VendorDetailComponent } from './subpages/vendor/vendor-detail/vendor-de
 import { ClientListComponent } from './subpages/client/client-list/client-list.component';
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
-import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
-import {OrderListComponent} from './subpages/order-satus/order-list/order-list.component';
-import {OrderDetailComponent} from './subpages/order-satus/order-detail/order-detail.component';
-import {DocumentListComponent} from './subpages/document-type/document-list/document-list.component';
-import {DocumentDetailComponent} from './subpages/document-type/document-detail/document-detail.component';
+import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component'
+import {ProductsListComponent } from './subpages/products/products-list/products-list.component'
+import {ProductsDetailComponent} from './subpages/products/products-detail/products-detail.component';
+import {ProducstImageListComponent  } from './subpages/products-image/producst-image-list/producst-image-list.component';
+import {ProducstImageDetailComponent  } from './subpages/products-image/producst-image-detail/producst-image-detail.component';
+
+
 @NgModule({
   declarations: [
     NavComponent,
@@ -38,21 +40,19 @@ import {DocumentDetailComponent} from './subpages/document-type/document-detail/
     ClientDetailComponent,
     PaymentListComponent,
     PaymentDetailComponent,
-    OrderListComponent,
-    OrderDetailComponent,
-    DocumentListComponent,
-    DocumentDetailComponent
-    
+    ProductsListComponent,
+    ProductsDetailComponent,
+    ProducstImageListComponent,
+    ProducstImageDetailComponent
   ],
   imports: [
     CommonModule,
     AdminRoutesModule,
-    MaterialModule,
     ReactiveFormsModule,
+    MaterialModule,
     LayoutModule,
     SharedModule,
     FormsModule,
   ],
-  
 })
 export class AdminModule {}
