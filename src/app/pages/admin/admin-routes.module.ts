@@ -16,8 +16,8 @@ import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/p
 import { DocumentListComponent } from './subpages/document-type/document-list/document-list.component';
 import { DocumentDetailComponent } from './subpages/document-type/document-detail/document-detail.component';
 import { OrderListComponent } from './subpages/order/order-list/order-list.component';
-import { OrderStatusListComponent } from './subpages/order-satus/status-list/order-status-list.component';
-import { OrderStatusDetailComponent } from './subpages/order-satus/status-detail/order-status-detail.component';
+import { OrderStatusListComponent } from './subpages/order-status/status-list/order-status-list.component';
+import { OrderStatusDetailComponent } from './subpages/order-status/status-detail/order-status-detail.component';
 
 const routes: Routes = [
   {

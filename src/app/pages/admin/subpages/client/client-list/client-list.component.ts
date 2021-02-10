@@ -19,6 +19,8 @@ export class ClientListComponent implements OnInit {
     'ID',
     'FirstName',
     'LastName',
+    'Status',
+    'Type',
     'Actions',
   ];
   ocultado = 'd-none';
