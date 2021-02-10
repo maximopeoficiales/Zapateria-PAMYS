@@ -13,10 +13,11 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
-import { OrderDetailComponent } from './subpages/order-satus/order-detail/order-detail.component';
-import { OrderListComponent } from './subpages/order-satus/order-list/order-list.component';
 import { DocumentListComponent } from './subpages/document-type/document-list/document-list.component';
 import { DocumentDetailComponent } from './subpages/document-type/document-detail/document-detail.component';
+import { OrderListComponent } from './subpages/order/order-list/order-list.component';
+import { OrderStatusListComponent } from './subpages/order-satus/status-list/order-status-list.component';
+import { OrderStatusDetailComponent } from './subpages/order-satus/status-detail/order-status-detail.component';
 
 const routes: Routes = [
   {
@@ -81,16 +82,20 @@ const routes: Routes = [
         component: PaymentDetailComponent,
       },
       {
+        path: 'orders',
+        component: OrderListComponent
+      },
+      {
         path: 'order-status',
-        component: OrderListComponent,
+        component: OrderStatusListComponent,
       },
       {
         path: 'order-status/form',
-        component: OrderDetailComponent,
+        component: OrderStatusDetailComponent,
       },
       {
         path: 'order-status/form/:id',
-        component: OrderDetailComponent,
+        component: OrderStatusDetailComponent,
       },
       {
         path: 'document-type',

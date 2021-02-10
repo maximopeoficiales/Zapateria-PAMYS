@@ -6,10 +6,10 @@ import { OrderStatusControllerService } from 'src/app/core/api/services';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.sass']
+  templateUrl: './order-status-list.component.html',
+  styleUrls: ['./order-status-list.component.sass']
 })
-export class OrderListComponent implements OnInit {
+export class OrderStatusListComponent implements OnInit {
 
    constructor(private service: OrderStatusControllerService) {}
 

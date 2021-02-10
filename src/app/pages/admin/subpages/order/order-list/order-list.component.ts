@@ -10,14 +10,14 @@ import { OrderControllerService } from 'src/app/core/api/services';
 })
 export class OrderListComponent implements OnInit {
 
-  orders: Observable<Order[]>;
+  orders: Order[] = [];
 
-  constructor(private orderService: OrderControllerService) { 
-    this.orders = new Observable<Order[]>();
-  }
+  constructor(private orderService: OrderControllerService) { }
 
   ngOnInit(): void {
-    this.orders = this.orderService.getAllUsingGET3();
+    this.orderService.getAllUsingGET3().subscribe(data => {
+      this.orders = data;
+    });
   }
 
 }
