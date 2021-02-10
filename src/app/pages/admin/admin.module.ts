@@ -18,12 +18,17 @@ import { VendorDetailComponent } from './subpages/vendor/vendor-detail/vendor-de
 import { ClientListComponent } from './subpages/client/client-list/client-list.component';
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
-import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
 import {DocumentListComponent} from './subpages/document-type/document-list/document-list.component';
 import {DocumentDetailComponent} from './subpages/document-type/document-detail/document-detail.component';
 import { OrderListComponent } from './subpages/order/order-list/order-list.component';
 import { OrderStatusListComponent } from './subpages/order-status/status-list/order-status-list.component';
 import { OrderStatusDetailComponent } from './subpages/order-status/status-detail/order-status-detail.component';
+import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component'
+import {ProductsListComponent } from './subpages/products/products-list/products-list.component'
+import {ProductsDetailComponent} from './subpages/products/products-detail/products-detail.component';
+import {ProducstImageListComponent  } from './subpages/products-image/producst-image-list/producst-image-list.component';
+import {ProducstImageDetailComponent  } from './subpages/products-image/producst-image-detail/producst-image-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -44,18 +49,20 @@ import { OrderStatusDetailComponent } from './subpages/order-status/status-detai
     OrderStatusListComponent,
     OrderStatusDetailComponent,
     DocumentListComponent,
-    DocumentDetailComponent
-    
+    DocumentDetailComponent,    
+    ProductsListComponent,
+    ProductsDetailComponent,
+    ProducstImageListComponent,
+    ProducstImageDetailComponent
   ],
   imports: [
     CommonModule,
     AdminRoutesModule,
-    MaterialModule,
     ReactiveFormsModule,
+    MaterialModule,
     LayoutModule,
     SharedModule,
     FormsModule,
   ],
-  
 })
 export class AdminModule {}

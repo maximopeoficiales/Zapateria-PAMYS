@@ -18,6 +18,10 @@ import { DocumentDetailComponent } from './subpages/document-type/document-detai
 import { OrderListComponent } from './subpages/order/order-list/order-list.component';
 import { OrderStatusListComponent } from './subpages/order-status/status-list/order-status-list.component';
 import { OrderStatusDetailComponent } from './subpages/order-status/status-detail/order-status-detail.component';
+import { ProductsListComponent } from './subpages/products/products-list/products-list.component';
+import { ProductsDetailComponent } from './subpages/products/products-detail/products-detail.component';
+import {ProducstImageListComponent  } from './subpages/products-image/producst-image-list/producst-image-list.component';
+import {ProducstImageDetailComponent  } from './subpages/products-image/producst-image-detail/producst-image-detail.component';
 
 const routes: Routes = [
   {
@@ -98,18 +102,29 @@ const routes: Routes = [
         component: OrderStatusDetailComponent,
       },
       {
-        path: 'document-type',
-        component: DocumentListComponent,
+        path: 'products-new',
+        component: ProductsListComponent,
       },
       {
-        path: 'document-type/form',
-        component: DocumentDetailComponent,
+        path: 'products-new/form',
+        component:ProductsDetailComponent ,
       },
       {
-        path: 'document-type/form/:id',
-        component: DocumentDetailComponent,
+        path: 'products-new/form/:id',
+        component: ProductsDetailComponent,
       },
-
+      {
+        path: 'products-image',
+        component: ProducstImageListComponent,
+      },
+      {
+        path: 'products-image/form',
+        component:ProducstImageDetailComponent ,
+      },
+      {
+        path: 'products-image/form/:id',
+        component: ProducstImageDetailComponent,
+      }
     ],
   },
 ];
@@ -118,4 +133,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutesModule { }
+export class AdminRoutesModule {}

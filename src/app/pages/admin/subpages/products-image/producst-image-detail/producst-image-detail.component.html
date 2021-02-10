@@ -1,0 +1,126 @@
+
+<div class="container">
+  <div class="mx-2 my-4 row justify-content-center">
+    <div class="my-5 col-md-8">
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/admin/products-image']"
+        class="my-2 text-white text-decoration-none"
+      >
+        <i class="mr-2 fas fa-arrow-left"></i>Back
+      </a>
+      <form #productImageForm="ngForm">
+        <mat-card style="position: relative">
+          <!-- circulo para card -->
+          <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+            <i class="fas fa-shoe-prints fa-rotate-270"></i>
+          </app-circulo-icon-card>
+
+          <mat-card-content>
+            <div class="form-group">
+              <label for="">IdProduct:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert IdProduct</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="productImage.idProduct"
+                  #idProduct="ngModel"
+                  name="idProduct"
+                  required
+                  minlength="1"
+                />
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="idProduct.invalid && (idProduct.dirty || idProduct.touched)"
+              >
+                <div class="" *ngIf="idProduct.errors?.required">
+                  IdProduct is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">IdProductImage:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert IdProductImage</mat-label>
+                <textarea
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="productImage.idProductImages"
+                  #idProductImages="ngModel"
+                  name="idProductImages"
+                  required
+                  minlength="1"
+                ></textarea>
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="
+                  idProductImages.invalid &&
+                  (idProductImages.dirty || idProductImages.touched)
+                "
+              >
+                <div class="" *ngIf="idProductImages.errors?.required">
+                  idProductImage is required
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="">IdProductImage:</label>
+              <mat-form-field appearance="fill">
+                <mat-label class="block">Insert URL</mat-label>
+                <textarea
+                  matInput
+                  maxlength="150"
+                  [(ngModel)]="productImage.url"
+                  #url="ngModel"
+                  name="url"
+                  required
+                  minlength="1"
+                ></textarea>
+              </mat-form-field>
+              <div
+                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
+                *ngIf="
+                  url.invalid &&
+                  (url.dirty || url.touched)
+                "
+              >
+                <div class="" *ngIf="url.errors?.required">
+                  URL is required
+                </div>
+              </div>
+            </div>
+
+            <button
+              mat-flat-button
+              color="accent"
+              class="text-white w-100 h6"
+              style="background-color: #47b475"
+              *ngIf="productImage.idProduct == null; else elseButton"
+              (click)="create()"
+              [disabled]="!productImageForm.form.valid"
+            >
+              <i class="mr-2 fas fa-save"></i>Save
+            </button>
+            <ng-template #elseButton>
+              <button
+                mat-flat-button
+                color="primary"
+                class="text-white w-100 h6"
+                (click)="update()"
+                [disabled]="!productImageForm.form.valid"
+              >
+                <i class="mr-2 fas fa-save"></i>Update
+              </button>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
