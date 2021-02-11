@@ -1,6 +1,6 @@
-<app-header-custom title="Product" subtitle="subtitutlo de prueba vendor">
-    <i class="fa fa-compass"></i>
-  </app-header-custom>
+<app-header-custom title="Mantenimiento de" subtitle="Productos">
+  <i class="fa fa-compass"></i>
+</app-header-custom>
   
   <div class="mx-2 row justify-content-center">
     <div class="my-4 col-md-10">
@@ -20,10 +20,10 @@
         <a
           mat-flat-button
           color="primary"
-          [routerLink]="['/admin/products-new/form']"
+          [routerLink]="['/admin/products/form']"
           class="my-2 text-white text-decoration-none"
         >
-          Create Product
+          Agregar producto
         </a>
       </div>
       <div class="{{ ocultado }}">
@@ -163,7 +163,7 @@
               <td mat-cell *matCellDef="let element" class="d-none-sm-max">
   
                 <!-- {{ element.thumbnailUrl }} -->
-                <img [src]="element.thumbnailUrl" alt="">
+                <img [src]="element.thumbnailUrl" alt="" class="w-48 h-48">
               </td>
             </ng-container>
   
@@ -177,7 +177,7 @@
                     mat-mini-fab
                     color="primary"
                     class="mx-1"
-                    [routerLink]="['/admin/products-new/form', element.idProduct]"
+                    [routerLink]="['/admin/products/form', element.idProduct]"
                   >
                     <mat-icon>edit</mat-icon>
                   </a>

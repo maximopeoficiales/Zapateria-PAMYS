@@ -1,8 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { NavComponent } from './components/nav/nav.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
 import { CategoryListComponent } from './subpages/category/category-list/category-list.component';
 import { CategoryDetailComponent } from './subpages/category/category-detail/category-detail.component';
 import { CommonModule } from '@angular/common';
@@ -29,12 +27,9 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
-        path: 'create',
-        component: ProductFormComponent,
-      },
-      {
-        path: 'products',
-        component: ProductListComponent,
+        path: '',
+        redirectTo: 'orders',
+        pathMatch: 'full'
       },
       {
         path: 'categorys',
@@ -80,7 +75,6 @@ const routes: Routes = [
         path: 'payment-types/form',
         component: PaymentDetailComponent,
       },
-
       {
         path: 'payment-types/form/:id',
         component: PaymentDetailComponent,
@@ -102,15 +96,15 @@ const routes: Routes = [
         component: OrderStatusDetailComponent,
       },
       {
-        path: 'products-new',
+        path: 'products',
         component: ProductsListComponent,
       },
       {
-        path: 'products-new/form',
+        path: 'products/form',
         component:ProductsDetailComponent ,
       },
       {
-        path: 'products-new/form/:id',
+        path: 'products/form/:id',
         component: ProductsDetailComponent,
       },
       {
@@ -126,7 +120,7 @@ const routes: Routes = [
         component: ProducstImageDetailComponent,
       }
     ],
-  },
+  }
 ];
 
 @NgModule({

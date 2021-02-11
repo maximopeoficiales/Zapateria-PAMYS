@@ -26,6 +26,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [],
@@ -52,7 +56,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatStepperModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatButtonModule,
@@ -76,7 +84,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatStepperModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ] 
  })
 export class MaterialModule { }
