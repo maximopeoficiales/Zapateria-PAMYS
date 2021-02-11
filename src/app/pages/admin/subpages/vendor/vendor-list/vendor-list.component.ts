@@ -28,7 +28,7 @@ export class VendorListComponent implements OnInit {
   loadVendorList(): void {
     setTimeout(() => {
       this.service.getAllUsingGET9().subscribe((vendors) => {
-        this.listVendors = vendors;
+       this.listVendors = vendors;
         this.chargingTableList();
         this.ocultado = vendors.length == 0 ? 'd-none' : '';
         this.showSpinner = false;
