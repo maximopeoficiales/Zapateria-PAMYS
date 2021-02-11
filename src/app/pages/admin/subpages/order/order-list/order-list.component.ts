@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Client, Order, OrderStatus } from 'src/app/core/api/models';
-import { ClientControllerService, OrderControllerService, OrderStatusControllerService } from 'src/app/core/api/services';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {Client, Order, OrderStatus} from 'src/app/core/api/models';
+import {ClientControllerService, OrderControllerService, OrderStatusControllerService} from 'src/app/core/api/services';
 
 @Component({
   selector: 'app-order-list',
@@ -15,12 +15,12 @@ export class OrderListComponent implements OnInit {
   order: Order = {};
   users: Client[] = [];
   orderStatuses: OrderStatus[] = [];
-  showModalDetail: boolean = false;  
+  showModalDetail: boolean = false;
   selectSearcher: FormControl = new FormControl();
 
   constructor(private orderService: OrderControllerService,
-              private orderStatusesService: OrderStatusControllerService,
-              private usersService: ClientControllerService) { }
+    private orderStatusesService: OrderStatusControllerService,
+    private usersService: ClientControllerService) {}
 
   ngOnInit(): void {
     this.orderService.getAllUsingGET3().subscribe(data => {
@@ -35,7 +35,7 @@ export class OrderListComponent implements OnInit {
       this.users = data;
     });
   }
-  
+
   showDetail(order: Order) {
     this.order = order;
     this.showModalDetail = true;
@@ -46,7 +46,7 @@ export class OrderListComponent implements OnInit {
   }
 
   getSubTotalRow(price: number, quantity: number) {
-    return price*quantity;
+    return price * quantity;
   }
 
   getSubTotal(): number {
