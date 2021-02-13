@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { Client } from '../models/client';
+import { Resource } from '../models/resource';
 import { Product } from '../models/product';
 
 /**
@@ -18,8 +19,10 @@ import { Product } from '../models/product';
 })
 class PublicControllerService extends __BaseService {
   static readonly saveClientUsingPOSTPath = '/api/public/client';
+  static readonly showPhotoClientUsingGETPath = '/api/public/clients/photos/{nombreFoto}';
   static readonly getAllProductsUsingGETPath = '/api/public/product';
   static readonly getProductBySlugUsingGETPath = '/api/public/product/slug/{slug}';
+  static readonly showPhotoVoucherUsingGETPath = '/api/public/vouchers/photos/{nombreFoto}';
 
   constructor(
     config: __Configuration,
@@ -63,6 +66,44 @@ class PublicControllerService extends __BaseService {
   saveClientUsingPOST(client: Client): __Observable<Client> {
     return this.saveClientUsingPOSTResponse(client).pipe(
       __map(_r => _r.body as Client)
+    );
+  }
+
+  /**
+   * showPhotoClient
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoClientUsingGETResponse(nombreFoto: string): __Observable<__StrictHttpResponse<Resource>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/clients/photos/${encodeURIComponent(nombreFoto)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Resource>;
+      })
+    );
+  }
+  /**
+   * showPhotoClient
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoClientUsingGET(nombreFoto: string): __Observable<Resource> {
+    return this.showPhotoClientUsingGETResponse(nombreFoto).pipe(
+      __map(_r => _r.body as Resource)
     );
   }
 
@@ -136,6 +177,44 @@ class PublicControllerService extends __BaseService {
   getProductBySlugUsingGET(slug: string): __Observable<Product> {
     return this.getProductBySlugUsingGETResponse(slug).pipe(
       __map(_r => _r.body as Product)
+    );
+  }
+
+  /**
+   * showPhotoVoucher
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoVoucherUsingGETResponse(nombreFoto: string): __Observable<__StrictHttpResponse<Resource>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/vouchers/photos/${encodeURIComponent(nombreFoto)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Resource>;
+      })
+    );
+  }
+  /**
+   * showPhotoVoucher
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoVoucherUsingGET(nombreFoto: string): __Observable<Resource> {
+    return this.showPhotoVoucherUsingGETResponse(nombreFoto).pipe(
+      __map(_r => _r.body as Resource)
     );
   }
 }

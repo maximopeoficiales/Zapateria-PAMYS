@@ -6,14 +6,16 @@
         class="flex flex-col items-center justify-center w-full p-4 md:w-4/12 xl:w-3/12"
       >
         <img
+          (click)="seleccionarImagen()"
           src="{{
             user.profilePictureUrl != ''
-              ? user.profilePictureUrl
+              ? urlImageClient + user.profilePictureUrl
               : 'https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png'
           }}"
           alt=""
-          class="h-40 rounded-lg w-60"
+          class="h-40 rounded-lg cursor-pointer w-60"
         />
+        <input type="file" #inputFileElement class="hidden" (change)="seleccionarFoto($event)"/>
         <p class="p-2 my-2 font-semibold text-center capitalize">
           {{ user.firstName }}
         </p>

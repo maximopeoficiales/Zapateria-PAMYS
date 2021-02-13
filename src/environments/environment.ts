@@ -5,7 +5,10 @@
 export const environment = {
   production: true,
   apiURL: 'http://localhost:8090/api',
-  url_api:'https://platzi-store.herokuapp.com'
+  url_api: 'https://platzi-store.herokuapp.com',
+  url_client_images: 'http://localhost:8090/api/public/clients/photos/',
+  url_voucher_images: 'http://localhost:8090/api/public/vouchers/photos/',
+  url_productos_images: 'http://localhost:8090/api/public/products/photos/',
 };
 
 /*

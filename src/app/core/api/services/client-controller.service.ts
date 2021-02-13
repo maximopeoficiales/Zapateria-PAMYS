@@ -19,6 +19,7 @@ class ClientControllerService extends __BaseService {
   static readonly saveUsingPOST1Path = '/api/client';
   static readonly updateUsingPUT1Path = '/api/client';
   static readonly getAllUsingGET1Path = '/api/client/all';
+  static readonly uploadPhotoClientUsingPOSTPath = '/api/client/photos/upload';
   static readonly getByIdUsingGET1Path = '/api/client/{id}';
   static readonly deleteUsingDELETE1Path = '/api/client/{id}';
 
@@ -141,6 +142,55 @@ class ClientControllerService extends __BaseService {
   }
 
   /**
+   * uploadPhotoClient
+   * @param params The `ClientControllerService.UploadPhotoClientUsingPOSTParams` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idClient`: idClient
+   *
+   * @return OK
+   */
+  uploadPhotoClientUsingPOSTResponse(params: ClientControllerService.UploadPhotoClientUsingPOSTParams): __Observable<__StrictHttpResponse<Client>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.imgFile;
+    if (params.idClient != null) __params = __params.set('idClient', params.idClient.toString());
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/api/client/photos/upload`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Client>;
+      })
+    );
+  }
+  /**
+   * uploadPhotoClient
+   * @param params The `ClientControllerService.UploadPhotoClientUsingPOSTParams` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idClient`: idClient
+   *
+   * @return OK
+   */
+  uploadPhotoClientUsingPOST(params: ClientControllerService.UploadPhotoClientUsingPOSTParams): __Observable<Client> {
+    return this.uploadPhotoClientUsingPOSTResponse(params).pipe(
+      __map(_r => _r.body as Client)
+    );
+  }
+
+  /**
    * Search a client with a ID
    * @param id The id of the client
    * @return OK
@@ -218,6 +268,22 @@ class ClientControllerService extends __BaseService {
 }
 
 module ClientControllerService {
+
+  /**
+   * Parameters for uploadPhotoClientUsingPOST
+   */
+  export interface UploadPhotoClientUsingPOSTParams {
+
+    /**
+     * imgFile
+     */
+    imgFile: string;
+
+    /**
+     * idClient
+     */
+    idClient: number;
+  }
 }
 
 export { ClientControllerService }
