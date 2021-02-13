@@ -29,6 +29,49 @@
   </head>
   <body class="">
     <app-root></app-root>
+    <!-- <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script>
+      document.addEventListener("click", (e) => {
+        if (e.target.id == "imprimir") {
+          let element = document.getElementById("orderDetail");
+          let opt = {
+            margin: 0.2,
+            filename: "myfile.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 1, imageTimeout: 0 },
+            jsPDF: {
+              unit: "in",
+              format: "letter",
+              orientation: "portrait",
+            },
+          };
+          // New Promise-based usage:
+          // html2pdf().set(opt).from(element).toImg().save();
+          let pdf = html2pdf()
+            .set(opt)
+            .from(element)
+            .output("datauristring")
+            .then((e) => {
+              console.log(e);
+              let embed = `
+ <style>
+//  body{
+//  margin: 0;
+//  background-color: black;
+//  }
+//  .hidden-image-print {
+//    display: none !important;
+//  } 
+ </style>
+ <embed width='100%' height='100%' src='${e}'/>
+ `;
+              let x = window.open();
+              x.document.open();
+              x.document.write(embed);
+              x.document.close();
+            });
+        }
+      });
+    </script> -->
   </body>
-
 </html>

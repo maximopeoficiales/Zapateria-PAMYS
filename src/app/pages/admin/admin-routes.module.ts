@@ -118,6 +118,18 @@ const routes: Routes = [
       {
         path: 'products-image/form/:id',
         component: ProducstImageDetailComponent,
+      },
+      {
+        path: 'document-type',
+        component: DocumentListComponent
+      },
+      {
+        path: 'document-type/form',
+        component: DocumentDetailComponent
+      },
+      {
+        path: 'document-type/form/:id',
+        component: DocumentDetailComponent
       }
     ],
   }

@@ -19,6 +19,14 @@
         </p>
         <div class="flex flex-col items-center justify-center w-full">
           <a
+            *ngIf="user.role!.idRole==2"
+            routerLink="/admin"
+            class="flex items-center justify-center w-full px-6 py-2 mx-2 my-2 text-xs font-semibold uppercase transition duration-500 ease-out transform border shadow-md md:px-10 rounded-3xl hover-color-principal-outline bg-principal"
+          >
+            <i class="mr-2 text-lg fa fa-user-shield" aria-hidden="true"></i>
+            <span>Panel de administración</span>
+          </a>
+          <a
             routerLink="/my-account"
             class="flex items-center justify-center w-full px-6 py-2 mx-2 my-2 text-xs font-semibold uppercase transition duration-500 ease-out transform border shadow-md md:px-10 rounded-3xl hover-color-principal-outline bg-principal"
           >

@@ -15,6 +15,7 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarUser();
+    console.log(this.user.profilePictureUrl);
   }
 
   cerrarSesion(): void {

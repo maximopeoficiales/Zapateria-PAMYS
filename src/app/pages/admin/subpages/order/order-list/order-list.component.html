@@ -1,7 +1,8 @@
 <app-header-custom title="Pedidos" subtitle="Gestión de pedidos">
   <i class="fa fa-file" aria-hidden="true"></i>
 </app-header-custom>
-<div class="flex flex-col table-container">
+<app-spinner [show]="loading"></app-spinner>
+<div class="flex flex-col table-container" *ngIf="!loading" >
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg table-box">
@@ -27,7 +28,7 @@
               <td class="py-4 pl-6 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 w-10 h-10">
-                    <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
+                    <img class="w-10 h-10 rounded-full" src="{{ o.client!.profilePictureUrl }}" alt="">
                   </div>
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
@@ -106,7 +107,7 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <div class="inline-block overflow-x-hidden overflow-y-visible text-left transition-all transform bg-white shadow-xl lg:align-top xl:align-top rounded-2xl sm:my-2 sm:align-middle sm:max-w-5xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="inline-block overflow-x-hidden overflow-y-visible text-left transition-all transform bg-white shadow-xl lg:align-top xl:align-top rounded-2xl sm:my-2 sm:align-middle sm:max-w-5xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline" id="orderDetail">
       <button (click)="closeDetail()" class="align-top sm:mt-2 material-icons close-icon sm:mr-2">
         close
       </button>
@@ -119,20 +120,58 @@
             <span class="mr-2 text-base font-medium text-black">Pedido: </span>
             <span class="text-gray-700"># Ped-00000{{ order.idOrder }}</span>
           </div>
-          <div class="flex flex-col w-8/12 header">
+          <div class="flex flex-row mt-2 header">
             <span class="text-base font-medium text-black">Fecha: </span>
-            <mat-form-field appearance="fill">
-              <input matInput [matDatepicker]="picker" value="{{ order.dateCreated! }}">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>          
+            <span class="px-2 ml-2 border border-gray-400 rounded-md" 
+                  *ngIf="!editDate" (click)="toggleEditDate()">
+              {{ dateCreated | date: 'dd/MM/yyyy' }}
+            </span>
+            <input type="date" [(ngModel)]="dateCreated" *ngIf="editDate"
+                  class="ml-2 border border-gray-400 rounded-md">
+            <button class="material-icons icon" (click)="toggleEditDate()"
+                  *ngIf="editDate">
+              close
+            </button>
           </div>
-          <div class="flex w-1/3 mt-3 header">
+          <div class="flex mt-2 header">
             <span class="text-base font-medium text-black">Estado: </span>
-            <select class="ml-2 bg-white border border-gray-400 rounded-md">
-              <option class="text-gray-500" selected>Actual: {{ order.orderStatus!.status }}</option>
-              <option class="text-gray-500" *ngFor="let orderStatus of orderStatuses">{{ orderStatus.status }}</option>
-            </select>
+            <!-- <span class="px-2 ml-2 border border-gray-400 rounded-md" 
+                  *ngIf="!editStatus" (click)="toggleEditStatus()">
+              {{ selectedStatus }}
+            </span> -->
+            <div class="ml-2" (click)="toggleEditStatus()" *ngIf="!editStatus">
+              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-300 rounded-full"
+                    *ngIf="order.idOrderStatus == 1">
+                {{ selectedStatus }}
+              </button>
+              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-600 bg-yellow-200 rounded-full"
+                    *ngIf="order.idOrderStatus == 2">
+                {{ selectedStatus }}
+              </button>
+              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-700 bg-blue-200 rounded-full"
+                    *ngIf="order.idOrderStatus == 3">
+                {{ selectedStatus }}
+              </button>
+              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-green-700 bg-green-200 rounded-full"
+                    *ngIf="order.idOrderStatus == 4">
+                {{ selectedStatus }}
+              </button>
+              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-red-700 bg-red-300 rounded-full"
+                    *ngIf="order.idOrderStatus == 5">
+                {{ selectedStatus }}
+              </button>
+            </div>
+            <div class="flex flex-row" *ngIf="editStatus">
+              <select class="ml-2 bg-white border border-gray-400 rounded-md" 
+                  [(ngModel)]="selectedStatus" >
+              <option class="text-gray-500" *ngFor="let orderStatus of orderStatuses">
+                {{ orderStatus.status }}
+              </option>
+              </select>
+              <button class="material-icons icon" (click)="toggleEditStatus()">
+                close
+              </button>
+            </div>
           </div>
         </div>
         <div class="flex flex-col items-start w-3/6 text-left">
@@ -186,10 +225,18 @@
                   <tr *ngFor="let o of order.products" >
                     <td class="py-4 pl-6 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="flex-shrink-0 w-10 h-10">
-                          <img class="w-10 h-10 rounded-full" src="" alt="">
+                        <div class="flex-shrink-0 w-10 h-10 hidden-image-print" *ngIf="!isPrinting">
+                          <img class="w-10 h-10 rounded-full" src="{{ o.product!.thumbnailUrl }}" alt="">
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-4" *ngIf="!isPrinting">
+                          <div class="text-base font-semibold text-gray-900">
+                            {{ o.product!.name }}
+                          </div>
+                          <div class="text-base text-gray-700">
+                            Código: Prod-0000{{ o.product!.idProduct }}
+                          </div>
+                        </div>
+                        <div *ngIf="isPrinting">
                           <div class="text-base font-semibold text-gray-900">
                             {{ o.product!.name }}
                           </div>
@@ -237,7 +284,7 @@
             <span class="text-base font-medium text-gray-500">{{ order.comment }}</span>
           </div>
         </div>
-        <div class="border border-gray-500 rounded-2xl">
+        <div class="border border-gray-500 rounded-2xl" *ngIf="!isPrinting">
             <iframe width="500" height="330" id="gmap_canvas" src="https://maps.google.com/maps?q=Palca%20258,%20Cercado%20de%20Lima%2015046&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
                     class="rounded-2xl">
             </iframe>
@@ -248,10 +295,12 @@
                 (click)="closeDetail()">
           Cerrar
         </button>
-        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-blue-500 hover:text-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-blue-500 hover:text-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                (click)="updateOrder()">
           Actualizar
         </button>
-        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-blue-500 hover:text-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-blue-500 hover:text-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                (click)="printOrder()">
           Imprimir
         </button>
       </div>

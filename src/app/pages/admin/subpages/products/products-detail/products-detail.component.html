@@ -15,54 +15,7 @@
             <i class="fas fa-shoe-prints fa-rotate-270"></i>
           </app-circulo-icon-card>
 
-          <div class="form-group">
-            <label for="">ID:</label>
-            <mat-form-field appearance="fill">
-              <mat-label class="block">Insert ID</mat-label>
-              <textarea
-                matInput
-                maxlength="150"
-                [(ngModel)]="products.idProduct"
-                #id="ngModel"
-                name="id"
-                required
-                minlength="1"
-              ></textarea>
-            </mat-form-field>
-            <div
-              class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
-              *ngIf="id.invalid && (id.dirty || id.touched)"
-            >
-              <div class="" *ngIf="id.errors?.required">id is required</div>
-            </div>
-          </div>
-
           <mat-card-content>
-            <div class="form-group">
-              <label for="">Date Create:</label>
-              <mat-form-field appearance="fill">
-                <mat-label class="block">Insert Date</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="products.dateCreated"
-                  #dateCreated="ngModel"
-                  name="dateCreated"
-                  required
-                  minlength="1"
-                />
-              </mat-form-field>
-              <div
-                class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
-                *ngIf="
-                  dateCreated.invalid &&
-                  (dateCreated.dirty || dateCreated.touched)
-                "
-              >
-                <div class="" *ngIf="dateCreated.errors?.required">
-                  Date is required
-                </div>
-              </div>
-            </div>
 
             <div class="form-group">
               <label for="">Description:</label>
@@ -243,7 +196,7 @@
               color="accent"
               class="text-white w-100 h6"
               style="background-color: #47b475"
-              *ngIf="products.idProduct == null; else elseButton"
+              *ngIf="products.idProduct == undefined; else elseButton"
               (click)="create()"
               [disabled]="!productsForm.form.valid"
             >

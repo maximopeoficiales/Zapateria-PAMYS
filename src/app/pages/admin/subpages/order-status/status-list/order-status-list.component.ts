@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import {  OrderStatus } from 'src/app/core/api/models';
-import { OrderStatusControllerService } from 'src/app/core/api/services';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {OrderStatus} from 'src/app/core/api/models';
+import {OrderStatusControllerService} from 'src/app/core/api/services';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-order-list',
@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 })
 export class OrderStatusListComponent implements OnInit {
 
-   constructor(private service: OrderStatusControllerService) {}
+  constructor(private service: OrderStatusControllerService) {}
 
   listOrderStatus: OrderStatus[] = [];
   dataSource: any = null;
@@ -38,8 +38,6 @@ export class OrderStatusListComponent implements OnInit {
   chargingTableList(): void {
     this.dataSource = new MatTableDataSource<OrderStatus>(this.listOrderStatus);
     this.dataSource.paginator = this.paginator;
-
-
   }
 
   delete(orderStatus: OrderStatus): void {
@@ -56,7 +54,7 @@ export class OrderStatusListComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
           this.service
-            .deleteUsingDELETE4(orderStatus.idOrderStatus|| 0)
+            .deleteUsingDELETE4(orderStatus.idOrderStatus || 0)
             .subscribe((e) => {
               this.listOrderStatus = this.listOrderStatus.filter(
                 (cat) => cat.idOrderStatus !== orderStatus.idOrderStatus

@@ -8,9 +8,9 @@
     [opened]="(isHandset$ | async) === false"
   >
     <mat-toolbar>
-        <div class="flex-shrink-0 img-container">
-          <img class="rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-        </div>
+      <div class="flex-shrink-0 m-auto w-14 h-14">
+        <img class="rounded-full w-14 h-14" src="{{ user.profilePictureUrl }}" alt="">
+      </div>
     </mat-toolbar>
     <div class="admin-name">
       <span class="unselectable">{{ user.username }}</span>
@@ -56,6 +56,12 @@
               <span class="text-sm text-center text-white">Productos</span>
             </div>
           </a>
+          <a mat-list-item routerLink="/admin/products-image">
+            <div class="flex flex-col m-auto">
+              <i class="fas fa-shoe-prints icon"></i>
+              <span class="text-sm text-center text-white">Imágenes de producto</span>
+            </div>
+          </a>
           <a mat-list-item routerLink="/admin/vendors">
             <div class="flex flex-col m-auto">
               <span class="material-icons icon">
@@ -84,6 +90,12 @@
             <div class="flex flex-col m-auto">
               <i class="fas fa-compass icon"></i>
               <span class="text-sm text-center text-white">Estados de pedido</span>
+            </div>
+          </a> 
+          <a mat-list-item routerLink="/admin/document-type">
+            <div class="flex flex-col m-auto">
+              <i class="fas fa-file icon"></i>
+              <span class="text-sm text-center text-white">Documentos de venta</span>
             </div>
           </a>              
         </div>        

@@ -27,7 +27,6 @@ import {ProductsDetailComponent} from './subpages/products/products-detail/produ
 import {ProducstImageListComponent  } from './subpages/products-image/producst-image-list/producst-image-list.component';
 import {ProducstImageDetailComponent  } from './subpages/products-image/producst-image-detail/producst-image-detail.component';
 
-
 @NgModule({
   declarations: [
     NavComponent,
