@@ -35,4 +35,8 @@ export class LoginService {
     localStorage.removeItem(this.nameJWT);
     localStorage.removeItem(this.nameCLient);
   }
+  saveUser(user: Client): void {
+    localStorage.removeItem(this.nameCLient);
+    localStorage.setItem(this.nameCLient, JSON.stringify(user));
+  }
 }

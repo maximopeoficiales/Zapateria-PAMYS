@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../../core/api/models/client';
 import { LoginService } from '../../../../core/services/auth/login/login.service';
-
 @Component({
   selector: 'app-my-account-show',
   templateUrl: './my-account-show.component.html',
