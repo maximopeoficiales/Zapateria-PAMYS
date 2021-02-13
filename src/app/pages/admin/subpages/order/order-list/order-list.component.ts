@@ -94,8 +94,8 @@ export class OrderListComponent implements OnInit {
   }
 
   formatDate() {
-    let res = this.dateCreated.replace("/","-") + "T00:00:00.000Z";
-    console.log(this.dateCreated);
+    let res = this.dateCreated.replace("/","-") + "T00:00:00Z";
+    // console.log(res);
     return res;
   }
 
@@ -134,14 +134,14 @@ export class OrderListComponent implements OnInit {
     this.togglePrintState();
     let data = document.getElementById("orderDetail");
     html2canvas(data!).then(canvas => {
-      var imgWidth = 208;   
+      var imgWidth = 210;   
       var pageHeight = 295;    
       var imgHeight = canvas.height * imgWidth / canvas.width;  
       var heightLeft = imgHeight;  
       const contentDataURL = canvas.toDataURL('image/png');
       let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
       var position = 0;  
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
       pdf.save(`Pedido-${this.order.idOrder}.pdf`); // Generated PDF       
     }).then(() => {
       this.togglePrintState();
