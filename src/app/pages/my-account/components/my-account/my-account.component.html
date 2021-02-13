@@ -5,17 +5,36 @@
       <div
         class="flex flex-col items-center justify-center w-full p-4 md:w-4/12 xl:w-3/12"
       >
-        <img
-          (click)="seleccionarImagen()"
-          src="{{
-            user.profilePictureUrl != ''
-              ? urlImageClient + user.profilePictureUrl
-              : 'https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png'
-          }}"
-          alt=""
-          class="h-40 rounded-lg cursor-pointer w-60"
+        <div class="relative">
+          <img
+            (click)="seleccionarImagen()"
+            src="{{
+              user.profilePictureUrl != ''
+                ? urlImageClient + user.profilePictureUrl
+                : 'https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png'
+            }}"
+            alt=""
+            class="h-40 rounded-lg cursor-pointer w-60"
+          />
+          <div
+            class="absolute flex items-center justify-center p-2 rounded-full left-52 bottom-1"
+            style="background-color: rgba(233, 112, 14, 0.959)"
+          >
+            <span (click)="seleccionarImagen()" class="cursor-pointer"
+              ><i
+                class="p-1 text-xl text-white fa fa-camera-retro"
+                aria-hidden="true"
+              ></i
+            ></span>
+          </div>
+        </div>
+
+        <input
+          type="file"
+          #inputFileElement
+          class="hidden"
+          (change)="seleccionarFoto($event)"
         />
-        <input type="file" #inputFileElement class="hidden" (change)="seleccionarFoto($event)"/>
         <p class="p-2 my-2 font-semibold text-center capitalize">
           {{ user.firstName }}
         </p>
