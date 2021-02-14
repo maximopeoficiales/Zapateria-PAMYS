@@ -8,7 +8,7 @@ import { MaterialModule } from 'src/app/core/modules/material/material.module';
 import { CategoryListComponent } from './subpages/category/category-list/category-list.component';
 import { CategoryDetailComponent } from './subpages/category/category-detail/category-detail.component';
 import { SharedModule } from 'src/app/core/modules/shared/shared.module';
-import { CirculoIconCardComponent } from './components/circulo-icon-card/circulo-icon-card.component';
+import { CirculoIconCardComponent } from '../../core/modules/shared/components/circulo-icon-card/circulo-icon-card.component';
 import { HeaderCustomComponent } from './components/header-custom/header-custom.component';
 import { AdminRoutesModule } from './admin-routes.module';
 import { VendorListComponent } from './subpages/vendor/vendor-list/vendor-list.component';
@@ -32,7 +32,6 @@ import {ProducstImageDetailComponent  } from './subpages/products-image/producst
     NavComponent,
     CategoryListComponent,
     CategoryDetailComponent,
-    CirculoIconCardComponent,
     HeaderCustomComponent,
     VendorListComponent,
     VendorDetailComponent,

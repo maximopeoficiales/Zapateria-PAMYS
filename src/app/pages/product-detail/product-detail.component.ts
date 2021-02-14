@@ -11,7 +11,7 @@ import {ProductsService} from 'src/app/core/services/products/products.service';
 import {MesageComponent} from '../../core/modules/shared/components/mesage/mesage.component';
 import {SwalAlerts} from 'src/app/core/modules/shared/swalAlerts/SwalAlerts'
 import {TypeMessageSwal} from 'src/app/core/modules/shared/swalAlerts/TypeMessageSwal';
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,6 +26,7 @@ export class ProductDetailComponent implements OnInit {
   imgProductStatic = '';
   productsRelacionados: Product[] = [];
   swal: SwalAlerts = new SwalAlerts();
+  availableStock: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,13 +40,15 @@ export class ProductDetailComponent implements OnInit {
     this.cargarProducts();
   }
 
-  decrementar(): void {
-    this.quantityProduct--;
-    this.verifyQuantity();
-  }
   aumentar(): void {
     this.quantityProduct++;
-    this.verifyQuantity();
+  }
+
+  decrementar(): void {
+    if (this.quantityProduct > 1) {
+      this.quantityProduct--;
+      this.verifyQuantity();
+    }
   }
   verifyQuantity(): void {
     if (this.quantityProduct <= 0) {
@@ -69,11 +72,12 @@ export class ProductDetailComponent implements OnInit {
             ? `${environment.url_products_images}${product.thumbnailUrl}`
             : 'https://commercial.bunn.com/img/image-not-available.png';
         this.product = product;
+        this.availableStock = this.product.stock!;
         this.product.productsImages?.forEach((e) => {
           e.url = `${environment.url_productos_other_images}${e.url}`;
+          this.imgProductStatic = product.thumbnailUrl || '';
+          console.log(product);
         });
-        this.imgProductStatic = product.thumbnailUrl || '';
-        console.log(product);
       });
     });
   }
@@ -86,16 +90,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addItem(product: Product) {
-    if (this.quantityProduct > product.stock!) {
+    if (this.quantityProduct > this.availableStock) {
       this.swal.showMessage("Error:",
-        "Cantidad excede el stock disponible.",
+        "La cantidad excede el stock disponible.",
         TypeMessageSwal.ERROR,
-        1000, false);
+        1000,
+        false);
     } else {
       this.cartService.addItem(product, this.quantityProduct);
-      product.stock! -= this.quantityProduct;
+      this.availableStock -= this.quantityProduct;
     }
-
   }
+
 }
 

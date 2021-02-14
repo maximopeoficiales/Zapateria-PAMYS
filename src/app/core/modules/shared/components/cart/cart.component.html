@@ -45,33 +45,29 @@
             </ng-container>
 
 
-            <ng-container matColumnDef="Actions">
+            <ng-container matColumnDef="Actions" class="ml-10">
                 <th mat-header-cell *matHeaderCellDef> Acciones </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-fab color="accent" (click)="increase(element.product)">
-                      <span class="material-icons">
-                            add
+                    <button class="w-10 h-10 mr-2 text-white align-middle bg-green-500 rounded-full" (click)="increase(element.product)">
+                      <span class="align-middle material-icons">
+                        add
                       </span>
                     </button>
 
-                    <button mat-fab color="warn" (click)="decrease(element.product)">
-                        <span class="material-icons">
-                            remove
-                        </span>
+                    <button class="w-10 h-10 mr-2 text-white align-middle bg-yellow-500 rounded-full" (click)="decrease(element.product)">
+                      <span class="align-middle material-icons">
+                        remove
+                      </span>
+                    </button>
+                    <button class="w-10 h-10 text-white align-middle bg-red-500 rounded-full"  (click)="delete(element.product)">
+                      <span class="align-middle material-icons">
+                        delete
+                      </span>           
                     </button>
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="Remove">
-                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-                <td mat-cell *matCellDef="let element ">
-
-                    <button mat-fab color="primary" matBadgeColor="warn" (click)="delete(element.product)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
+            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -79,12 +75,30 @@
         <mat-card>
             <p>Total : <strong>{{ total | currency:'S/.' }}</strong></p>
         </mat-card>
+        <div>
+          <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" matStepperNext>Siguiente</button>
+        </div>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Metodo de Pago</ng-template>
+        <form #orderForm="ngForm" class="mt-20">
+          <mat-card style="position: relative">
+            <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
+              <i class="fas fa-shoe-prints fa-rotate-270"></i>
+            </app-circulo-icon-card> 
+          </mat-card>
+        </form>
+        <div>
+          <button class="px-2 py-1 mt-2 mr-2 text-white bg-blue-500 rounded-md" matStepperPrevious>Atrás</button>
+          <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" matStepperNext>Siguiente</button>
+        </div>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Confirmacion </ng-template>
+        <div>
+          <button class="px-2 py-1 mt-2 mr-2 text-white bg-blue-500 rounded-md" matStepperPrevious>Atrás</button>
+          <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" matStepperNext>Siguiente</button>
+        </div>
     </mat-step>
 
 </mat-horizontal-stepper>

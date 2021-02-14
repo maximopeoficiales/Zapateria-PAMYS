@@ -40,13 +40,13 @@
             <img
               src="{{ imgProductStatic }}"
               (click)="cambiarImagen(imgProductStatic)"
-              class="object-cover h-20 p-1 mx-2 transition-all duration-500 ease-out transform border-b-4 cursor-pointer hover:border-yellow-500"
+              class="object-cover h-20 p-1 mx-2 border-b-4 cursor-pointer transition-all duration-500 ease-out transform hover:border-yellow-500"
               alt=""
             />
             <img
               [src]="imagen.url"
               (click)="cambiarImagen(imagen.url)"
-              class="object-cover w-20 h-20 p-1 mx-2 transition-all duration-500 ease-out transform border-b-4 cursor-pointer hover:border-yellow-500"
+              class="object-cover w-20 h-20 p-1 mx-2 border-b-4 cursor-pointer transition-all duration-500 ease-out transform hover:border-yellow-500"
               alt=""
               *ngFor="let imagen of product.productsImages"
             />
@@ -63,7 +63,7 @@
             <p class="p-2 font-light text-gray-500 line-through">
               {{ product.price | currency: "S/." }}
             </p>
-            <p class="p-2 font-light text-gray-500">Stock: {{ product.stock }}</p>
+            <p class="p-2 font-light text-gray-500">Stock: {{ availableStock }}</p>
           </div>
 
           <p class="my-1 text-3xl font-semibold text-center">
@@ -82,11 +82,11 @@
                 >
               </div>
               <input
-                [ngModel]="quantityProduct"
+                [(ngModel)]="quantityProduct"
                 (ngModelChange)="verifyQuantity()"
                 disabled
                 type="number"
-                min="1"
+                min="0"
                 class="relative flex-1 flex-grow flex-shrink w-px h-10 px-3 leading-normal text-center border outline-none border-grey-light"
               />
               <div class="flex -mr-px cursor-pointer" (click)="aumentar()">

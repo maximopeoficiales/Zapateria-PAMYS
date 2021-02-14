@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShoppingCartComponent,
-  },
+  }
 ];
 @NgModule({
   declarations: [ShoppingCartComponent],
@@ -17,7 +17,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    SharedModule,
+    SharedModule
   ],
 })
 export class ShoppingCartModule {}

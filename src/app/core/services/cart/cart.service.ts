@@ -51,6 +51,13 @@ export class CartService {
     }
   }
 
+  increaseItem(product: Product) {
+    let selectedProduct = this.cart.find(e => e.product.idProduct === product.idProduct);
+    selectedProduct!.amount++;
+    console.log(selectedProduct?.amount, product.stock);
+    this.cartItemsCount.next(this.cartItemsCount.value + 1);
+  }
+
   decreaseItem(product: Product) {
     for (let [index, e] of this.cart.entries()) {
       if (e.product.idProduct == product.idProduct) {
