@@ -1,14 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product } from 'src/app/core/api/models';
-import {
-  ProductControllerService,
-  PublicControllerService,
-} from 'src/app/core/api/services';
-import { ProductsService } from 'src/app/core/services/products/products.service';
-import { MesageComponent } from '../../core/modules/shared/components/mesage/mesage.component';
-
+import { PublicControllerService } from 'src/app/core/api/services';
+// import { ProductsService } from 'src/app/core/services/products/products.service';
+// import { MesageComponent } from '../../core/modules/shared/components/mesage/mesage.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -58,9 +55,12 @@ export class ProductDetailComponent implements OnInit {
       this.service.getProductBySlugUsingGET(slug).subscribe((product) => {
         product.thumbnailUrl =
           product.thumbnailUrl !== ''
-            ? product.thumbnailUrl
+            ? `${environment.url_products_images}${product.thumbnailUrl}`
             : 'https://commercial.bunn.com/img/image-not-available.png';
         this.product = product;
+        this.product.productsImages?.forEach((e) => {
+          e.url = `${environment.url_productos_other_images}${e.url}`;
+        });
         this.imgProductStatic = product.thumbnailUrl || '';
         console.log(product);
       });
