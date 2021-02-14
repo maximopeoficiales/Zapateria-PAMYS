@@ -1,0 +1,42 @@
+<div class="flex items-center p-2 pl-4 bg-white rounded-full">
+  <i class="mr-1 text-gray-300 fas fa-search"></i>
+  <div class="relative w-full">
+    <input
+      (keyup)="buscarPorNombreProduct($event)"
+      type="text"
+      class="flex-1 h-10 p-1 pl-2 text-sm text-black border-none outline-none"
+      placeholder="Busca por ej zapatillas negras para hombre"
+      maxlength="70"
+    />
+
+    <div
+      class="absolute z-30 w-full p-1 pl-2 bg-white rounded-b-lg shadow-lg top-10"
+      *ngIf="resultProducts.length != 0"
+    >
+      <a
+        class="flex items-center p-1 outline-none cursor-pointer hover:bg-gray-100"
+        routerLink="/product/{{ product.slug }}"
+        *ngFor="let product of resultProducts"
+      >
+        <div class="">
+          <img
+            [src]="urlProduct + product.thumbnailUrl"
+            alt="{{ product.thumbnailUrl }}"
+            class="object-cover w-20 rounded-lg"
+          />
+        </div>
+        <div class="flex-1 p-2 pl-3">
+          <p class="text-sm uppercase">
+            <b>{{ product?.vendor?.company }}</b> {{ product.name }}
+          </p>
+          <p class="py-1 text-sm">
+            <b class="color-principal">{{
+              product.salePrice | currency: "S/."
+            }}</b>
+            <span class="ml-1 text-xs text-gray-500">Sin IGV</span>
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

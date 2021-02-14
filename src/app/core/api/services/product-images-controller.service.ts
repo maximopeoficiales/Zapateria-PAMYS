@@ -19,6 +19,7 @@ class ProductImagesControllerService extends __BaseService {
   static readonly saveUsingPOST8Path = '/api/product_images';
   static readonly updateUsingPUT8Path = '/api/product_images';
   static readonly getAllUsingGET8Path = '/api/product_images/all';
+  static readonly uploadPhotoProductUsingPOST1Path = '/api/product_images/photos/upload';
   static readonly getByIdUsingGET8Path = '/api/product_images/{id}';
   static readonly deleteUsingDELETE7Path = '/api/product_images/{id}';
 
@@ -141,6 +142,55 @@ class ProductImagesControllerService extends __BaseService {
   }
 
   /**
+   * uploadPhotoProduct
+   * @param params The `ProductImagesControllerService.UploadPhotoProductUsingPOST1Params` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idProduct`: idProduct
+   *
+   * @return OK
+   */
+  uploadPhotoProductUsingPOST1Response(params: ProductImagesControllerService.UploadPhotoProductUsingPOST1Params): __Observable<__StrictHttpResponse<Array<ProductImages>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.imgFile;
+    if (params.idProduct != null) __params = __params.set('idProduct', params.idProduct.toString());
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/api/product_images/photos/upload`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<ProductImages>>;
+      })
+    );
+  }
+  /**
+   * uploadPhotoProduct
+   * @param params The `ProductImagesControllerService.UploadPhotoProductUsingPOST1Params` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idProduct`: idProduct
+   *
+   * @return OK
+   */
+  uploadPhotoProductUsingPOST1(params: ProductImagesControllerService.UploadPhotoProductUsingPOST1Params): __Observable<Array<ProductImages>> {
+    return this.uploadPhotoProductUsingPOST1Response(params).pipe(
+      __map(_r => _r.body as Array<ProductImages>)
+    );
+  }
+
+  /**
    * Search a product image with a ID
    * @param id The id of the product
    * @return OK
@@ -218,6 +268,22 @@ class ProductImagesControllerService extends __BaseService {
 }
 
 module ProductImagesControllerService {
+
+  /**
+   * Parameters for uploadPhotoProductUsingPOST1
+   */
+  export interface UploadPhotoProductUsingPOST1Params {
+
+    /**
+     * imgFile
+     */
+    imgFile: Array<Blob>;
+
+    /**
+     * idProduct
+     */
+    idProduct: number;
+  }
 }
 
 export { ProductImagesControllerService }
