@@ -21,6 +21,9 @@ class PublicControllerService extends __BaseService {
   static readonly saveClientUsingPOSTPath = '/api/public/client';
   static readonly showPhotoClientUsingGETPath = '/api/public/clients/photos/{nombreFoto}';
   static readonly getAllProductsUsingGETPath = '/api/public/product';
+  static readonly showOtherPhotoProductUsingGETPath = '/api/public/product/photos/others/{nombreFoto}';
+  static readonly showPhotoProductUsingGETPath = '/api/public/product/photos/{nombreFoto}';
+  static readonly getByNameUsingGET1Path = '/api/public/product/search/{name}';
   static readonly getProductBySlugUsingGETPath = '/api/public/product/slug/{slug}';
   static readonly showPhotoVoucherUsingGETPath = '/api/public/vouchers/photos/{nombreFoto}';
 
@@ -138,6 +141,120 @@ class PublicControllerService extends __BaseService {
    */
   getAllProductsUsingGET(): __Observable<Array<Product>> {
     return this.getAllProductsUsingGETResponse().pipe(
+      __map(_r => _r.body as Array<Product>)
+    );
+  }
+
+  /**
+   * showOtherPhotoProduct
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showOtherPhotoProductUsingGETResponse(nombreFoto: string): __Observable<__StrictHttpResponse<Resource>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/product/photos/others/${encodeURIComponent(nombreFoto)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Resource>;
+      })
+    );
+  }
+  /**
+   * showOtherPhotoProduct
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showOtherPhotoProductUsingGET(nombreFoto: string): __Observable<Resource> {
+    return this.showOtherPhotoProductUsingGETResponse(nombreFoto).pipe(
+      __map(_r => _r.body as Resource)
+    );
+  }
+
+  /**
+   * showPhotoProduct
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoProductUsingGETResponse(nombreFoto: string): __Observable<__StrictHttpResponse<Resource>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/product/photos/${encodeURIComponent(nombreFoto)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Resource>;
+      })
+    );
+  }
+  /**
+   * showPhotoProduct
+   * @param nombreFoto nombreFoto
+   * @return OK
+   */
+  showPhotoProductUsingGET(nombreFoto: string): __Observable<Resource> {
+    return this.showPhotoProductUsingGETResponse(nombreFoto).pipe(
+      __map(_r => _r.body as Resource)
+    );
+  }
+
+  /**
+   * Search a product with your name Company
+   * @param name Product Name
+   * @return OK
+   */
+  getByNameUsingGET1Response(name: string): __Observable<__StrictHttpResponse<Array<Product>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/public/product/search/${encodeURIComponent(name)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<Product>>;
+      })
+    );
+  }
+  /**
+   * Search a product with your name Company
+   * @param name Product Name
+   * @return OK
+   */
+  getByNameUsingGET1(name: string): __Observable<Array<Product>> {
+    return this.getByNameUsingGET1Response(name).pipe(
       __map(_r => _r.body as Array<Product>)
     );
   }

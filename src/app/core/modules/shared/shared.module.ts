@@ -13,6 +13,7 @@ import { InfoReutilizableFooterComponent } from './components/info-reutilizable-
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SliderProductsComponent } from './components/slider-products/slider-products.component';
 import { HomeTitleComponent } from './components/home-title/home-title.component';
+import { SearchBarProductsComponent } from './components/search-bar-products/search-bar-products.component';
 // TODO: Put every component on it's own module
 // Bec this module can get way too big
 
@@ -29,6 +30,7 @@ import { HomeTitleComponent } from './components/home-title/home-title.component
     HomePageComponent,
     SliderProductsComponent,
     HomeTitleComponent,
+    SearchBarProductsComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
@@ -43,6 +45,7 @@ import { HomeTitleComponent } from './components/home-title/home-title.component
     HomePageComponent,
     SliderProductsComponent,
     HomeTitleComponent,
+    SearchBarProductsComponent,
   ],
 })
 export class SharedModule {}

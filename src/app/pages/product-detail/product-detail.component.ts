@@ -11,6 +11,7 @@ import {ProductsService} from 'src/app/core/services/products/products.service';
 import {MesageComponent} from '../../core/modules/shared/components/mesage/mesage.component';
 import {SwalAlerts} from 'src/app/core/modules/shared/swalAlerts/SwalAlerts'
 import {TypeMessageSwal} from 'src/app/core/modules/shared/swalAlerts/TypeMessageSwal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -65,9 +66,12 @@ export class ProductDetailComponent implements OnInit {
       this.service.getProductBySlugUsingGET(slug).subscribe((product) => {
         product.thumbnailUrl =
           product.thumbnailUrl !== ''
-            ? product.thumbnailUrl
+            ? `${environment.url_products_images}${product.thumbnailUrl}`
             : 'https://commercial.bunn.com/img/image-not-available.png';
         this.product = product;
+        this.product.productsImages?.forEach((e) => {
+          e.url = `${environment.url_productos_other_images}${e.url}`;
+        });
         this.imgProductStatic = product.thumbnailUrl || '';
         console.log(product);
       });

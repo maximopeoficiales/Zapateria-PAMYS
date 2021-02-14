@@ -1,9 +1,13 @@
-import {HtmlAstPath} from '@angular/compiler';
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {Client, Order, OrderStatus} from 'src/app/core/api/models';
-import {ClientControllerService, OrderControllerService, OrderStatusControllerService} from 'src/app/core/api/services';
+import { HtmlAstPath } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Client, Order, OrderStatus } from 'src/app/core/api/models';
+import {
+  ClientControllerService,
+  OrderControllerService,
+  OrderStatusControllerService,
+} from 'src/app/core/api/services';
 // import * as html2pdf from 'html2pdf.js/types/index';
 import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -12,41 +16,41 @@ import {environment} from 'src/environments/environment';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.sass']
+  styleUrls: ['./order-list.component.sass'],
 })
 export class OrderListComponent implements OnInit {
-
   orders: Order[] = [];
   order: Order = {};
   users: Client[] = [];
   orderStatuses: OrderStatus[] = [];
   showModalDetail: boolean = false;
   selectSearcher: FormControl = new FormControl();
-  selectedStatus: string = "";
-  dateCreated: string = "";
+  selectedStatus: string = '';
+  dateCreated: string = '';
   editDate: boolean = false;
   editStatus: boolean = false;
   isPrinting: boolean = false;
   loading: boolean = true;
 
-  constructor(private orderService: OrderControllerService,
+  constructor(
+    private orderService: OrderControllerService,
     private orderStatusesService: OrderStatusControllerService,
-    private usersService: ClientControllerService) {}
+    private usersService: ClientControllerService
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.orderService.getAllUsingGET3().subscribe(data => {
+      this.orderService.getAllUsingGET3().subscribe((data) => {
         this.orders = data;
-        this.orderStatusesService.getAllUsingGET4().subscribe(data => {
+        this.orderStatusesService.getAllUsingGET4().subscribe((data) => {
           this.orderStatuses = data;
-          this.usersService.getAllUsingGET1().subscribe(data => {
+          this.usersService.getAllUsingGET1().subscribe((data) => {
             this.users = data;
             this.loading = false;
           });
         });
       });
     }, 300);
-
   }
 
   toggleEditDate() {
@@ -55,7 +59,9 @@ export class OrderListComponent implements OnInit {
 
   toggleEditStatus() {
     this.editStatus = !this.editStatus;
-    let newStatusID = this.orderStatuses.find((e) => e.status == this.selectedStatus)?.idOrderStatus;
+    let newStatusID = this.orderStatuses.find(
+      (e) => e.status == this.selectedStatus
+    )?.idOrderStatus;
     this.order.idOrderStatus = newStatusID;
   }
 
@@ -87,7 +93,10 @@ export class OrderListComponent implements OnInit {
   }
 
   getSubTotal(): number {
-    return this.order.products!.reduce((i, j) => i + j.product!.price! * j.quantity!, 0);
+    return this.order.products!.reduce(
+      (i, j) => i + j.product!.price! * j.quantity!,
+      0
+    );
   }
 
   getIgv(): number {
@@ -105,7 +114,9 @@ export class OrderListComponent implements OnInit {
   }
 
   updateOrder() {
-    let newStatusID = this.orderStatuses.find((e) => e.status == this.selectedStatus)?.idOrderStatus;
+    let newStatusID = this.orderStatuses.find(
+      (e) => e.status == this.selectedStatus
+    )?.idOrderStatus;
     this.order.idOrderStatus = newStatusID;
     this.order.total = this.getTotal();
     this.order.dateCreated = this.formatDate();
@@ -132,5 +143,4 @@ export class OrderListComponent implements OnInit {
       this.togglePrintState();
     });
   }
-
 }
