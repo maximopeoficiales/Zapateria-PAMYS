@@ -1,7 +1,7 @@
 <!-- nav responsive -->
 <footer class="navbar-buttom">
   <div
-    class="grid items-center w-full grid-cols-5 gap-3 p-2 text-white shadow-md sm:gap-2 md:hidden fondo-principal"
+    class="items-center w-full p-2 text-white shadow-md grid grid-cols-5 gap-3 sm:gap-2 md:hidden fondo-principal"
   >
     <a class="p-1 text-center" routerLink="/home">
       <i class="text-xl fa fa-home"></i>
@@ -12,8 +12,9 @@
     ><a class="p-1 text-center" routerLink="/cart-shop">
       <i class="text-xl far fa-heart"></i>
       <p class="m-0 text-xs">Favoritos</p> </a
-    ><a class="p-1 text-center" routerLink="/cart-shop">
+    ><a class="p-1 text-center" routerLink="/cart">
       <i class="text-xl fa fa-shopping-cart"></i>
+      <span class="badge">{{ cartItemsCount.value }}</span>
       <p class="m-0 text-xs" >Carrito</p> </a
     ><a class="p-1 text-center" routerLink="/my-account">
       <i class="text-xl far fa-user"></i>

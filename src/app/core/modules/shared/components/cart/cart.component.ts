@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/core/models/Product';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import {Component, OnInit} from '@angular/core';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {Product} from 'src/app/core/api/models/product';
+import {CartService} from 'src/app/core/services/cart/cart.service';
+import {SwalAlerts} from '../../swalAlerts/SwalAlerts';
+import {TypeMessageSwal} from '../../swalAlerts/TypeMessageSwal';
 
 @Component({
   selector: 'app-cart',
@@ -9,15 +11,16 @@ import { CartService } from 'src/app/core/services/cart/cart.service';
   styleUrls: ['./cart.component.sass'],
 })
 export class CartComponent implements OnInit {
-  constructor(private cartservice: CartService) {}
+  constructor(private cartService: CartService) {}
 
-  products!: Array<{ product: Product; amount: number }>;
+  products!: Array<{product: Product; amount: number}>;
   total!: number;
-  dataSource!: MatTableDataSource<{ product: Product; amount: number }>;
+  dataSource!: MatTableDataSource<{product: Product; amount: number}>;
+  swal: SwalAlerts = new SwalAlerts();
 
   ngOnInit(): void {
     this.fetchProducts();
-    this.total = this.cartservice.getTotal();
+    this.total = this.cartService.getTotal();
     this.dataSource = new MatTableDataSource<{
       product: Product;
       amount: number;
@@ -25,11 +28,11 @@ export class CartComponent implements OnInit {
   }
 
   getTotal() {
-    this.total = this.cartservice.getTotal();
+    this.total = this.cartService.getTotal();
   }
 
   fetchProducts() {
-    this.products = this.cartservice.getCart();
+    this.products = this.cartService.getCart();
   }
 
   updateTable() {
@@ -41,17 +44,25 @@ export class CartComponent implements OnInit {
   }
 
   delete(product: Product) {
-    this.cartservice.removeProduct(product);
+    this.cartService.removeProduct(product);
     this.updateTable();
   }
 
   increase(product: Product) {
-    this.cartservice.addItem(product);
-    this.updateTable();
+    let thisProduct = this.products.find(p => p.product.idProduct == product.idProduct);
+    if (thisProduct?.amount! >= product.stock!) {
+      this.swal.showMessage("Error.",
+        "La cantidad excede el stock",
+        TypeMessageSwal.ERROR,
+        1000, false);
+    } else {
+      this.cartService.increaseItem(product);
+      this.updateTable();
+    }
   }
 
   decrease(product: Product) {
-    this.cartservice.decreaseItem(product);
+    this.cartService.decreaseItem(product);
     this.updateTable();
   }
 
@@ -59,7 +70,6 @@ export class CartComponent implements OnInit {
     'Title',
     'Price',
     'Amount',
-    'Actions',
-    'Remove',
+    'Actions'
   ];
 }

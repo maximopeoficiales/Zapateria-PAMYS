@@ -19,9 +19,10 @@ class VoucherControllerService extends __BaseService {
   static readonly saveUsingPOST10Path = '/api/voucher';
   static readonly updateUsingPUT10Path = '/api/voucher';
   static readonly getAllUsingGET10Path = '/api/voucher/all';
+  static readonly uploadPhotoVoucherUsingPOSTPath = '/api/voucher/photos/upload';
+  static readonly getByIdUsingGET10Path = '/api/voucher/{idVoucher}';
+  static readonly deleteUsingDELETE9Path = '/api/voucher/{idVoucher}';
   static readonly getByIdClientUsingGETPath = '/api/voucher/{id_client}';
-  static readonly getByIdUsingGET10Path = '/api/voucher/{id}';
-  static readonly deleteUsingDELETE9Path = '/api/voucher/{id}';
 
   constructor(
     config: __Configuration,
@@ -142,6 +143,131 @@ class VoucherControllerService extends __BaseService {
   }
 
   /**
+   * uploadPhotoVoucher
+   * @param params The `VoucherControllerService.UploadPhotoVoucherUsingPOSTParams` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idVoucher`: idVoucher
+   *
+   * @return OK
+   */
+  uploadPhotoVoucherUsingPOSTResponse(params: VoucherControllerService.UploadPhotoVoucherUsingPOSTParams): __Observable<__StrictHttpResponse<Voucher>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.imgFile;
+    if (params.idVoucher != null) __params = __params.set('idVoucher', params.idVoucher.toString());
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/api/voucher/photos/upload`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Voucher>;
+      })
+    );
+  }
+  /**
+   * uploadPhotoVoucher
+   * @param params The `VoucherControllerService.UploadPhotoVoucherUsingPOSTParams` containing the following parameters:
+   *
+   * - `imgFile`: imgFile
+   *
+   * - `idVoucher`: idVoucher
+   *
+   * @return OK
+   */
+  uploadPhotoVoucherUsingPOST(params: VoucherControllerService.UploadPhotoVoucherUsingPOSTParams): __Observable<Voucher> {
+    return this.uploadPhotoVoucherUsingPOSTResponse(params).pipe(
+      __map(_r => _r.body as Voucher)
+    );
+  }
+
+  /**
+   * Search a voucher with a ID
+   * @param idVoucher The id of the voucher
+   * @return OK
+   */
+  getByIdUsingGET10Response(idVoucher: number): __Observable<__StrictHttpResponse<Voucher>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/voucher/${encodeURIComponent(idVoucher)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Voucher>;
+      })
+    );
+  }
+  /**
+   * Search a voucher with a ID
+   * @param idVoucher The id of the voucher
+   * @return OK
+   */
+  getByIdUsingGET10(idVoucher: number): __Observable<Voucher> {
+    return this.getByIdUsingGET10Response(idVoucher).pipe(
+      __map(_r => _r.body as Voucher)
+    );
+  }
+
+  /**
+   * Delete a Voucher by ID
+   * @param idVoucher The id of the voucher
+   * @return OK
+   */
+  deleteUsingDELETE9Response(idVoucher: number): __Observable<__StrictHttpResponse<{}>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'DELETE',
+      this.rootUrl + `/api/voucher/${encodeURIComponent(idVoucher)}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<{}>;
+      })
+    );
+  }
+  /**
+   * Delete a Voucher by ID
+   * @param idVoucher The id of the voucher
+   * @return OK
+   */
+  deleteUsingDELETE9(idVoucher: number): __Observable<{}> {
+    return this.deleteUsingDELETE9Response(idVoucher).pipe(
+      __map(_r => _r.body as {})
+    );
+  }
+
+  /**
    * Search a voucher with a idClient
    * @param id_client The id of the voucher
    * @return OK
@@ -178,85 +304,25 @@ class VoucherControllerService extends __BaseService {
       __map(_r => _r.body as Array<Voucher>)
     );
   }
-
-  /**
-   * Search a voucher with a ID
-   * @param id The id of the voucher
-   * @return OK
-   */
-  getByIdUsingGET10Response(id: number): __Observable<__StrictHttpResponse<Voucher>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/api/voucher/${encodeURIComponent(id)}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Voucher>;
-      })
-    );
-  }
-  /**
-   * Search a voucher with a ID
-   * @param id The id of the voucher
-   * @return OK
-   */
-  getByIdUsingGET10(id: number): __Observable<Voucher> {
-    return this.getByIdUsingGET10Response(id).pipe(
-      __map(_r => _r.body as Voucher)
-    );
-  }
-
-  /**
-   * Delete a Voucher by ID
-   * @param id The id of the voucher
-   * @return OK
-   */
-  deleteUsingDELETE9Response(id: number): __Observable<__StrictHttpResponse<{}>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'DELETE',
-      this.rootUrl + `/api/voucher/${encodeURIComponent(id)}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
-      })
-    );
-  }
-  /**
-   * Delete a Voucher by ID
-   * @param id The id of the voucher
-   * @return OK
-   */
-  deleteUsingDELETE9(id: number): __Observable<{}> {
-    return this.deleteUsingDELETE9Response(id).pipe(
-      __map(_r => _r.body as {})
-    );
-  }
 }
 
 module VoucherControllerService {
+
+  /**
+   * Parameters for uploadPhotoVoucherUsingPOST
+   */
+  export interface UploadPhotoVoucherUsingPOSTParams {
+
+    /**
+     * imgFile
+     */
+    imgFile: string;
+
+    /**
+     * idVoucher
+     */
+    idVoucher: number;
+  }
 }
 
 export { VoucherControllerService }

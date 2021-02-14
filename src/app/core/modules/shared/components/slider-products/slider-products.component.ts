@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import Splide from '@splidejs/splide';
 // import { PublicControllerService } from 'src/app/core/api/services';
 import { Product } from '../../../../api/models/product';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-slider-products',
   templateUrl: './slider-products.component.html',
@@ -10,6 +10,7 @@ import { Product } from '../../../../api/models/product';
 })
 export class SliderProductsComponent implements OnInit, AfterViewInit {
   id = '';
+  urlProduct = environment.url_products_images;
   @Input() productos: Product[] = [];
   constructor() {
     this.id = 'splide' + this.getRandomArbitrary(1, 99).toFixed();

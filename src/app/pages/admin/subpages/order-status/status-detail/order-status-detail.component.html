@@ -1,13 +1,13 @@
-<div class="container">
+<div>
   <div class="mx-2 my-4 row justify-content-center">
     <div class="my-5 col-md-8">
       <a
         mat-flat-button
         color="primary"
-        [routerLink]="['/admin/order-satus']"
+        [routerLink]="['/admin/order-status']"
         class="my-2 text-white text-decoration-none"
       >
-        <i class="mr-2 fas fa-arrow-left"></i>Back
+        <i class="mr-2 fas fa-arrow-left"></i>Volver
       </a>
       <form #orderStatusForm="ngForm">
         <mat-card style="position: relative">
@@ -18,9 +18,9 @@
 
           <mat-card-content>
             <div class="form-group">
-              <label for="">orderStatus:</label>
+              <label for="">Estado de orden:</label>
               <mat-form-field appearance="fill">
-                <mat-label class="block">Insert orderStatus</mat-label>
+                <mat-label class="block">Insertar estado</mat-label>
                 <input
                   matInput
                   [(ngModel)]="orderStatus.status"
@@ -49,7 +49,7 @@
               (click)="create()"
               [disabled]="!orderStatusForm.form.valid"
             >
-              <i class="mr-2 fas fa-save"></i>Save
+              <i class="mr-2 fas fa-save"></i>Guardar
             </button>
             <ng-template #elseButton>
               <button
@@ -59,7 +59,7 @@
                 (click)="update()"
                 [disabled]="!orderStatusForm.form.valid"
               >
-                <i class="mr-2 fas fa-save"></i>Update
+                <i class="mr-2 fas fa-save"></i>Actualizar
               </button>
             </ng-template>
           </mat-card-content>

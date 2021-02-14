@@ -1,13 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { MyAccountShowComponent } from './subpages/my-account-show/my-account-show.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Routes, RouterModule} from '@angular/router';
+import {MyAccountShowComponent} from './subpages/my-account-show/my-account-show.component';
+import {OrdersComponent} from './subpages/orders/orders.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MyAccountShowComponent,
     children: [
+      {
+        path: 'orders',
+        component: OrdersComponent
+      }
       // {
       //   path: 'vendors',
       //   component: VendorListComponent,

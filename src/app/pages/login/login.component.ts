@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
             if (res.body.user?.idRol === 1) {
               this.router.navigate(['/home']);
             } else {
-              this.router.navigate(['/admin/vendors']);
+              this.router.navigate(['/home']);
             }
           }, 1000);
         },

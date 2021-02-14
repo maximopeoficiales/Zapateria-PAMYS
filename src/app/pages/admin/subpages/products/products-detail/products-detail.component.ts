@@ -3,6 +3,7 @@ import {Productsnew  } from '../../../../../core/models/Productsnew';
   import { ProductControllerService } from 'src/app/core/api/services';
   import { Router, ActivatedRoute } from '@angular/router';
   import swal from 'sweetalert2';
+import { Product } from 'src/app/core/api/models';
 
 @Component({
   selector: 'app-products-detail',
@@ -10,7 +11,7 @@ import {Productsnew  } from '../../../../../core/models/Productsnew';
   styleUrls: ['./products-detail.component.sass']
 })
 export class ProductsDetailComponent implements OnInit {
-  products:Productsnew = new Productsnew();
+    products: Product = {};
     
     titulo = 'Create products';
     constructor(
@@ -25,7 +26,7 @@ export class ProductsDetailComponent implements OnInit {
     create(): void {
       //  crea el cliente, luego le redirije
       this.service.saveUsingPOST7(this.products).subscribe((res) => {
-        this.router.navigate(['/admin/products-new']);
+        this.router.navigate(['/admin/products']);
         swal.fire(
           'Nueva Vendor Creada',
           `Product ${res.description} ha sido registrada`,
@@ -36,7 +37,7 @@ export class ProductsDetailComponent implements OnInit {
     update(): void {
       //  crea el cliente, luego le redirije
       this.service.updateUsingPUT7(this.products).subscribe((products) => {
-        this.router.navigate(['/admin/productss']);
+        this.router.navigate(['/admin/products']);
         swal.fire(
           'Product Actualizada',
           `Product ${products.description} ha sido actualizado`,

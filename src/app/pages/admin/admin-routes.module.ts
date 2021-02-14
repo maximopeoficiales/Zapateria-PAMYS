@@ -1,8 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { NavComponent } from './components/nav/nav.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
 import { CategoryListComponent } from './subpages/category/category-list/category-list.component';
 import { CategoryDetailComponent } from './subpages/category/category-detail/category-detail.component';
 import { CommonModule } from '@angular/common';
@@ -13,6 +11,11 @@ import { ClientListComponent } from './subpages/client/client-list/client-list.c
 import { ClientDetailComponent } from './subpages/client/client-detail/client-detail.component';
 import { PaymentListComponent } from './subpages/payment-type/payment-list/payment-list.component';
 import { PaymentDetailComponent } from './subpages/payment-type/payment-detail/payment-detail.component';
+import { DocumentListComponent } from './subpages/document-type/document-list/document-list.component';
+import { DocumentDetailComponent } from './subpages/document-type/document-detail/document-detail.component';
+import { OrderListComponent } from './subpages/order/order-list/order-list.component';
+import { OrderStatusListComponent } from './subpages/order-status/status-list/order-status-list.component';
+import { OrderStatusDetailComponent } from './subpages/order-status/status-detail/order-status-detail.component';
 import { ProductsListComponent } from './subpages/products/products-list/products-list.component';
 import { ProductsDetailComponent } from './subpages/products/products-detail/products-detail.component';
 import {ProducstImageListComponent  } from './subpages/products-image/producst-image-list/producst-image-list.component';
@@ -24,12 +27,9 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
-        path: 'create',
-        component: ProductFormComponent,
-      },
-      {
-        path: 'products',
-        component: ProductListComponent,
+        path: '',
+        redirectTo: 'orders',
+        pathMatch: 'full'
       },
       {
         path: 'categorys',
@@ -75,25 +75,39 @@ const routes: Routes = [
         path: 'payment-types/form',
         component: PaymentDetailComponent,
       },
-
       {
         path: 'payment-types/form/:id',
         component: PaymentDetailComponent,
       },
       {
-        path: 'products-new',
+        path: 'orders',
+        component: OrderListComponent
+      },
+      {
+        path: 'order-status',
+        component: OrderStatusListComponent,
+      },
+      {
+        path: 'order-status/form',
+        component: OrderStatusDetailComponent,
+      },
+      {
+        path: 'order-status/form/:id',
+        component: OrderStatusDetailComponent,
+      },
+      {
+        path: 'products',
         component: ProductsListComponent,
       },
       {
-        path: 'products-new/form',
+        path: 'products/form',
         component:ProductsDetailComponent ,
       },
-
       {
-        path: 'products-new/form/:id',
+        path: 'products/form/:id',
         component: ProductsDetailComponent,
       },
-{
+      {
         path: 'products-image',
         component: ProducstImageListComponent,
       },
@@ -101,13 +115,24 @@ const routes: Routes = [
         path: 'products-image/form',
         component:ProducstImageDetailComponent ,
       },
-
       {
         path: 'products-image/form/:id',
         component: ProducstImageDetailComponent,
+      },
+      {
+        path: 'document-type',
+        component: DocumentListComponent
+      },
+      {
+        path: 'document-type/form',
+        component: DocumentDetailComponent
+      },
+      {
+        path: 'document-type/form/:id',
+        component: DocumentDetailComponent
       }
     ],
-  },
+  }
 ];
 
 @NgModule({

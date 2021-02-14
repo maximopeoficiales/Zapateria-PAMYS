@@ -1,13 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Product } from 'src/app/core/api/models';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Product} from 'src/app/core/api/models';
 import {
   ProductControllerService,
   PublicControllerService,
 } from 'src/app/core/api/services';
-import { ProductsService } from 'src/app/core/services/products/products.service';
-import { MesageComponent } from '../../core/modules/shared/components/mesage/mesage.component';
+import {CartService} from 'src/app/core/services/cart/cart.service';
+import {ProductsService} from 'src/app/core/services/products/products.service';
+import {MesageComponent} from '../../core/modules/shared/components/mesage/mesage.component';
+import {SwalAlerts} from 'src/app/core/modules/shared/swalAlerts/SwalAlerts'
+import {TypeMessageSwal} from 'src/app/core/modules/shared/swalAlerts/TypeMessageSwal';
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,14 +21,17 @@ import { MesageComponent } from '../../core/modules/shared/components/mesage/mes
 export class ProductDetailComponent implements OnInit {
   imagenesSecundarias!: ElementRef;
   durationInSeconds = 5;
-
   product: Product = {};
   quantityProduct = 1;
   imgProductStatic = '';
   productsRelacionados: Product[] = [];
+  swal: SwalAlerts = new SwalAlerts();
+  availableStock: number = 0;
+
   constructor(
     private route: ActivatedRoute,
-    private service: PublicControllerService // private productservice: ProductsService, // private _snackBar: MatSnackBar
+    private service: PublicControllerService, // private productservice: ProductsService, // private _snackBar: MatSnackBar
+    private cartService: CartService
   ) {}
 
   // TODO:MANERA ADECUADA DE RICIBIR DATOS
@@ -33,13 +40,15 @@ export class ProductDetailComponent implements OnInit {
     this.cargarProducts();
   }
 
-  decrementar(): void {
-    this.quantityProduct--;
-    this.verifyQuantity();
-  }
   aumentar(): void {
     this.quantityProduct++;
-    this.verifyQuantity();
+  }
+
+  decrementar(): void {
+    if (this.quantityProduct > 1) {
+      this.quantityProduct--;
+      this.verifyQuantity();
+    }
   }
   verifyQuantity(): void {
     if (this.quantityProduct <= 0) {
@@ -55,14 +64,20 @@ export class ProductDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       const slug = params.slug;
       // this.fetchProduct(id);
+      this.quantityProduct = 1;
+      document.querySelector("#productImage")?.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
       this.service.getProductBySlugUsingGET(slug).subscribe((product) => {
         product.thumbnailUrl =
           product.thumbnailUrl !== ''
-            ? product.thumbnailUrl
+            ? `${environment.url_products_images}${product.thumbnailUrl}`
             : 'https://commercial.bunn.com/img/image-not-available.png';
         this.product = product;
-        this.imgProductStatic = product.thumbnailUrl || '';
-        console.log(product);
+        this.availableStock = this.product.stock!;
+        this.product.productsImages?.forEach((e) => {
+          e.url = `${environment.url_productos_other_images}${e.url}`;
+          this.imgProductStatic = product.thumbnailUrl || '';
+          console.log(product);
+        });
       });
     });
   }
@@ -73,54 +88,19 @@ export class ProductDetailComponent implements OnInit {
       this.productsRelacionados = products;
     });
   }
-  // }
-  // openSnackBar() {
-  //   this._snackBar.openFromComponent(MesageComponent, {
-  //     duration: this.durationInSeconds * 1000,
-  //   });
-  // }
 
-  // fetchProduct(id: number) {
-  //   // this.productservice.getProduct(id)
-  //   //   .subscribe(product => {
-  //   //     console.log(product)
-  //   //     this.product = product;
-  //   //   })
-  //   // this.product = this.productservice.getProduct(id);
-  // }
+  addItem(product: Product) {
+    if (this.quantityProduct > this.availableStock) {
+      this.swal.showMessage("Error:",
+        "La cantidad excede el stock disponible.",
+        TypeMessageSwal.ERROR,
+        1000,
+        false);
+    } else {
+      this.cartService.addItem(product, this.quantityProduct);
+      this.availableStock -= this.quantityProduct;
+    }
+  }
 
-  // createProduct() {
-  //   // const newProduct: Product = {
-  //   //   id: '22',
-  //   //   title: 'nuevo producto',
-  //   //   image: 'assets/Image/img1.jpg',
-  //   //   price: 3000,
-  //   //   description: 'bla blaaaaaaaaaaaaaaa'
-  //   // }
-  //   // this.productservice.createProduct(newProduct)
-  //   //   .subscribe(product => {
-  //   //     console.log(product)
-  //   //     this.product = product;
-  //   //   })
-  // }
-
-  // updateProduct() {
-  //   const updateProduc: Partial<Product> = {
-  //     id: 30,
-  //     title: 'Editado producto',
-  //     image: 'assets/Image/img1.jpeg',
-  //     price: 5000,
-  //     description: 'Producto esditado',
-  //   };
-
-  //   this.productservice.updateProduct(1, updateProduc).subscribe((product) => {
-  //     console.log(product);
-  //   });
-  // }
-
-  // deleteProduct() {
-  //   this.productservice.deleteProduct(333).subscribe((rta) => {
-  //     console.log(rta);
-  //   });
-  // }
 }
+
