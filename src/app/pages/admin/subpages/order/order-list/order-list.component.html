@@ -28,7 +28,7 @@
               <td class="py-4 pl-6 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 w-10 h-10">
-                    <img class="w-10 h-10 rounded-full" src="{{ o.client!.profilePictureUrl }}" alt="">
+                    <img class="w-10 h-10 rounded-full" src="{{ getUserImageURL(o) }}" alt="">
                   </div>
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900">
@@ -36,7 +36,7 @@
                       {{ o.client!.lastName }}
                     </div>
                     <div class="text-sm text-gray-500">
-                      # Ped-00000{{ o.idOrder }}
+                      # {{ o.idOrder }}
                     </div>
                   </div>
                 </div>
@@ -118,7 +118,7 @@
         <div class="flex flex-col">
           <div class="flex mt-2 header">
             <span class="mr-2 text-base font-medium text-black">Pedido: </span>
-            <span class="text-gray-700"># Ped-00000{{ order.idOrder }}</span>
+            <span class="text-gray-700">{{ order.idOrder }}</span>
           </div>
           <div class="flex flex-row mt-2 header">
             <span class="text-base font-medium text-black">Fecha: </span>

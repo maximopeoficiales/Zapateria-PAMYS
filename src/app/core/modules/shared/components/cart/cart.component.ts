@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/core/models/Product';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import {Component, OnInit} from '@angular/core';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {Product} from 'src/app/core/api/models/product';
+import {CartService} from 'src/app/core/services/cart/cart.service';
+import {SwalAlerts} from '../../swalAlerts/SwalAlerts';
+import {TypeMessageSwal} from '../../swalAlerts/TypeMessageSwal';
 
 @Component({
   selector: 'app-cart',
@@ -11,9 +13,10 @@ import { CartService } from 'src/app/core/services/cart/cart.service';
 export class CartComponent implements OnInit {
   constructor(private cartservice: CartService) {}
 
-  products!: Array<{ product: Product; amount: number }>;
+  products!: Array<{product: Product; amount: number}>;
   total!: number;
-  dataSource!: MatTableDataSource<{ product: Product; amount: number }>;
+  dataSource!: MatTableDataSource<{product: Product; amount: number}>;
+  swal: SwalAlerts = new SwalAlerts();
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -46,6 +49,15 @@ export class CartComponent implements OnInit {
   }
 
   increase(product: Product) {
+    let thisProduct = this.products.find(p => p.product = product);
+    if (thisProduct?.amount! > product.stock!) {
+      this.swal.showMessage("Error.",
+        "La cantidad excede el stock",
+        TypeMessageSwal.ERROR,
+        1000, false);
+    } else {
+
+    }
     this.cartservice.addItem(product);
     this.updateTable();
   }

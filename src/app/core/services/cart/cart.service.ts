@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Product } from 'src/app/core/models/Product';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {Product} from 'src/app/core/api/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class CartService {
   private cart: Array<{product: Product, amount: number}>;
   private cartItemsCount: BehaviorSubject<number>;
 
-  constructor() { 
+  constructor() {
     this.cart = new Array<{product: Product, amount: number}>();
     this.cartItemsCount = new BehaviorSubject(0);
   }
@@ -25,28 +25,35 @@ export class CartService {
   }
 
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.product.price * j.amount, 0);
+    return this.cart.reduce((i, j) => i + j.product!.price! * j.amount, 0);
   }
 
-  addItem(product: Product) {
+  addItem(product: Product, amount?: number) {
     let added = false;
     for (let e of this.cart) {
-      if (e.product.id === product.id) {
-        e.amount++;
-        added = true;
-        break;
+      if (e.product.idProduct === product.idProduct) {
+        if (amount! > 1) {
+          e.amount += amount!;
+          added = true;
+          this.cartItemsCount.next(this.cartItemsCount.value + amount!);
+          break;
+        } else {
+          e.amount++;
+          added = true;
+          this.cartItemsCount.next(this.cartItemsCount.value + 1);
+          break;
+        }
       }
     }
-    if (!added) {
-      this.cart.push({ product: product, amount: 1 });
+    if (!added && amount) {
+      this.cart.push({product: product, amount: amount!});
+      this.cartItemsCount.next(this.cartItemsCount.value + amount!);
     }
-
-    this.cartItemsCount.next(this.cartItemsCount.value + 1);
   }
 
   decreaseItem(product: Product) {
-    for(let [index, e] of this.cart.entries()) {
-      if (e.product.id == product.id) {
+    for (let [index, e] of this.cart.entries()) {
+      if (e.product.idProduct == product.idProduct) {
         e.amount--;
         if (e.amount == 0) {
           this.cart.splice(index, 1);
@@ -59,11 +66,11 @@ export class CartService {
 
   removeProduct(product: Product) {
     for (let [index, e] of this.cart.entries()) {
-      if (e.product.id === product.id) {
+      if (e.product.idProduct === product.idProduct) {
         this.cartItemsCount.next(this.cartItemsCount.value - e.amount);
         this.cart.splice(index, 1);
       }
     }
-  } 
+  }
 
 }

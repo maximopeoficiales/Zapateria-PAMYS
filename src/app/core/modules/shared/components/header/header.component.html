@@ -25,7 +25,7 @@
 </mat-toolbar> -->
 
 <nav class="fixed top-0 z-50 w-full p-2 fondo-principal">
-  <div class="items-center grid-cols-5 gap-4 mx-auto md:grid max-w-7xl">
+  <div class="items-center mx-auto grid-cols-5 gap-4 md:grid max-w-7xl">
     <div class="w-full p-1">
       <a routerLink="/home">
         <img src="assets/Image/logo/logo.png" class="h-10 mx-auto" />
@@ -43,13 +43,14 @@
       </div>
     </div>
 
-    <div class="hidden w-full grid-cols-3 gap-2 p-2 mx-auto text-white md:grid">
+    <div class="hidden w-full p-2 mx-auto text-white grid-cols-3 gap-2 md:grid">
       <a class="p-1 text-center" routerLink="/cart-shop">
         <i class="text-2xl far fa-heart"></i>
         <p class="m-0 mt-1 text-xs">Favoritos</p>
       </a>
-      <a class="p-1 text-center" routerLink="/cart-shop">
+      <a class="p-1 text-center" routerLink="/cart">
         <i class="text-2xl fas fa-shopping-cart"></i>
+        <span class="badge">{{ cartItemsCount.value }}</span>
         <p class="m-0 mt-1 text-xs">Carrito</p>
       </a>
       <a class="p-1 text-center" routerLink="/my-account">

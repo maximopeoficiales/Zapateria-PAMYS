@@ -1,12 +1,13 @@
-import { HtmlAstPath } from '@angular/compiler';
+import {HtmlAstPath} from '@angular/compiler';
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Client, Order, OrderStatus} from 'src/app/core/api/models';
 import {ClientControllerService, OrderControllerService, OrderStatusControllerService} from 'src/app/core/api/services';
 // import * as html2pdf from 'html2pdf.js/types/index';
-import { jsPDF } from 'jspdf';
+import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-list',
@@ -45,7 +46,7 @@ export class OrderListComponent implements OnInit {
         });
       });
     }, 300);
-    
+
   }
 
   toggleEditDate() {
@@ -62,6 +63,10 @@ export class OrderListComponent implements OnInit {
     this.editStatus = false;
     this.editDate = false;
     this.isPrinting = !this.isPrinting;
+  }
+
+  getUserImageURL(order: Order): string {
+    return environment.url_client_images + order.client!.profilePictureUrl;
   }
 
   showDetail(order: Order) {
@@ -94,7 +99,7 @@ export class OrderListComponent implements OnInit {
   }
 
   formatDate() {
-    let res = this.dateCreated.replace("/","-") + "T00:00:00Z";
+    let res = this.dateCreated.replace("/", "-") + "T00:00:00Z";
     // console.log(res);
     return res;
   }
@@ -103,27 +108,7 @@ export class OrderListComponent implements OnInit {
     let newStatusID = this.orderStatuses.find((e) => e.status == this.selectedStatus)?.idOrderStatus;
     this.order.idOrderStatus = newStatusID;
     this.order.total = this.getTotal();
-    if (this.dateCreated != this.order.dateCreated) {
-      this.orderService.updateUsingPUT3(
-        {
-          idOrder: this.order.idOrder,
-          comment: this.order.comment,
-          dateCreated: this.formatDate(),
-          idClient: this.order.idClient,
-          idDocumentType: this.order.idDocumentType,
-          idOrderStatus: this.order.idOrderStatus,
-          idPaymentStatus: this.order.idPaymentStatus,
-          idVoucher: this.order.idVoucher,
-          igv: this.order.igv,
-          shippingAddress: this.order.shippingAddress,
-          subtotal: this.order.subtotal,
-          total: this.order.total,
-          zipCode: this.order.zipCode
-        }).subscribe((data) => {
-        this.closeDetail();
-        this.ngOnInit();
-      });
-    }
+    this.order.dateCreated = this.formatDate();
     this.orderService.updateUsingPUT3(this.order).subscribe(() => {
       this.closeDetail();
       this.ngOnInit();
@@ -134,13 +119,13 @@ export class OrderListComponent implements OnInit {
     this.togglePrintState();
     let data = document.getElementById("orderDetail");
     html2canvas(data!).then(canvas => {
-      var imgWidth = 210;   
-      var pageHeight = 295;    
-      var imgHeight = canvas.height * imgWidth / canvas.width;  
-      var heightLeft = imgHeight;  
+      var imgWidth = 210;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
       const contentDataURL = canvas.toDataURL('image/png');
       let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
-      var position = 0;  
+      var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
       pdf.save(`Pedido-${this.order.idOrder}.pdf`); // Generated PDF       
     }).then(() => {
