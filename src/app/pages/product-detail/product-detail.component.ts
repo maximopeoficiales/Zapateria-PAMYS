@@ -1,17 +1,17 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Product} from 'src/app/core/api/models';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Product } from 'src/app/core/api/models';
 import {
   ProductControllerService,
   PublicControllerService,
 } from 'src/app/core/api/services';
-import {CartService} from 'src/app/core/services/cart/cart.service';
-import {ProductsService} from 'src/app/core/services/products/products.service';
-import {MesageComponent} from '../../core/modules/shared/components/mesage/mesage.component';
-import {SwalAlerts} from 'src/app/core/modules/shared/swalAlerts/SwalAlerts'
-import {TypeMessageSwal} from 'src/app/core/modules/shared/swalAlerts/TypeMessageSwal';
-import {environment} from 'src/environments/environment';
+import { CartService } from 'src/app/core/services/cart/cart.service';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { MesageComponent } from '../../core/modules/shared/components/mesage/mesage.component';
+import { SwalAlerts } from 'src/app/core/modules/shared/swalAlerts/SwalAlerts';
+import { TypeMessageSwal } from 'src/app/core/modules/shared/swalAlerts/TypeMessageSwal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -65,7 +65,13 @@ export class ProductDetailComponent implements OnInit {
       const slug = params.slug;
       // this.fetchProduct(id);
       this.quantityProduct = 1;
-      document.querySelector("#productImage")?.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
+      document
+        .querySelector('#productImage')
+        ?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'start',
+        });
       this.service.getProductBySlugUsingGET(slug).subscribe((product) => {
         product.thumbnailUrl =
           product.thumbnailUrl !== ''
@@ -91,16 +97,16 @@ export class ProductDetailComponent implements OnInit {
 
   addItem(product: Product) {
     if (this.quantityProduct > this.availableStock) {
-      this.swal.showMessage("Error:",
-        "La cantidad excede el stock disponible.",
+      this.swal.showMessage(
+        'Error:',
+        'La cantidad excede el stock disponible.',
         TypeMessageSwal.ERROR,
         1000,
-        false);
+        false
+      );
     } else {
       this.cartService.addItem(product, this.quantityProduct);
       this.availableStock -= this.quantityProduct;
     }
   }
-
 }
-

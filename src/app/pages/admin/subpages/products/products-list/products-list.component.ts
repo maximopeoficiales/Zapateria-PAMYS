@@ -1,26 +1,34 @@
-import { Product} from 'src/app/core/api/models';
+import { Product } from 'src/app/core/api/models';
 import { ProductControllerService } from 'src/app/core/api/services';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import swal from 'sweetalert2';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.sass']
+  styleUrls: ['./products-list.component.sass'],
 })
-export class ProductsListComponent implements OnInit {
-
-  constructor(private service: ProductControllerService) { }
-
+export class ProductsListComponent implements OnInit, AfterViewInit {
+  constructor(private service: ProductControllerService) {}
+  urlProduct = environment.url_products_images;
   listProduct: Product[] = [];
   dataSource: any = null;
-  displayedColumns: string[] = ['ID', 'Date', 'Description','IdCategory','IdVendor','Name','Price','Sale_Price','Stock','Url' ,'Actions'];
+  displayedColumns: string[] = [
+    'ID',
+    'Name',
+    'Vendor',
+    'Sale_Price',
+    'Stock',
+    'Thumbnail',
+    'Actions',
+  ];
   ocultado = 'd-none';
   showSpinner = true;
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.loadProductList();
@@ -31,7 +39,7 @@ export class ProductsListComponent implements OnInit {
       this.service.getAllUsingGET7().subscribe((products) => {
         this.listProduct = products;
         this.chargingTableList();
-        this.ocultado = products.length == 0 ? 'd-none' : '';
+        this.ocultado = products.length === 0 ? 'd-none' : '';
         this.showSpinner = false;
       });
     }, 300);

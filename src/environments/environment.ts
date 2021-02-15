@@ -11,6 +11,7 @@ export const environment = {
   url_products_images: 'http://localhost:8090/api/public/product/photos/',
   url_productos_other_images:
     'http://localhost:8090/api/public/product/photos/others/',
+  url_product_not_found: 'https://www.w4ter.co.za/error.png',
 };
 
 /*

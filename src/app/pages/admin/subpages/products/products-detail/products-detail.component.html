@@ -16,7 +16,6 @@
           </app-circulo-icon-card>
 
           <mat-card-content>
-
             <div class="form-group">
               <label for="">Description:</label>
               <mat-form-field appearance="fill">
@@ -45,19 +44,24 @@
             </div>
 
             <div class="form-group">
-              <label for="">IDCategory:</label>
               <mat-form-field appearance="fill">
-                <mat-label class="block">IDCategory ID</mat-label>
-                <textarea
-                  matInput
-                  maxlength="150"
-                  [(ngModel)]="products.idCategory"
-                  #idCategory="ngModel"
-                  name="idCategory"
+                <mat-label>Seleccionar su Categoria</mat-label>
+                <select
+                  matNativeControl
                   required
-                  minlength="1"
-                ></textarea>
+                  name="idCategory"
+                  #idCategory="ngModel"
+                  [(ngModel)]="products.idCategory"
+                >
+                  <option
+                    [value]="category.idCategory"
+                    *ngFor="let category of categorys"
+                  >
+                    {{ category.name }}
+                  </option>
+                </select>
               </mat-form-field>
+
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="
@@ -70,19 +74,24 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="">IdVendor:</label>
               <mat-form-field appearance="fill">
-                <mat-label class="block">IdVendor </mat-label>
-                <textarea
-                  matInput
-                  maxlength="150"
-                  [(ngModel)]="products.idVendor"
+                <mat-label>Seleccionar su Vendor</mat-label>
+                <select
+                  matNativeControl
+                  required
                   #idVendor="ngModel"
                   name="idVendor"
-                  required
-                  minlength="1"
-                ></textarea>
+                  [(ngModel)]="products.idVendor"
+                >
+                  <option
+                    [value]="vendor.idVendor"
+                    *ngFor="let vendor of vendors"
+                  >
+                    {{ vendor.company }}
+                  </option>
+                </select>
               </mat-form-field>
+
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="idVendor.invalid && (idVendor.dirty || idVendor.touched)"
@@ -97,7 +106,7 @@
               <label for="">Name:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Name </mat-label>
-                <textarea
+                <input
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.name"
@@ -105,7 +114,7 @@
                   name="name"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -121,7 +130,9 @@
               <label for="">Price:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Price </mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.price"
@@ -129,7 +140,7 @@
                   name="price"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -145,7 +156,9 @@
               <label for="">Sale_Price:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Sale_Price </mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.salePrice"
@@ -153,7 +166,7 @@
                   name="sale_price"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -171,7 +184,9 @@
               <label for="">Stock:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Stock</mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.stock"
@@ -179,7 +194,7 @@
                   name="stock"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -188,6 +203,64 @@
                 <div class="" *ngIf="stock.errors?.required">
                   stock is required
                 </div>
+              </div>
+            </div>
+
+            <div class="my-4 form-group">
+              <label for="">Seleccione una Imagen:</label>
+              <div
+                class="flex flex-col items-center justify-content-center md:flex-row"
+              >
+                <div class="p-1" *ngIf="products.thumbnailUrl != undefined">
+                  <img
+                    [src]="
+                      products.thumbnailUrl != ''
+                        ? urlProduct + products.thumbnailUrl
+                        : urlProductNotFound
+                    "
+                    [alt]="products.thumbnailUrl"
+                    srcset=""
+                    class="rounded-lg h-28 w-28"
+                  />
+                </div>
+                <input
+                  type="file"
+                  name="imgFile"
+                  (change)="selectedPhoto($event)"
+                />
+              </div>
+            </div>
+            <div class="my-4 form-group">
+              <label for="">Seleccione las Imagenes Relacionadas:</label>
+              <div
+                class="flex flex-col items-center justify-content-center md:flex-row"
+              >
+                <div class="p-1">
+                  <div
+                    class="flex items-center justify-center"
+                    *ngIf="products?.productsImages?.length != 0"
+                  >
+                    <img
+                      [src]="
+                        productImage.url != ''
+                          ? urlProductImage + productImage.url
+                          : urlProductNotFound
+                      "
+                      [alt]="productImage.url"
+                      *ngFor="let productImage of products?.productsImages"
+                      class="w-20 h-20 mx-2 rounded-lg"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="file"
+                  name="imgFile"
+                  multiple
+                  maxlength="3"
+                  minlength="1"
+                  accept="image/*"
+                  (change)="selectedPhotoImages($event)"
+                />
               </div>
             </div>
 
