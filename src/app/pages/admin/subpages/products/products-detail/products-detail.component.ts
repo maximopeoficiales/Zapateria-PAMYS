@@ -19,12 +19,14 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class ProductsDetailComponent implements OnInit {
   urlProduct = environment.url_products_images;
+  urlProductImage = environment.url_productos_other_images;
   urlProductNotFound = environment.url_product_not_found;
   vendors: Vendor[] = [];
   categorys: Category[] = [];
   titulo = 'Create products';
 
   photoSelected!: File;
+  photoImagesSelected: any = [];
   products: Product = {};
 
   constructor(
@@ -43,6 +45,7 @@ export class ProductsDetailComponent implements OnInit {
   create(): void {
     //  crea el cliente, luego le redirije
     this.service.saveUsingPOST7(this.products).subscribe((res) => {
+      this.uploadPhotoImages(res.idProduct || 0);
       this.uploadPhoto(res.idProduct || 0, () => {
         this.router.navigate(['/admin/products']);
         swal.fire(
@@ -56,6 +59,7 @@ export class ProductsDetailComponent implements OnInit {
   update(): void {
     console.log(this.products);
     //  crea el cliente, luego le redirije
+    this.uploadPhotoImages(this.products.idProduct || 0);
     this.uploadPhoto(this.products.idProduct || 0, () => {
       this.service.updateUsingPUT7(this.products).subscribe((products) => {
         this.router.navigate(['/admin/products']);
@@ -96,16 +100,32 @@ export class ProductsDetailComponent implements OnInit {
       swal.fire('Error en el archivo', `Elije una imagen por favor`, 'error');
     }
   }
+  selectedPhotoImages(event: any): void {
+    for (let index = 0; index < event.target.files.length; index++) {
+      const file = event.target.files[index];
+      if (index <= 2) {
+        this.photoImagesSelected.push(file);
+      }
+    }
+    console.log(this.photoImagesSelected);
+  }
   uploadPhoto(idProduct: number, callback: any = null): void {
     if (this.photoSelected.type.search('image') !== -1) {
       this.uploadProductService
         .subirFotoProducto(this.photoSelected, idProduct)
         .subscribe((event) => {
           if (event.type === HttpEventType.Response) {
-            console.log(event.body);
             callback();
           }
         });
+    }
+  }
+
+  uploadPhotoImages(idProduct: number): void {
+    if (this.photoImagesSelected.length !== 0) {
+      this.uploadProductService
+        .subirFotoProductoImages(this.photoImagesSelected, idProduct)
+        .subscribe((event) => {});
     }
   }
 }
