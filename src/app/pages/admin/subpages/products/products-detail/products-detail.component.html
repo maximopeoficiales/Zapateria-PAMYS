@@ -16,7 +16,6 @@
           </app-circulo-icon-card>
 
           <mat-card-content>
-
             <div class="form-group">
               <label for="">Description:</label>
               <mat-form-field appearance="fill">
@@ -45,19 +44,24 @@
             </div>
 
             <div class="form-group">
-              <label for="">IDCategory:</label>
               <mat-form-field appearance="fill">
-                <mat-label class="block">IDCategory ID</mat-label>
-                <textarea
-                  matInput
-                  maxlength="150"
-                  [(ngModel)]="products.idCategory"
-                  #idCategory="ngModel"
-                  name="idCategory"
+                <mat-label>Seleccionar su Categoria</mat-label>
+                <select
+                  matNativeControl
                   required
-                  minlength="1"
-                ></textarea>
+                  name="idCategory"
+                  #idCategory="ngModel"
+                  [(ngModel)]="products.idCategory"
+                >
+                  <option
+                    [value]="category.idCategory"
+                    *ngFor="let category of categorys"
+                  >
+                    {{ category.name }}
+                  </option>
+                </select>
               </mat-form-field>
+
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="
@@ -70,19 +74,24 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="">IdVendor:</label>
               <mat-form-field appearance="fill">
-                <mat-label class="block">IdVendor </mat-label>
-                <textarea
-                  matInput
-                  maxlength="150"
-                  [(ngModel)]="products.idVendor"
+                <mat-label>Seleccionar su Vendor</mat-label>
+                <select
+                  matNativeControl
+                  required
                   #idVendor="ngModel"
                   name="idVendor"
-                  required
-                  minlength="1"
-                ></textarea>
+                  [(ngModel)]="products.idVendor"
+                >
+                  <option
+                    [value]="vendor.idVendor"
+                    *ngFor="let vendor of vendors"
+                  >
+                    {{ vendor.company }}
+                  </option>
+                </select>
               </mat-form-field>
+
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
                 *ngIf="idVendor.invalid && (idVendor.dirty || idVendor.touched)"
@@ -188,6 +197,26 @@
                 <div class="" *ngIf="stock.errors?.required">
                   stock is required
                 </div>
+              </div>
+            </div>
+
+            <div class="my-2 form-group">
+              <label for="">Seleccione una Imagen:</label>
+              <div class="flex flex-col items-center justify-content-center md:flex-row">
+                <div class="p-1">
+                  <img
+                    *ngIf="products.thumbnailUrl != ''"
+                    [src]="
+                      products.thumbnailUrl != ''
+                        ? urlProduct + products.thumbnailUrl
+                        : urlProductNotFound
+                    "
+                    [alt]="products.thumbnailUrl"
+                    srcset=""
+                    class="rounded-lg h-28 w-28"
+                  />
+                </div>
+                <input type="file" name="imgFile" (change)="selectedPhoto($event)"/>
               </div>
             </div>
 
