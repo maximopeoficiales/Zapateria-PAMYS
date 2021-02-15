@@ -45,27 +45,26 @@ export class ProductsDetailComponent implements OnInit {
   create(): void {
     //  crea el cliente, luego le redirije
     this.service.saveUsingPOST7(this.products).subscribe((res) => {
-      this.uploadPhotoImages(res.idProduct || 0);
       this.uploadPhoto(res.idProduct || 0, () => {
+        this.uploadPhotoImages(res.idProduct || 0);
         this.router.navigate(['/admin/products']);
         swal.fire(
-          'Nueva Vendor Creada',
-          `Product ${res.description} ha sido registrada`,
+          'Nueva Producto Creado',
+          `Product ${res.name} ha sido registrado`,
           'success'
         );
       });
     });
   }
   update(): void {
-    console.log(this.products);
     //  crea el cliente, luego le redirije
-    this.uploadPhotoImages(this.products.idProduct || 0);
     this.uploadPhoto(this.products.idProduct || 0, () => {
+      this.uploadPhotoImages(this.products.idProduct || 0);
       this.service.updateUsingPUT7(this.products).subscribe((products) => {
         this.router.navigate(['/admin/products']);
         swal.fire(
           'Product Actualizada',
-          `Product ${products.description} ha sido actualizado`,
+          `Product ${products.name} ha sido actualizado`,
           'success'
         );
       });
@@ -110,14 +109,16 @@ export class ProductsDetailComponent implements OnInit {
     console.log(this.photoImagesSelected);
   }
   uploadPhoto(idProduct: number, callback: any = null): void {
-    if (this.photoSelected.type.search('image') !== -1) {
-      this.uploadProductService
-        .subirFotoProducto(this.photoSelected, idProduct)
-        .subscribe((event) => {
-          if (event.type === HttpEventType.Response) {
-            callback();
-          }
-        });
+    if (this.photoSelected) {
+      if (this.photoSelected.type.search('image') !== -1) {
+        this.uploadProductService
+          .subirFotoProducto(this.photoSelected, idProduct)
+          .subscribe((event) => {
+            if (event.type === HttpEventType.Response) {
+              callback();
+            }
+          });
+      }
     }
   }
 
@@ -125,7 +126,10 @@ export class ProductsDetailComponent implements OnInit {
     if (this.photoImagesSelected.length !== 0) {
       this.uploadProductService
         .subirFotoProductoImages(this.photoImagesSelected, idProduct)
-        .subscribe((event) => {});
+        .subscribe((event) => {
+          if (event.type === HttpEventType.Response) {
+          }
+        });
     }
   }
 }

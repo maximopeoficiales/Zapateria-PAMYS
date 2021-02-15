@@ -26,13 +26,14 @@ export class ProductUploadService {
     archivos: any,
     idProduct: number
   ): Observable<HttpEvent<{}>> {
-    console.log(archivos);
+    // console.log(archivos);
 
     const formData = new FormData();
     archivos.forEach((archivo: any) => {
       formData.append('imgFile', archivo, archivo.name);
     });
     formData.append('idProduct', idProduct.toString());
+
     const req = new HttpRequest(
       'POST',
       `${this.urlEndPointProductImages}`,
