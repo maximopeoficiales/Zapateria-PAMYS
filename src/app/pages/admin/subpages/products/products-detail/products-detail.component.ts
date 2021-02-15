@@ -45,29 +45,28 @@ export class ProductsDetailComponent implements OnInit {
   create(): void {
     //  crea el cliente, luego le redirije
     this.service.saveUsingPOST7(this.products).subscribe((res) => {
-      this.uploadPhoto(res.idProduct || 0, () => {
-        this.uploadPhotoImages(res.idProduct || 0);
-        this.router.navigate(['/admin/products']);
-        swal.fire(
-          'Nueva Producto Creado',
-          `Product ${res.name} ha sido registrado`,
-          'success'
-        );
-      });
+      this.uploadPhotoImages(res.idProduct || 0);
+      this.uploadPhoto(res.idProduct || 0, () => {});
+      this.router.navigate(['/admin/products']);
+      swal.fire(
+        'Nueva Producto Creado',
+        `Product ${res.name} ha sido registrado`,
+        'success'
+      );
     });
   }
   update(): void {
     //  crea el cliente, luego le redirije
-    this.uploadPhoto(this.products.idProduct || 0, () => {
+
+    this.service.updateUsingPUT7(this.products).subscribe((products) => {
       this.uploadPhotoImages(this.products.idProduct || 0);
-      this.service.updateUsingPUT7(this.products).subscribe((products) => {
-        this.router.navigate(['/admin/products']);
-        swal.fire(
-          'Product Actualizada',
-          `Product ${products.name} ha sido actualizado`,
-          'success'
-        );
-      });
+      this.uploadPhoto(this.products.idProduct || 0, () => {});
+      this.router.navigate(['/admin/products']);
+      swal.fire(
+        'Product Actualizada',
+        `Product ${products.name} ha sido actualizado`,
+        'success'
+      );
     });
   }
   cargarProduct(): void {

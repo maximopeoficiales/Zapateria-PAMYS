@@ -106,7 +106,7 @@
               <label for="">Name:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Name </mat-label>
-                <textarea
+                <input
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.name"
@@ -114,7 +114,7 @@
                   name="name"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -130,7 +130,9 @@
               <label for="">Price:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Price </mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.price"
@@ -138,7 +140,7 @@
                   name="price"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -154,7 +156,9 @@
               <label for="">Sale_Price:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Sale_Price </mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.salePrice"
@@ -162,7 +166,7 @@
                   name="sale_price"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -180,7 +184,9 @@
               <label for="">Stock:</label>
               <mat-form-field appearance="fill">
                 <mat-label class="block">Stock</mat-label>
-                <textarea
+                <input
+                  type="number"
+                  min="1"
                   matInput
                   maxlength="150"
                   [(ngModel)]="products.stock"
@@ -188,7 +194,7 @@
                   name="stock"
                   required
                   minlength="1"
-                ></textarea>
+                />
               </mat-form-field>
               <div
                 class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
@@ -205,9 +211,8 @@
               <div
                 class="flex flex-col items-center justify-content-center md:flex-row"
               >
-                <div class="p-1">
+                <div class="p-1" *ngIf="products.thumbnailUrl != undefined">
                   <img
-                    *ngIf="products.thumbnailUrl != ''"
                     [src]="
                       products.thumbnailUrl != ''
                         ? urlProduct + products.thumbnailUrl
@@ -250,7 +255,9 @@
                 <input
                   type="file"
                   name="imgFile"
-                  multiple maxlength="3" minlength="1"
+                  multiple
+                  maxlength="3"
+                  minlength="1"
                   accept="image/*"
                   (change)="selectedPhotoImages($event)"
                 />
