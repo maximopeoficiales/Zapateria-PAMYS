@@ -7,9 +7,15 @@ import {MyAccountShowComponent} from './subpages/my-account-show/my-account-show
 import {MyAccountComponent} from './components/my-account/my-account.component';
 import {HttpClientModule} from '@angular/common/http';
 import {OrdersComponent} from './subpages/orders/orders.component';
+import { MyAccountEditComponent } from './subpages/my-account-edit/my-account-edit.component';
 
 @NgModule({
-  declarations: [MyAccountShowComponent, MyAccountComponent, OrdersComponent],
+  declarations: [
+    MyAccountShowComponent, 
+    MyAccountComponent, 
+    OrdersComponent,
+    MyAccountEditComponent
+  ],
   imports: [
     CommonModule,
     MyAccountRoutingModule,

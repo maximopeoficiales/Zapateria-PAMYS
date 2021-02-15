@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Client } from '../../../api/models/client';
+import {Injectable} from '@angular/core';
+import {Client} from '../../../api/models/client';
+import {CartService} from '../../cart/cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { Client } from '../../../api/models/client';
 export class LoginService {
   nameJWT = 'jwt';
   nameCLient = 'client';
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   saveJWT(jwt: string, user: Client): void {
     if (this.getJWT()) {
@@ -34,6 +35,8 @@ export class LoginService {
   logout(): void {
     localStorage.removeItem(this.nameJWT);
     localStorage.removeItem(this.nameCLient);
+    localStorage.removeItem("cart");
+    this.cartService.initialiseCart();
   }
   saveUser(user: Client): void {
     localStorage.removeItem(this.nameCLient);
