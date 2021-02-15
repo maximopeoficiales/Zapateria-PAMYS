@@ -1,8 +1,8 @@
-import { HtmlAstPath } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Client, Order, OrderStatus } from 'src/app/core/api/models';
+import {HtmlAstPath} from '@angular/compiler';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {Client, Order, OrderStatus, Product} from 'src/app/core/api/models';
 import {
   ClientControllerService,
   OrderControllerService,
@@ -31,6 +31,7 @@ export class OrderListComponent implements OnInit {
   editStatus: boolean = false;
   isPrinting: boolean = false;
   loading: boolean = true;
+  productImagesUrl: string = environment.url_products_images;
 
   constructor(
     private orderService: OrderControllerService,
@@ -51,6 +52,10 @@ export class OrderListComponent implements OnInit {
         });
       });
     }, 300);
+  }
+
+  getImageUrl(product: Product): string {
+    return this.productImagesUrl + product.thumbnailUrl;
   }
 
   toggleEditDate() {

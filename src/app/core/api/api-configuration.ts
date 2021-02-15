@@ -1,6 +1,5 @@
 /* tslint:disable */
-import { Injectable } from '@angular/core';
-
+import {Injectable} from '@angular/core';
 /**
  * Global configuration for Api services
  */
@@ -8,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = '//localhost:8090';
+  rootUrl: string = "https://spring.luismeramosr.ml";
 }
 
 export interface ApiConfigurationInterface {

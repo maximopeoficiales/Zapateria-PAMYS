@@ -45,23 +45,23 @@
                 <div class="text-sm text-gray-900">{{ o.dateCreated | date: 'dd/MM/yyyy' }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-300 rounded-full"
+                <span class="inline-flex px-2 text-xs font-semibold text-gray-700 bg-gray-300 rounded-full leading-5"
                       *ngIf="o.idOrderStatus == 1">
                   {{ o.orderStatus!.status }}
                 </span>
-                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-600 bg-yellow-200 rounded-full"
+                <span class="inline-flex px-2 text-xs font-semibold text-yellow-600 bg-yellow-200 rounded-full leading-5"
                       *ngIf="o.idOrderStatus == 2">
                   {{ o.orderStatus!.status }}
                 </span>
-                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-700 bg-blue-200 rounded-full"
+                <span class="inline-flex px-2 text-xs font-semibold text-blue-700 bg-blue-200 rounded-full leading-5"
                       *ngIf="o.idOrderStatus == 3">
                   {{ o.orderStatus!.status }}
                 </span>
-                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-700 bg-green-200 rounded-full"
+                <span class="inline-flex px-2 text-xs font-semibold text-green-700 bg-green-200 rounded-full leading-5"
                       *ngIf="o.idOrderStatus == 4">
                   {{ o.orderStatus!.status }}
                 </span>
-                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-700 bg-red-300 rounded-full"
+                <span class="inline-flex px-2 text-xs font-semibold text-red-700 bg-red-300 rounded-full leading-5"
                       *ngIf="o.idOrderStatus == 5">
                   {{ o.orderStatus!.status }}
                 </span>
@@ -107,7 +107,7 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <div class="inline-block overflow-x-hidden overflow-y-visible text-left transition-all transform bg-white shadow-xl lg:align-top xl:align-top rounded-2xl sm:my-2 sm:align-middle sm:max-w-5xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline" id="orderDetail">
+    <div class="inline-block overflow-x-hidden overflow-y-visible text-left bg-white shadow-xl transition-all transform lg:align-top xl:align-top rounded-2xl sm:my-2 sm:align-middle sm:max-w-5xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline" id="orderDetail">
       <button (click)="closeDetail()" class="align-top sm:mt-2 material-icons close-icon sm:mr-2">
         close
       </button>
@@ -140,23 +140,23 @@
               {{ selectedStatus }}
             </span> -->
             <div class="ml-2" (click)="toggleEditStatus()" *ngIf="!editStatus">
-              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-300 rounded-full"
+              <button class="inline-flex px-2 text-xs font-semibold text-gray-700 bg-gray-300 rounded-full leading-5"
                     *ngIf="order.idOrderStatus == 1">
                 {{ selectedStatus }}
               </button>
-              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-600 bg-yellow-200 rounded-full"
+              <button class="inline-flex px-2 text-xs font-semibold text-yellow-600 bg-yellow-200 rounded-full leading-5"
                     *ngIf="order.idOrderStatus == 2">
                 {{ selectedStatus }}
               </button>
-              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-blue-700 bg-blue-200 rounded-full"
+              <button class="inline-flex px-2 text-xs font-semibold text-blue-700 bg-blue-200 rounded-full leading-5"
                     *ngIf="order.idOrderStatus == 3">
                 {{ selectedStatus }}
               </button>
-              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-green-700 bg-green-200 rounded-full"
+              <button class="inline-flex px-2 text-xs font-semibold text-green-700 bg-green-200 rounded-full leading-5"
                     *ngIf="order.idOrderStatus == 4">
                 {{ selectedStatus }}
               </button>
-              <button class="inline-flex px-2 text-xs font-semibold leading-5 text-red-700 bg-red-300 rounded-full"
+              <button class="inline-flex px-2 text-xs font-semibold text-red-700 bg-red-300 rounded-full leading-5"
                     *ngIf="order.idOrderStatus == 5">
                 {{ selectedStatus }}
               </button>
@@ -226,14 +226,14 @@
                     <td class="py-4 pl-6 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 w-10 h-10 hidden-image-print" *ngIf="!isPrinting">
-                          <img class="w-10 h-10 rounded-full" src="{{ o.product!.thumbnailUrl }}" alt="">
+                          <img class="w-10 h-10 rounded-full" src="{{ getImageUrl(o.product!) }}" alt="">
                         </div>
                         <div class="ml-4" *ngIf="!isPrinting">
                           <div class="text-base font-semibold text-gray-900">
                             {{ o.product!.name }}
                           </div>
                           <div class="text-base text-gray-700">
-                            Código: Prod-0000{{ o.product!.idProduct }}
+                            Código: {{ o.product!.idProduct }}
                           </div>
                         </div>
                         <div *ngIf="isPrinting">
@@ -241,7 +241,7 @@
                             {{ o.product!.name }}
                           </div>
                           <div class="text-base text-gray-700">
-                            Código: Prod-0000{{ o.product!.idProduct }}
+                            Código: {{ o.product!.idProduct }}
                           </div>
                         </div>
                       </div>

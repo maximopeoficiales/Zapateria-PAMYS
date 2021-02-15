@@ -23,7 +23,8 @@ export class CartService {
 
   initialiseCart(): void {
     this.cart = new Array<{product: Product, amount: number}>();
-    this.cartItemsCount = new BehaviorSubject(0);
+    this.cartItemsCount.next(0);
+    localStorage.removeItem("cart");
   }
 
   getCart() {
@@ -86,6 +87,7 @@ export class CartService {
           this.cart.splice(index, 1);
         }
       }
+      this.saveCart();
     }
 
     this.cartItemsCount.next(this.cartItemsCount.value - 1);
@@ -99,6 +101,7 @@ export class CartService {
         this.cart.splice(index, 1);
       }
     }
+    this.saveCart();
   }
 
 }

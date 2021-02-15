@@ -41,6 +41,15 @@ export class CartComponent implements OnInit {
       product: Product;
       amount: number;
     }>(this.products);
+    if (this.userService.isLogged()) {
+      this.user = this.userService.getUser()!;
+      this.paymentTypeService.getAllUsingGET6().subscribe(res => {
+        this.paymentTypes = res;
+      });
+      this.documentTypeService.getAllUsingGET2().subscribe(res => {
+        this.documentTypes = res;
+      });
+    }
   }
 
   getTotal() {
@@ -78,6 +87,18 @@ export class CartComponent implements OnInit {
     }
   }
 
+  getDate(): string {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month: any = date.getMonth() + 1;
+    let day: any = date.getDate();
+
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return `${year}-${month}-${day}T00:00:00Z`;
+  }
+
   decrease(product: Product) {
     this.cartService.decreaseItem(product);
     this.updateTable();
@@ -91,15 +112,8 @@ export class CartComponent implements OnInit {
   ];
 
   checkout() {
-    if (this.userService.isLogged()) {
-      this.user = this.userService.getUser()!;
-      this.paymentTypeService.getAllUsingGET6().subscribe(res => {
-        this.paymentTypes = res;
-      });
-      this.documentTypeService.getAllUsingGET2().subscribe(res => {
-        this.documentTypes = res;
-      });
-    } else {
+
+    if (!this.userService.isLogged()) {
       this.swal.showMessage("Error",
         "Primero debe loguearse.",
         TypeMessageSwal.ERROR,
@@ -107,6 +121,7 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+
     let selectedDoctype = <string>document.getElementById("docType")?.textContent;
     let docType = this.documentTypes.find(e => e.doctype == selectedDoctype);
     let selectedPaymentType = <string>document.getElementById("paymentType")?.textContent;
@@ -127,6 +142,8 @@ export class CartComponent implements OnInit {
       return;
     }
     this.order = {
+      idClient: this.user.idClient,
+      dateCreated: this.getDate(),
       shippingAddress: this.order.shippingAddress! == undefined ? this.user.address! : this.order.shippingAddress!,
       idDocumentType: docType?.idDocumentType,
       idPaymentStatus: paymentType?.idPaymentType,
@@ -135,22 +152,29 @@ export class CartComponent implements OnInit {
       zipCode: this.order.zipCode! == undefined ? this.user.zip_code! : this.order.zipCode!,
       comment: this.order.comment! == undefined ? "Sin comentarios" : this.order.comment
     };
-
+    console.log(this.order);
     this.cartService.getCart().forEach(e => {
       this.orderDetails.push({
         idProduct: e.product.idProduct,
+        price: e.product.price,
         quantity: e.amount
       });
     });
 
-    this.orderService.saveUsingPOST3(this.order).subscribe(() => {
+
+    this.orderService.saveUsingPOST3(this.order).subscribe((savedOrder) => {
       this.orderDetails.forEach((e) => {
+        e.idOrder = savedOrder.idOrder;
         this.orderDetailService.saveUsingPOST5(e).subscribe();
+        console.log(e);
       });
       this.swal.showMessage("Gracias por su compra",
         "Pedido registrado",
         TypeMessageSwal.SUCCESS,
         1200, false);
+      this.cartService.initialiseCart();
+      this.router.navigate(['/home']);
+      return;
     });
   }
 

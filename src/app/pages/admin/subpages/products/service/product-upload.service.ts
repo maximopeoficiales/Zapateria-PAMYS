@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductUploadService {
-  urlEndPoint = 'http://localhost:8090/api/product/photos/upload';
+  urlEndPoint = 'https://spring.luismeramosr.ml/api/product/photos/upload';
   urlEndPointProductImages =
-    'http://localhost:8090/api/product_images/photos/upload';
+    'https://spring.luismeramosr.ml/api/product_images/photos/upload';
   constructor(private http: HttpClient) {}
   // subir foto del cliente
   subirFotoProducto(
