@@ -85,12 +85,77 @@
           <mat-card style="position: relative">
             <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
               <i class="fas fa-shoe-prints fa-rotate-270"></i>
-            </app-circulo-icon-card> 
+            </app-circulo-icon-card>
+            <mat-card-title>
+              Datos de envío del pedido
+            </mat-card-title>
+            <mat-card-content>
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label class="block">
+                    Dirección de envío (dejar en blanco, si desea el envío a la dirección de facturación.)
+                  </mat-label>
+                  <input matInput
+                     [(ngModel)]="order.shippingAddress"
+                     #name="ngModel"
+                     name="shippingAddress"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label class="block">
+                    Código postal (dejar en blanco, si desea usar el código postal de facturación.)
+                  </mat-label>
+                  <input matInput
+                     [(ngModel)]="order.zipCode"
+                     #name="ngModel"
+                     name="zipCode"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label class="block">
+                    Comentario para la entrega (opcional).
+                  </mat-label>
+                  <input matInput
+                     [(ngModel)]="order.comment"
+                     #name="ngModel"
+                     name="comment"
+                  />
+                </mat-form-field>
+              </div>
+
+              <mat-form-field appearance="fill">
+                <mat-label>
+                  Tipo de documento de venta:
+                </mat-label>
+                <mat-select id="docType">
+                  <mat-option *ngFor="let type of documentTypes" 
+                              [value]="type.idDocumentType">
+                    {{ type.doctype }} 
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>            
+              <mat-form-field appearance="fill">
+                <mat-label>
+                  Tipo de pago:
+                </mat-label>
+                <mat-select id="paymentType">
+                  <mat-option *ngFor="let type of paymentTypes" 
+                      value="{{ type.idPaymentType! }}">
+                    {{ type.type }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </mat-card-content>
           </mat-card>
         </form>
         <div>
           <button class="px-2 py-1 mt-2 mr-2 text-white bg-blue-500 rounded-md" matStepperPrevious>Atrás</button>
-          <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" matStepperNext>Siguiente</button>
+          <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" (click)="checkout()">Siguiente</button>
         </div>
     </mat-step>
     <mat-step>

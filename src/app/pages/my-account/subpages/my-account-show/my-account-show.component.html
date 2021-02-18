@@ -1,23 +1,20 @@
-<my-account-container>
-  <div class="">
-    <h5 class="p-2 text-lg font-semibold">Mis Datos</h5>
-    <div class="text-sm">
-      <p class="mt-2"><span class="p-1 font-semibold">Usuario </span> {{ user.username }}</p>
-      <p class="mt-2">
-        <span class="p-1 font-semibold">Nombre Completo </span>
-        {{ user.firstName }} {{ user.lastName }}
-      </p>
-      <p class="mt-2"><span class="p-1 font-semibold">Email </span> {{ user.email }}</p>
-      <p class="mt-2"><span class="p-1 font-semibold">Telefono </span> {{ user.phone }}</p>
-      <p class="mt-2"><span class="p-1 font-semibold">Direccion </span> {{ user.address }}</p>
-      <p class="mt-2">
-        <span class="p-1 font-semibold">Codigo Postal </span> {{ user.zip_code }}
-      </p>
-      <p class="mt-2">
-        <span class="p-1 font-semibold">Tipo de Usuario </span>
-        {{ user.idRol == 1 ? "Cliente" : "Admin" }}
-      </p>
-    </div>
+<div class="">
+  <h5 class="p-2 text-lg font-semibold">Mis Datos</h5>
+  <div class="text-sm">
+    <p class="mt-2"><span class="p-1 font-semibold">Usuario </span> {{ user.username }}</p>
+    <p class="mt-2">
+      <span class="p-1 font-semibold">Nombre Completo </span>
+      {{ user.firstName }} {{ user.lastName }}
+    </p>
+    <p class="mt-2"><span class="p-1 font-semibold">Email </span> {{ user.email }}</p>
+    <p class="mt-2"><span class="p-1 font-semibold">Telefono </span> {{ user.phone }}</p>
+    <p class="mt-2"><span class="p-1 font-semibold">Direccion </span> {{ user.address }}</p>
+    <p class="mt-2">
+      <span class="p-1 font-semibold">Codigo Postal </span> {{ user.zip_code }}
+    </p>
+    <p class="mt-2">
+      <span class="p-1 font-semibold">Tipo de Usuario </span>
+      {{ user.idRol == 1 ? "Cliente" : "Admin" }}
+    </p>
   </div>
-  <br><br>
-</my-account-container>
+</div>

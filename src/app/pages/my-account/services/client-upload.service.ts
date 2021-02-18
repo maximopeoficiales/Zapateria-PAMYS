@@ -1,12 +1,12 @@
-import { HttpEvent, HttpRequest, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {HttpEvent, HttpRequest, HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientUploadService {
-  urlEndPoint = 'http://localhost:8090/api/client/photos/upload';
+  urlEndPoint = 'https://spring.luismeramosr.ml/api/client/photos/upload';
   constructor(private http: HttpClient) {}
   // subir foto del cliente
   subirFoto(archivo: File, idCli: number): Observable<HttpEvent<{}>> {

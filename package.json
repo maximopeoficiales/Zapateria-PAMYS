@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "go-production": "ng  serve --host 192.168.1.100 --disable-host-check",
     "build": "ng build",
     "build-api": "npx ng-swagger-gen",
     "build-css": "npx tailwindcss-cli@latest build  ./src/styles.css -o src/assets/css/tailwind.css",
@@ -32,6 +33,7 @@
     "jspdf": "^2.3.0",
     "ngx-mat-select-search": "^3.2.0",
     "rxjs": "~6.6.0",
+    "sugar-date": "^2.0.6",
     "sweetalert2": "^10.13.0",
     "swiper": "^6.4.5",
     "tslib": "^2.0.0",

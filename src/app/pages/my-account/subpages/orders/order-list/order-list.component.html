@@ -1,98 +1,80 @@
-<div class="container">
-    <div class="mx-2 my-4 row justify-content-center">
-      <div class="my-5 col-md-8">
-        <a
-          mat-flat-button
-          color="primary"
-          [routerLink]="['/admin/vendors']"
-          class="my-2 text-white text-decoration-none"
-        >
-          <i class="mr-2 fas fa-arrow-left"></i>Back
-        </a>
-        <form #vendorForm="ngForm">
-          <mat-card style="position: relative">
-            <!-- circulo para card -->
-            <app-circulo-icon-card [color]="'#47B475'" colorTexto="white">
-              <i class="fas fa-shoe-prints fa-rotate-270"></i>
-            </app-circulo-icon-card>
-  
-            <mat-card-content>
-              <div class="form-group">
-                <label for="">Company:</label>
-                <mat-form-field appearance="fill">
-                  <mat-label class="block">Insert Company</mat-label>
-                  <input
-                    matInput
-                    [(ngModel)]="vendor.company"
-                    #company="ngModel"
-                    name="company"
-                    required
-                    minlength="1"
-                  />
-                </mat-form-field>
-                <div
-                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
-                  *ngIf="company.invalid && (company.dirty || company.touched)"
-                >
-                  <div class="" *ngIf="company.errors?.required">
-                    Company is required
+<input (keyup)="filterByStatus()" [(ngModel)]="statusSelected" placeholder="Estado"/>
+<app-spinner [show]="loading"></app-spinner>
+<div class="flex flex-col table-container" *ngIf="!loading" >
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg table-box">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                Pedido
+              </th>
+              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                Fecha
+              </th>
+              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                Estado
+              </th>
+              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                Total
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let o of orders" >
+              <td class="py-4 pl-6 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 w-10 h-10">
+                    <img class="w-10 h-10 rounded-full" src="{{ getUserImageURL() }}" alt="">
+                  </div>
+                  <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">
+                      {{ o.client!.firstName }}
+                      {{ o.client!.lastName }}
+                    </div>
+                    <div class="text-sm text-gray-500">
+                      # {{ o.idOrder }}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="">Description:</label>
-                <mat-form-field appearance="fill">
-                  <mat-label class="block">Insert Description</mat-label>
-                  <textarea
-                    matInput
-                    maxlength="150"
-                    [(ngModel)]="vendor.description"
-                    #description="ngModel"
-                    name="description"
-                    required
-                    minlength="1"
-                  ></textarea>
-                </mat-form-field>
-                <div
-                  class="inline-flex items-center p-1 px-2 my-1 text-xs leading-none text-gray-800 bg-red-100 rounded-full font-weight-bold"
-                  *ngIf="
-                    description.invalid &&
-                    (description.dirty || description.touched)
-                  "
-                >
-                  <div class="" *ngIf="description.errors?.required">
-                    Description is required
-                  </div>
-                </div>
-              </div>
-  
-  
-              <button
-                mat-flat-button
-                color="accent"
-                class="text-white w-100 h6"
-                style="background-color: #47b475"
-                *ngIf="vendor.idVendor == null; else elseButton"
-                (click)="create()"
-                [disabled]="!vendorForm.form.valid"
-              >
-                <i class="mr-2 fas fa-save"></i>Save
-              </button>
-              <ng-template #elseButton>
-                <button
-                  mat-flat-button
-                  color="primary"
-                  class="text-white w-100 h6"
-                  (click)="update()"
-                  [disabled]="!vendorForm.form.valid"
-                >
-                  <i class="mr-2 fas fa-save"></i>Update
-                </button>
-              </ng-template>
-            </mat-card-content>
-          </mat-card>
-        </form>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{ o.dateCreated | date: 'dd/MM/yyyy' }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="inline-flex px-2 text-xs font-semibold text-gray-700 bg-gray-300 rounded-full leading-5"
+                      *ngIf="o.idOrderStatus == 1">
+                  {{ o.orderStatus!.status }}
+                </span>
+                <span class="inline-flex px-2 text-xs font-semibold text-yellow-600 bg-yellow-200 rounded-full leading-5"
+                      *ngIf="o.idOrderStatus == 2">
+                  {{ o.orderStatus!.status }}
+                </span>
+                <span class="inline-flex px-2 text-xs font-semibold text-blue-700 bg-blue-200 rounded-full leading-5"
+                      *ngIf="o.idOrderStatus == 3">
+                  {{ o.orderStatus!.status }}
+                </span>
+                <span class="inline-flex px-2 text-xs font-semibold text-green-700 bg-green-200 rounded-full leading-5"
+                      *ngIf="o.idOrderStatus == 4">
+                  {{ o.orderStatus!.status }}
+                </span>
+                <span class="inline-flex px-2 text-xs font-semibold text-red-700 bg-red-300 rounded-full leading-5"
+                      *ngIf="o.idOrderStatus == 5">
+                  {{ o.orderStatus!.status }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                {{ o.total | currency: 'S/ ' }}
+              </td>
+              <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                <button *ngIf="o.idPaymentStatus==2" (click)="uploadVoucher()" class="text-indigo-600 hover:text-indigo-900">Subir voucher</button>
+              </td>
+            </tr>              
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+</div>
+
