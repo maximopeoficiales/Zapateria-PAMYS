@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = "https://spring.luismeramosr.ml";
+  rootUrl: string = "http://localhost:8090/api";
 }
 
 export interface ApiConfigurationInterface {

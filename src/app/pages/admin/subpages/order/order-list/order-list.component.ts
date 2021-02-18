@@ -1,5 +1,5 @@
 import { HtmlAstPath } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Client, Order, OrderStatus, Product } from 'src/app/core/api/models';
@@ -13,6 +13,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { environment } from 'src/environments/environment';
 import { LoginService } from 'src/app/core/services/auth/login/login.service';
+import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-order-list',
@@ -37,6 +38,13 @@ export class OrderListComponent implements OnInit {
   filterFunction: any;
   user: Client = {};
   statusSelected: string = '';
+  estado: OrderStatus[] = [
+    { idOrderStatus: 1, status: 'En espera' },
+    { idOrderStatus: 2, status: 'Por pagar' },
+    { idOrderStatus: 4, status: 'Pendiente' },
+    { idOrderStatus: 5, status: 'Entregado' },
+    { idOrderStatus: 6, status: 'Cancelado' },
+  ];
 
   value = '';
   constructor(
@@ -49,19 +57,6 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.orderService.getAllUsingGET3().subscribe((data) => {
-        this.orders = data;
-        this.orderStatusesService.getAllUsingGET4().subscribe((data) => {
-          this.orderStatuses = data;
-          this.usersService.getAllUsingGET1().subscribe((data) => {
-            this.users = data;
-            this.loading = false;
-          });
-        });
-      });
-    }, 300);
-
     if (this.orders.length == 0) {
       setTimeout(() => {
         this.orderService.getAllUsingGET3().subscribe((orders) => {
@@ -70,6 +65,22 @@ export class OrderListComponent implements OnInit {
         });
       }, 300);
     }
+  }
+
+  filter() {
+    clearTimeout(this.filterFunction);
+    this.loading = true;
+    this.filterFunction = setTimeout(() => {
+      this.orderService.getAllUsingGET3().subscribe((orders) => {
+        this.ngOnInit();
+        this.orders = orders.filter(
+          (o) =>
+            o.idClient == this.user.idClient &&
+            o.orderStatus?.status! == this.statusSelected
+        );
+        this.loading = false;
+      });
+    }, 300);
   }
 
   getImageUrl(product: Product): string {
@@ -168,7 +179,28 @@ export class OrderListComponent implements OnInit {
         this.togglePrintState();
       });
   }
-  filterByStatus() {
+
+  datenow: any;
+  changedate(date: string) {
+    date += 'T00:00:00';
+    console.log(date);
+    this.orderService.getAllUsingGET3().subscribe((orders) => {
+      this.orders = orders
+        .filter((o) => o.idClient == this.user.idClient)
+        .filter((e) => e.dateCreated == date);
+
+      console.log(this.orders);
+
+      if (this.orders.length == 0) {
+        this.orderService.getAllUsingGET3().subscribe((orders) => {
+          this.orders = orders.filter((e) => e.idClient == this.user.idClient);
+        });
+      }
+    });
+  }
+
+  getstatus(estado: string) {
+    console.log(estado);
     clearTimeout(this.filterFunction);
     this.loading = true;
     this.filterFunction = setTimeout(() => {
@@ -176,8 +208,7 @@ export class OrderListComponent implements OnInit {
         this.ngOnInit();
         this.orders = orders.filter(
           (o) =>
-            o.idClient == this.user.idClient &&
-            o.orderStatus?.status! == this.statusSelected
+            o.idClient == this.user.idClient && o.orderStatus?.status! == estado
         );
         this.loading = false;
       });

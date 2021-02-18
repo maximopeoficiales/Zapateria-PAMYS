@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
-  apiURL: 'https://spring.luismeramosr.ml',
+  apiURL: 'http://localhost:8090/api',
   url_api: 'https://platzi-store.herokuapp.com',
-  url_client_images: 'https://spring.luismeramosr.ml/api/public/clients/photos/',
-  url_voucher_images: 'https://spring.luismeramosr.ml/api/public/vouchers/photos/',
-  url_products_images: 'https://spring.luismeramosr.ml/api/public/product/photos/',
+  url_client_images: 'http://localhost:8090/api/public/clients/photos/',
+  url_voucher_images: 'http://localhost:8090/api/public/vouchers/photos/',
+  url_products_images: 'http://localhost:8090/api/public/product/photos/',
   url_productos_other_images:
-    'https://spring.luismeramosr.ml/api/public/product/photos/others/',
+    'http://localhost:8090/api/public/product/photos/others/',
   url_product_not_found: 'https://www.w4ter.co.za/error.png',
   firebaseConfig: {
     apiKey: 'AIzaSyC-_m_2RPFl_znsjsaNAWRZS2X4QpNfxIY',

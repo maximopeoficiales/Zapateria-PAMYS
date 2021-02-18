@@ -24,7 +24,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ApiModule.forRoot({rootUrl: "https://spring.luismeramosr.ml"})
+    ApiModule.forRoot({rootUrl: "http://localhost:8090/api"})
     // SharedModule,
     // CoreModule,
     // ProductModule,

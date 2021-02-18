@@ -33,7 +33,7 @@ export class BaseService {
     protected config: ApiConfiguration,
     protected http: HttpClient
   ) {
-    this._rootUrl = "https://spring.luismeramosr.ml";
+    this._rootUrl = "http://localhost:8090";
   }
 
   private _rootUrl: string = '';

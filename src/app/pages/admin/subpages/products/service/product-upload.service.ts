@@ -6,9 +6,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class ProductUploadService {
-  urlEndPoint = 'https://spring.luismeramosr.ml/api/product/photos/upload';
+  urlEndPoint = 'http://localhost:8090/api/product/photos/upload';
   urlEndPointProductImages =
-    'https://spring.luismeramosr.ml/api/product_images/photos/upload';
+    'http://localhost:8090/api/product_images/photos/upload';
   constructor(private http: HttpClient) {}
   // subir foto del cliente
   subirFotoProducto(
