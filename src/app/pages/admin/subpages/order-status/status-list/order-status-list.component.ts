@@ -1,16 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {OrderStatus} from 'src/app/core/api/models';
-import {OrderStatusControllerService} from 'src/app/core/api/services';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { OrderStatus } from 'src/app/core/api/models';
+import { OrderStatusControllerService } from 'src/app/core/api/services';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-status-list.component.html',
-  styleUrls: ['./order-status-list.component.sass']
+  styleUrls: ['./order-status-list.component.sass'],
 })
 export class OrderStatusListComponent implements OnInit {
-
   constructor(private service: OrderStatusControllerService) {}
 
   listOrderStatus: OrderStatus[] = [];
@@ -18,6 +17,14 @@ export class OrderStatusListComponent implements OnInit {
   displayedColumns: string[] = ['idOrderStatus', 'status', 'Actions'];
   ocultado = 'd-none';
   showSpinner = true;
+
+  estado: OrderStatus[] = [
+    { idOrderStatus: 1, status: 'En espera' },
+    { idOrderStatus: 2, status: 'Por pagar' },
+    { idOrderStatus: 4, status: 'Pendiente' },
+    { idOrderStatus: 5, status: 'Entregado' },
+    { idOrderStatus: 6, status: 'Cancelado' },
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
@@ -69,5 +76,14 @@ export class OrderStatusListComponent implements OnInit {
         }
       });
   }
-}
 
+  getstatus(estado: string) {
+    this.service.getAllUsingGET4().subscribe((d) => {
+      this.listOrderStatus = d.filter((e) => e.status == estado);
+      this.chargingTableList();
+
+      this.ocultado = d.length == 0 ? 'd-none' : '';
+      this.showSpinner = false;
+    });
+  }
+}
