@@ -67,22 +67,6 @@ export class OrderListComponent implements OnInit {
     }
   }
 
-  filter() {
-    clearTimeout(this.filterFunction);
-    this.loading = true;
-    this.filterFunction = setTimeout(() => {
-      this.orderService.getAllUsingGET3().subscribe((orders) => {
-        this.ngOnInit();
-        this.orders = orders.filter(
-          (o) =>
-            o.idClient == this.user.idClient &&
-            o.orderStatus?.status! == this.statusSelected
-        );
-        this.loading = false;
-      });
-    }, 300);
-  }
-
   getImageUrl(product: Product): string {
     return this.productImagesUrl + product.thumbnailUrl;
   }
@@ -212,6 +196,6 @@ export class OrderListComponent implements OnInit {
         );
         this.loading = false;
       });
-    }, 300);
+    }, 500);
   }
 }

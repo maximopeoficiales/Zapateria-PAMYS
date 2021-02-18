@@ -2,23 +2,27 @@ import swal from 'sweetalert2';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { DocumentType } from 'src/app/core/api/models';
 import { DocumentTypeControllerService } from 'src/app/core/api/services';
+import { DocumentType } from './../../../../../core/api/models/document-type';
 
 @Component({
   selector: 'app-document-list',
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.sass']
+  styleUrls: ['./document-list.component.sass'],
 })
 export class DocumentListComponent implements OnInit {
-
   constructor(private service: DocumentTypeControllerService) {}
 
   listDocumentType: DocumentType[] = [];
   dataSource: any = null;
-  displayedColumns: string[] = ['id', 'doctype','Actions'];
+  displayedColumns: string[] = ['id', 'doctype', 'Actions'];
   ocultado = 'd-none';
   showSpinner = true;
+  filterFunction: any;
+  estado: DocumentType[] = [
+    { idDocumentType: 1, doctype: 'Boleta' },
+    { idDocumentType: 2, doctype: 'Factura' },
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
@@ -37,7 +41,9 @@ export class DocumentListComponent implements OnInit {
     }, 300);
   }
   chargingTableList(): void {
-    this.dataSource = new MatTableDataSource<DocumentType>(this.listDocumentType);
+    this.dataSource = new MatTableDataSource<DocumentType>(
+      this.listDocumentType
+    );
     this.dataSource.paginator = this.paginator;
   }
 
@@ -55,7 +61,7 @@ export class DocumentListComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
           this.service
-            .deleteUsingDELETE2(DocumentType.idDocumentType|| 0)
+            .deleteUsingDELETE2(DocumentType.idDocumentType || 0)
             .subscribe((e) => {
               this.listDocumentType = this.listDocumentType.filter(
                 (cat) => cat.idDocumentType !== DocumentType.idDocumentType
@@ -70,6 +76,14 @@ export class DocumentListComponent implements OnInit {
         }
       });
   }
+
+  getstatus(estado: string) {
+    this.service.getAllUsingGET2().subscribe((d) => {
+      this.listDocumentType = d.filter((e) => e.doctype == estado);
+      this.chargingTableList();
+
+      this.ocultado = d.length == 0 ? 'd-none' : '';
+      this.showSpinner = false;
+    });
+  }
 }
-
-
