@@ -1,6 +1,19 @@
 <app-header-custom title="Pedidos" subtitle="Gestión de pedidos">
   <i class="fa fa-file" aria-hidden="true"></i>
 </app-header-custom>
+
+<!-- Search -->
+
+<mat-form-field class="example-form-field">
+  <mat-label>Ingresa Estado</mat-label>
+  <input matInput type="text"  (keyup)="filterByStatus()" [(ngModel)]=statusSelected >
+  <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="statusSelected=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  <br>
+
+</mat-form-field>
+
 <app-spinner [show]="loading"></app-spinner>
 <div class="flex flex-col table-container" *ngIf="!loading" >
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
