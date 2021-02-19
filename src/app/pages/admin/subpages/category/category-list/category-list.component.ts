@@ -19,6 +19,11 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   ocultado = 'd-none';
   showSpinner = true;
 
+  tipo: Category[] = [
+    { idCategory: 1, active: true, description: '', name: 'Bebe' },
+    { idCategory: 2, active: true, description: '', name: 'Ninos' },
+  ];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
   ngAfterViewInit(): void {
@@ -70,5 +75,15 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
             });
         }
       });
+  }
+
+  getstatus(estado: string) {
+    this.service.getAllUsingGET().subscribe((d) => {
+      this.listCategorys = d.filter((e) => e.name == estado);
+      this.chargingTableList();
+
+      this.ocultado = d.length == 0 ? 'd-none' : '';
+      this.showSpinner = false;
+    });
   }
 }

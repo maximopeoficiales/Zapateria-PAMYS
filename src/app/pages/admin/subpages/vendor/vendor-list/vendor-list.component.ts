@@ -28,7 +28,7 @@ export class VendorListComponent implements OnInit {
   loadVendorList(): void {
     setTimeout(() => {
       this.service.getAllUsingGET9().subscribe((vendors) => {
-       this.listVendors = vendors;
+        this.listVendors = vendors;
         this.chargingTableList();
         this.ocultado = vendors.length == 0 ? 'd-none' : '';
         this.showSpinner = false;
@@ -68,5 +68,20 @@ export class VendorListComponent implements OnInit {
             });
         }
       });
+  }
+  name: string = '';
+  filterByName() {
+    setTimeout(() => {
+      this.service.getAllUsingGET9().subscribe((v) => {
+        this.listVendors = v.filter((o) => o.company == this.name);
+        if (this.listVendors.length == 0) {
+          this.listVendors = v;
+        }
+
+        this.chargingTableList();
+        this.ocultado = v.length === 0 ? 'd-none' : '';
+        this.showSpinner = false;
+      });
+    }, 300);
   }
 }

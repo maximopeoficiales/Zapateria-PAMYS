@@ -45,6 +45,25 @@ export class OrderListComponent implements OnInit {
     this.router.navigate(['/my-account/voucher']);
   }
 
+  datenow: any;
+  changedate(date: string) {
+    date += 'T00:00:00';
+    console.log(date);
+    this.orderService.getAllUsingGET3().subscribe((orders) => {
+      this.orders = orders
+        .filter((o) => o.idClient == this.user.idClient)
+        .filter((e) => e.dateCreated == date);
+
+      console.log(this.orders);
+
+      if (this.orders.length == 0) {
+        this.orderService.getAllUsingGET3().subscribe((orders) => {
+          this.orders = orders.filter((e) => e.idClient == this.user.idClient);
+        });
+      }
+    });
+  }
+
   filterByStatus() {
     clearTimeout(this.filterFunction);
     this.loading = true;

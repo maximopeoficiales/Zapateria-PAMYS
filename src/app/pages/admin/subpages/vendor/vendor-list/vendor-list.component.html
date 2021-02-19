@@ -15,6 +15,20 @@
         >
       </div>
     </div>
+
+<!-- Search -->
+<mat-form-field class="example-form-field">
+  <mat-label>Ingresa el Vendor</mat-label>
+  <input matInput type="text"  (keyup)="filterByName()" [(ngModel)]=name >
+  <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  <br>
+</mat-form-field>
+
+
+
+
     <app-spinner [show]="showSpinner"></app-spinner>
     <div *ngIf="!showSpinner && listVendors.length != 0">
       <a

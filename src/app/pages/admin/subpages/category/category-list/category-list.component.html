@@ -15,6 +15,22 @@
         >
       </div>
     </div>
+
+<!-- Search -->
+<div class="flex flex-row table-container p-2 justify-between items-center">
+  
+<mat-form-field appearance="fill">
+  <mat-label>Seleccione Tipo de Categoria</mat-label>
+  <mat-select >
+    <mat-option #es *ngFor="let e of tipo" [value]="e.name"  (click)="getstatus(es.value)">
+      {{e.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+</div>
+
+
     <app-spinner [show]="showSpinner"></app-spinner>
     <div *ngIf="!showSpinner && listCategorys.length != 0">
       <a
