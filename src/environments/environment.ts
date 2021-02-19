@@ -3,15 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiURL: 'https://spring.luismeramosr.ml',
-  url_api: 'https://platzi-store.herokuapp.com',
-  url_client_images: 'https://spring.luismeramosr.ml/api/public/clients/photos/',
-  url_voucher_images: 'https://spring.luismeramosr.ml/api/public/vouchers/photos/',
-  url_products_images: 'https://spring.luismeramosr.ml/api/public/product/photos/',
-  url_productos_other_images:
-    'https://spring.luismeramosr.ml/api/public/product/photos/others/',
-  url_product_not_found: 'https://www.w4ter.co.za/error.png',
+    production: true,
+    apiURL: 'http://localhost:5000',
+    url_api: 'https://platzi-store.herokuapp.com',
+    url_client_images: 'http://localhost:5000/uploads/photos-clients/',
+    url_voucher_images: 'http://localhost:5000/uploads/vouchers/',
+    url_products_images: 'http://localhost:5000/uploads/products/thumbnails/',
+    url_productos_other_images:
+        'http://localhost:5000/uploads/products/product-images/',
+    url_product_not_found: 'https://www.w4ter.co.za/error.png',
 };
 
 /*

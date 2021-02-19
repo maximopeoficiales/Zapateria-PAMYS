@@ -43,6 +43,7 @@ export class OrderListComponent implements OnInit {
         setTimeout(() => {
             this.orderService.getAllUsingGET3().subscribe((data) => {
                 this.orders = data;
+                console.log(data);
                 this.orderStatusesService.getAllUsingGET4().subscribe((data) => {
                     this.orderStatuses = data;
                     this.usersService.getAllUsingGET1().subscribe((data) => {
