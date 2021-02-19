@@ -15,6 +15,23 @@
         >
       </div>
     </div>
+
+
+<!-- Search -->
+<div class="flex flex-row table-container p-2 justify-between items-center">
+  
+<mat-form-field appearance="fill">
+  <mat-label>Seleccione Tipo de Pago</mat-label>
+  <mat-select >
+    <mat-option #es *ngFor="let e of tipo" [value]="e.type"  (click)="getstatus(es.value)">
+      {{e.type}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+</div>
+
+
     <app-spinner [show]="showSpinner"></app-spinner>
     <div *ngIf="!showSpinner && listPaymentTypes.length != 0">
       <a

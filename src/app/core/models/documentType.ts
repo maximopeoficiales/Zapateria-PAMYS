@@ -7,4 +7,3 @@ export class documentTypeClass implements DocumentType {
         public doctype?: string,
     ) {}
 }
-

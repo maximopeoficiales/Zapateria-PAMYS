@@ -78,4 +78,19 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
         }
       });
   }
+  name: string = '';
+  filterByName() {
+    setTimeout(() => {
+      this.service.getAllUsingGET7().subscribe((pro) => {
+        this.listProduct = pro.filter((o) => o.vendor?.company == this.name);
+        if (this.listProduct.length == 0) {
+          this.listProduct = pro;
+        }
+
+        this.chargingTableList();
+        this.ocultado = pro.length === 0 ? 'd-none' : '';
+        this.showSpinner = false;
+      });
+    }, 300);
+  }
 }

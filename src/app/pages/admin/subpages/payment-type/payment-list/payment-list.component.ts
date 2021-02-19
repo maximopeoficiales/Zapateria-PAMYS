@@ -19,6 +19,11 @@ export class PaymentListComponent implements OnInit, AfterViewInit {
   ocultado = 'd-none';
   showSpinner = true;
 
+  tipo: PaymentType[] = [
+    { idPaymentType: 1, type: 'Contra Entrega' },
+
+    { idPaymentType: 2, type: 'Transferencia' },
+  ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {}
   ngAfterViewInit(): void {
@@ -70,5 +75,14 @@ export class PaymentListComponent implements OnInit, AfterViewInit {
             });
         }
       });
+  }
+  getstatus(estado: string) {
+    this.service.getAllUsingGET6().subscribe((d) => {
+      this.listPaymentTypes = d.filter((e) => e.type == estado);
+      this.chargingTableList();
+
+      this.ocultado = d.length == 0 ? 'd-none' : '';
+      this.showSpinner = false;
+    });
   }
 }
