@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProductUploadService {
-    urlEndPoint = 'http://localhost:5000/api/product/photos/upload';
+    urlEndPoint = `${environment.apiURL}/api/product/photos/upload`;
     urlEndPointProductImages =
-        'http://localhost:5000/api/product_images/photos/upload';
+        `${environment.apiURL}/api/product_images/photos/upload`;
     constructor(private http: HttpClient) {}
     // subir foto del cliente
     subirFotoProducto(

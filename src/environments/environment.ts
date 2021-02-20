@@ -4,13 +4,13 @@
 
 export const environment = {
     production: true,
-    apiURL: 'http://localhost:5000',
+    apiURL: 'http://localhost:8090',
     url_api: 'https://platzi-store.herokuapp.com',
-    url_client_images: 'http://localhost:5000/uploads/photos-clients/',
-    url_voucher_images: 'http://localhost:5000/uploads/vouchers/',
-    url_products_images: 'http://localhost:5000/uploads/products/thumbnails/',
+    url_client_images: 'http://localhost:8090/api/public/clients/photos/',
+    url_voucher_images: 'http://localhost:8090/api/public/vouchers/photos/',
+    url_products_images: 'http://localhost:8090/api/public/product/photos/',
     url_productos_other_images:
-        'http://localhost:5000/uploads/products/product-images/',
+        'http://localhost:8090/api/public/product/photos/others/',
     url_product_not_found: 'https://www.w4ter.co.za/error.png',
 };
 

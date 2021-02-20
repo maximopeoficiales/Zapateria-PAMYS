@@ -1,12 +1,13 @@
 import {HttpEvent, HttpRequest, HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ClientUploadService {
-    urlEndPoint = 'http://localhost:5000/api/client/photos/upload';
+    urlEndPoint = `${environment.apiURL}/api/client/photos/upload`;
     constructor(private http: HttpClient) {}
     // subir foto del cliente
     subirFoto(archivo: File, idCli: number): Observable<HttpEvent<{}>> {

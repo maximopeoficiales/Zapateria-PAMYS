@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ApiModule} from './core/api/api.module';
 import {ApiInterceptor} from './core/api-interceptor/ApiInterceptor';
-
+import {environment} from 'src/environments/environment';
 
 
 // configuracion de headers global para la api
@@ -24,7 +24,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        ApiModule.forRoot({rootUrl: "http://localhost:5000"})
+        ApiModule.forRoot({rootUrl: environment.apiURL})
         // SharedModule,
         // CoreModule,
         // ProductModule,

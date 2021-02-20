@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {HttpClient, HttpParameterCodec, HttpParams} from '@angular/common/http';
 import {ApiConfiguration} from './api-configuration';
+import {environment} from 'src/environments/environment';
 
 /**
  * Custom parameter codec to correctly handle the plus sign in parameter
@@ -33,7 +34,7 @@ export class BaseService {
         protected config: ApiConfiguration,
         protected http: HttpClient
     ) {
-        this._rootUrl = "http://localhost:5000";
+        this._rootUrl = environment.apiURL;
     }
 
     private _rootUrl: string = '';
