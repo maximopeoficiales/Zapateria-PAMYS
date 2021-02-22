@@ -18,11 +18,12 @@
 
 
 <!-- Search -->
-<div class="flex flex-row table-container p-2 justify-between items-center">
+<div class="flex flex-row items-center justify-between p-2 table-container">
   
 <mat-form-field appearance="fill">
   <mat-label>Seleccione Tipo de Pago</mat-label>
   <mat-select >
+    <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
     <mat-option #es *ngFor="let e of tipo" [value]="e.type"  (click)="getstatus(es.value)">
       {{e.type}}
     </mat-option>

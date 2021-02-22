@@ -1,4 +1,4 @@
-import {Client} from '../api/models';
+import {Client, Role} from '../api/models';
 
 export class CLientClass implements Client {
     constructor(
@@ -12,6 +12,7 @@ export class CLientClass implements Client {
         public password?: string,
         public phone?: string,
         public username?: string,
-        public zip_code?: number
+        public zip_code?: number,
+        public role?: Role
     ) {}
 }

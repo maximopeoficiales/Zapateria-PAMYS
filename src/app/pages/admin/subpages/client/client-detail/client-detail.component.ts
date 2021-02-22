@@ -26,6 +26,7 @@ export class ClientDetailComponent implements OnInit {
         console.log(this.client);
         this.client.idRol = 1;
         this.client.zip_code = 1;
+        this.client.role = {idRole: 1, name: "ROLE_USER"};
         this.service.saveUsingPOST1(this.modifyClient(this.client)).subscribe((res) => {
             this.router.navigate(['/admin/clients']);
             swal.fire(

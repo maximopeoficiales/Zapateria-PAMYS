@@ -13,7 +13,6 @@ import {jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
 import {environment} from 'src/environments/environment';
 import {LoginService} from 'src/app/core/services/auth/login/login.service';
-import {EventListenerFocusTrapInertStrategy} from '@angular/cdk/a11y';
 
 @Component({
     selector: 'app-order-list',
@@ -35,16 +34,10 @@ export class OrderListComponent implements OnInit {
     loading: boolean = true;
     productImagesUrl: string = environment.url_products_images;
 
+    isFirstLoad: boolean = true;
     filterFunction: any;
     user: Client = {};
     statusSelected: string = '';
-    estado: OrderStatus[] = [
-        {idOrderStatus: 1, status: 'En espera'},
-        {idOrderStatus: 2, status: 'Por pagar'},
-        {idOrderStatus: 4, status: 'Pendiente'},
-        {idOrderStatus: 5, status: 'Entregado'},
-        {idOrderStatus: 6, status: 'Cancelado'},
-    ];
 
     value = '';
     constructor(
@@ -57,7 +50,7 @@ export class OrderListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.orders.length == 0) {
+        if (this.isFirstLoad) {
             setTimeout(() => {
                 this.orderService.getAllUsingGET3().subscribe((orders) => {
                     this.orders = orders;
@@ -68,6 +61,7 @@ export class OrderListComponent implements OnInit {
                 });
             }, 300);
         }
+        this.isFirstLoad = false;
     }
 
     getImageUrl(product: Product): string {
@@ -129,7 +123,7 @@ export class OrderListComponent implements OnInit {
     }
 
     formatDate() {
-        let res = this.dateCreated.replace('/', '-') + 'T00:00:00Z';
+        let res = this.dateCreated.replace('/', '-') + 'T12:00:00Z';
         // console.log(res);
         return res;
     }
@@ -139,8 +133,12 @@ export class OrderListComponent implements OnInit {
             (e) => e.status == this.selectedStatus
         )?.idOrderStatus;
         this.order.idOrderStatus = newStatusID;
+        this.order.igv = this.getIgv();
         this.order.total = this.getTotal();
-        this.order.dateCreated = this.formatDate();
+        this.order.subtotal = this.getSubTotal();
+        this.order.dateCreated = this.dateCreated == this.order.dateCreated ? this.order.dateCreated + "Z" : this.formatDate();
+        this.order.orderStatus = this.orderStatuses.find(e => e.idOrderStatus == newStatusID);
+        console.log(this.order);
         this.orderService.updateUsingPUT3(this.order).subscribe(() => {
             this.closeDetail();
             this.ngOnInit();
@@ -167,38 +165,31 @@ export class OrderListComponent implements OnInit {
             });
     }
 
-    datenow: any;
     changedate(date: string) {
-        date += 'T00:00:00';
-        console.log(date);
-        this.orderService.getAllUsingGET3().subscribe((orders) => {
-            this.orders = orders
-                .filter((o) => o.idClient == this.user.idClient)
-                .filter((e) => e.dateCreated == date);
-
-            console.log(this.orders);
-
-            if (this.orders.length == 0) {
-                this.orderService.getAllUsingGET3().subscribe((orders) => {
-                    this.orders = orders.filter((e) => e.idClient == this.user.idClient);
-                });
-            }
-        });
-    }
-
-    getstatus(estado: string) {
-        console.log(estado);
-        clearTimeout(this.filterFunction);
         this.loading = true;
         this.filterFunction = setTimeout(() => {
             this.orderService.getAllUsingGET3().subscribe((orders) => {
-                this.ngOnInit();
-                this.orders = orders.filter(
-                    (o) =>
-                        o.idClient == this.user.idClient && o.orderStatus?.status! == estado
-                );
+                this.orders = orders.filter(e => e.dateCreated?.match(date));
                 this.loading = false;
+                this.ngOnInit();
             });
-        }, 500);
+        }, 300);
+    }
+
+    filterByStatus(estado: string) {
+        this.loading = true;
+        this.filterFunction = setTimeout(() => {
+            this.orderService.getAllUsingGET3().subscribe((orders) => {
+
+                if (estado == "Todos") {
+                    this.orders = orders;
+                } else {
+                    this.orders = orders.filter(e => e.orderStatus?.status!.match(estado));
+                }
+
+                this.loading = false;
+                this.ngOnInit();
+            });
+        }, 300);
     }
 }

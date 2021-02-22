@@ -3,12 +3,13 @@
 </app-header-custom>
 
 <!-- Search -->
-<div class="flex flex-row table-container p-2 justify-between items-center">
+<div class="flex flex-row items-center justify-between p-2 table-container">
   
 <mat-form-field appearance="fill">
   <mat-label>Seleccione Estado</mat-label>
   <mat-select >
-    <mat-option #es *ngFor="let e of estado" [value]="e.status"  (click)="getstatus(es.value)">
+    <mat-option #all (click)="filterByStatus('Todos')">Todos</mat-option>
+    <mat-option #es *ngFor="let e of orderStatuses" [value]="e.status"  (click)="filterByStatus(es.value)">
       {{e.status}}
     </mat-option>
   </mat-select>

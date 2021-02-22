@@ -1,4 +1,4 @@
-<app-header-custom title="Estados de pedido" subtitle="Mantenimiento de estados">
+<app-header-custom title="Estados de pedido" subtitle="Mantenimiento de all">
   <i class="fa fa-compass"></i>
 </app-header-custom>
 
@@ -17,11 +17,12 @@
     </div>
 
 <!-- Search -->
-<div class="flex flex-row table-container p-2 justify-between items-center">
+<div class="flex flex-row items-center justify-between p-2 table-container">
   
 <mat-form-field appearance="fill">
   <mat-label>Seleccione Estado</mat-label>
   <mat-select >
+    <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
     <mat-option #es *ngFor="let e of estado" [value]="e.status"  (click)="getstatus(es.value)">
       {{e.status}}
     </mat-option>
@@ -44,7 +45,7 @@
         Agregar estado de orden
       </a>
     </div>
-    <div class="{{ ocultado }}">
+    <div class="{{ ocultado }}" *ngIf="!showSpinner">
       <div style="overflow-x: auto">
         <table mat-table [dataSource]="dataSource" class="text-center">
           <!-- Position Column -->

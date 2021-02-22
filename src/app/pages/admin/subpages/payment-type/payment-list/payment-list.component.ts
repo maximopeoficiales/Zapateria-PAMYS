@@ -19,11 +19,8 @@ export class PaymentListComponent implements OnInit, AfterViewInit {
     ocultado = 'd-none';
     showSpinner = true;
 
-    tipo: PaymentType[] = [
-        {idPaymentType: 1, type: 'Contra Entrega'},
+    tipo: PaymentType[] = [];
 
-        {idPaymentType: 2, type: 'Transferencia'},
-    ];
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     ngOnInit(): void {}
     ngAfterViewInit(): void {
@@ -34,6 +31,7 @@ export class PaymentListComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.service.getAllUsingGET6().subscribe((paymentTypes) => {
                 this.listPaymentTypes = paymentTypes;
+                this.tipo = this.listPaymentTypes;
                 this.chargingTableList();
                 this.ocultado = paymentTypes.length == 0 ? 'd-none' : '';
                 this.showSpinner = false;
@@ -77,6 +75,11 @@ export class PaymentListComponent implements OnInit, AfterViewInit {
             });
     }
     getstatus(estado: string) {
+        this.showSpinner = true;
+        if (estado == "Todos") {
+            this.loadPaymentTypesList();
+            this.chargingTableList();
+        }
         this.service.getAllUsingGET6().subscribe((d) => {
             this.listPaymentTypes = d.filter((e) => e.type == estado);
             this.chargingTableList();
