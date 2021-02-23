@@ -16,26 +16,13 @@
       </div>
     </div>
 
-<!-- Search -->
-<div class="flex flex-row items-center justify-between p-2 table-container">
-  
-<mat-form-field appearance="fill">
-  <mat-label>Seleccione Estado</mat-label>
-  <mat-select >
-    <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
-    <mat-option #es *ngFor="let e of estado" [value]="e.status"  (click)="getstatus(es.value)">
-      {{e.status}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
 
-</div>
 
 
 
 
     <app-spinner [show]="showSpinner"></app-spinner>
-    <div *ngIf="!showSpinner && listOrderStatus.length != 0">
+    <div *ngIf="!showSpinner && listOrderStatus.length != 0" class="flex items-center justify-between">
       <a
         mat-flat-button
         color="primary"
@@ -44,6 +31,16 @@
       >
         Agregar estado de orden
       </a>
+    <!-- Search -->
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione Estado</mat-label>
+      <mat-select >
+        <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
+        <mat-option #es *ngFor="let e of estado" [value]="e.status"  (click)="getstatus(es.value)">
+          {{e.status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>    
     </div>
     <div class="{{ ocultado }}" *ngIf="!showSpinner">
       <div style="overflow-x: auto">

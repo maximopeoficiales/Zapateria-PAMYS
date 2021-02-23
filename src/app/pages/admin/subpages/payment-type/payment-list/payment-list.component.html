@@ -20,21 +20,13 @@
 <!-- Search -->
 <div class="flex flex-row items-center justify-between p-2 table-container">
   
-<mat-form-field appearance="fill">
-  <mat-label>Seleccione Tipo de Pago</mat-label>
-  <mat-select >
-    <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
-    <mat-option #es *ngFor="let e of tipo" [value]="e.type"  (click)="getstatus(es.value)">
-      {{e.type}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+
 
 </div>
 
 
     <app-spinner [show]="showSpinner"></app-spinner>
-    <div *ngIf="!showSpinner && listPaymentTypes.length != 0">
+    <div *ngIf="!showSpinner && listPaymentTypes.length != 0" class="flex items-center justify-between">
       <a
         mat-flat-button
         color="primary"
@@ -43,6 +35,15 @@
       >
         Agregar tipo de pago
       </a>
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione Tipo de Pago</mat-label>
+      <mat-select >
+        <mat-option #all [value]="'Todos'" (click)="getstatus(all.value)">Todos</mat-option>
+        <mat-option #es *ngFor="let e of tipo" [value]="e.type"  (click)="getstatus(es.value)">
+          {{e.type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>    
     </div>
     <div class="{{ ocultado }}">
       <div style="overflow-x: auto">

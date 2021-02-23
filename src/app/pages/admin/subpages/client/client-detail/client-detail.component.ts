@@ -3,6 +3,7 @@ import {CLientClass} from '../../../../../core/models/Client';
 import {ClientControllerService} from 'src/app/core/api/services';
 import {Router, ActivatedRoute} from '@angular/router';
 import swal from 'sweetalert2';
+import {Client} from 'src/app/core/api/models';
 
 @Component({
     selector: 'app-client-detail',
@@ -10,7 +11,7 @@ import swal from 'sweetalert2';
     styleUrls: ['./client-detail.component.sass'],
 })
 export class ClientDetailComponent implements OnInit {
-    client: CLientClass = new CLientClass();
+    client: Client = {};
     titulo = 'Create Client';
     constructor(
         private service: ClientControllerService,
@@ -26,8 +27,8 @@ export class ClientDetailComponent implements OnInit {
         console.log(this.client);
         this.client.idRol = 1;
         this.client.zip_code = 1;
-        this.client.role = {idRole: 1, name: "ROLE_USER"};
-        this.service.saveUsingPOST1(this.modifyClient(this.client)).subscribe((res) => {
+        this.client.phone = this.client.phone?.toString();
+        this.service.saveUsingPOST1(this.client).subscribe((res) => {
             this.router.navigate(['/admin/clients']);
             swal.fire(
                 'Nuevo CLiente Creado',
@@ -36,16 +37,10 @@ export class ClientDetailComponent implements OnInit {
             );
         });
     }
-
-    modifyClient(client: CLientClass): CLientClass {
-        var newClient = client;
-        delete newClient.idClient;
-        return newClient;
-    }
-
     update(): void {
         //  crea el cliente, luego le redirije
         this.client.zip_code = 1;
+        this.client.phone = this.client.phone?.toString();
         this.service.updateUsingPUT1(this.client).subscribe((client) => {
             this.router.navigate(['/admin/clients']);
             swal.fire(

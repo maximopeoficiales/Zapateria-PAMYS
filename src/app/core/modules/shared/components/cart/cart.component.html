@@ -1,4 +1,6 @@
 <mat-horizontal-stepper>
+    <div class="animate__animated animate__bounce">
+   
     <mat-step>
         <ng-template matStepLabel> Productos </ng-template>
         <br>
@@ -79,7 +81,8 @@
           <button class="px-2 py-1 mt-2 text-white bg-blue-500 rounded-md" matStepperNext>Siguiente</button>
         </div>
     </mat-step>
-    <mat-step>
+   </div>
+   <mat-step>
         <ng-template matStepLabel>Metodo de Pago</ng-template>
         <form #orderForm="ngForm" class="mt-20">
           <mat-card style="position: relative">

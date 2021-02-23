@@ -219,7 +219,7 @@
               color="accent"
               class="text-white w-100 h6"
               style="background-color: #47b475"
-              *ngIf="client.idClient == null; else elseButton"
+              *ngIf="client.idClient == undefined; else elseButton"
               (click)="create()"
               [disabled]="!clientForm.form.valid"
             >
